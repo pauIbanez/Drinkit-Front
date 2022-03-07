@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Children from "../../types/children";
+import Children from "../../types/Children";
 
 interface Props {
   children: Children;
