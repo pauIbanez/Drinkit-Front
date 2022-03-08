@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { PageHolder } from "../../styles/global";
 
 const tempRooms = [
@@ -18,8 +19,19 @@ const tempRooms = [
   },
 ];
 
+const List = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 const RoomList = (): JSX.Element => {
-  return <PageHolder></PageHolder>;
+  return (
+    <PageHolder>
+      <List></List>
+    </PageHolder>
+  );
 };
 
 export default RoomList;
