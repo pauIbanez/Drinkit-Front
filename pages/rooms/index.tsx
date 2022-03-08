@@ -23,12 +23,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     <RoomCard key={room.id as Key} room={room}></RoomCard>
   ));
 
-  return (
-    <PageHolder>
-      <Header title="JOIN A GAME" subtitle="ROOMS LIST" />
-      <List>{roomsToRender}</List>
-    </PageHolder>
-  );
+  return <List>{roomsToRender}</List>;
 };
 
 export const getServerSideProps = async () => {
