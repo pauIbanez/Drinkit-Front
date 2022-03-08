@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { lightWhite, sectionBlue } from "../../styles/colors";
 import { globalHeaderHeight } from "../../styles/variables";
 
-interface Props {
+export interface HeaderProps {
   title: String;
   subtitle: String;
 }
@@ -36,7 +36,7 @@ const Title = styled.h2`
   margin: 0;
 `;
 
-const Header = ({ title, subtitle }: Props): JSX.Element => {
+const Header = ({ title, subtitle }: HeaderProps): JSX.Element => {
   return (
     <HeaderHolder>
       <Subtitle>{subtitle.toUpperCase()}</Subtitle>
