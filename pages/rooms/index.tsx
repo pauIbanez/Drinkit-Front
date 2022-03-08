@@ -1,10 +1,8 @@
 import { Key } from "react";
 import styled from "styled-components";
-import Header from "../../components/Header/Header";
 import Layout from "../../components/Layout/Layout";
 import RoomCard from "../../components/RoomCard/RoomCard";
-import { PageHolder } from "../../styles/global";
-import Room from "../../types/Room";
+import { APIRoom, Room } from "../../types/Room";
 
 interface Props {
   rooms: Room[];
@@ -35,7 +33,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
 };
 
 export const getServerSideProps = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}rooms`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}rooms/list`);
   const body = await response.json();
 
   if (body.error) {
@@ -47,9 +45,17 @@ export const getServerSideProps = async () => {
     };
   }
 
+  const roomsToSend = body.rooms.map(
+    (room: APIRoom): Room => ({
+      creator: room.leader,
+      game: room.game.name,
+      id: room.id,
+    })
+  );
+
   return {
     props: {
-      rooms: body.rooms,
+      rooms: roomsToSend,
     },
   };
 };
