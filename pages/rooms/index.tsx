@@ -1,4 +1,4 @@
-import { PageHolder } from "../../types/styles/global";
+import { PageHolder } from "../../styles/global";
 
 const tempRooms = [
   {
