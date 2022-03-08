@@ -1,6 +1,7 @@
 import { Key } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
+import Layout from "../../components/Layout/Layout";
 import RoomCard from "../../components/RoomCard/RoomCard";
 import { PageHolder } from "../../styles/global";
 import Room from "../../types/Room";
@@ -24,10 +25,12 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
   ));
 
   return (
-    <PageHolder>
-      <Header title="JOIN A GAME" subtitle="ROOMS LIST" />
+    <Layout
+      header={{ title: "JOIN A ROOM", subtitle: "ROOMS LIST" }}
+      pageTitle={"Room List"}
+    >
       <List>{roomsToRender}</List>
-    </PageHolder>
+    </Layout>
   );
 };
 
