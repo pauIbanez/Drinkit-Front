@@ -1,9 +1,9 @@
 export interface APIGame {
-  name: String;
-  description: String;
-  drunkness: String;
-  rules: String;
-  duration: Number;
-  minPlayers: Number;
-  maxPlayers: Number;
+  name: string;
+  description: string;
+  drunkness: string;
+  rules: string;
+  duration: number;
+  minPlayers: number;
+  maxPlayers: number;
 }

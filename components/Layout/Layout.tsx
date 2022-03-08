@@ -7,7 +7,7 @@ import Header, { HeaderProps } from "../Header/Header";
 
 interface Props {
   children: Children;
-  pageTitle?: String;
+  pageTitle?: string;
   header?: HeaderProps;
 }
 
