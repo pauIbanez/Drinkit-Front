@@ -1,12 +1,7 @@
 import styled from "styled-components";
 import { lightWhite, mainTeal } from "../../styles/colors";
 import { globalRadius } from "../../styles/variables";
-
-interface Room {
-  id: String;
-  creator: String;
-  game: String;
-}
+import Room from "../../types/Room";
 
 interface Props {
   room: Room;

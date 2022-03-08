@@ -1,24 +1,12 @@
+import { Key } from "react";
 import styled from "styled-components";
 import RoomCard from "../../components/RoomCard/RoomCard";
 import { PageHolder } from "../../styles/global";
+import Room from "../../types/Room";
 
-const tempRooms = [
-  {
-    id: "wqeqwe",
-    creator: "username",
-    game: "Piramide",
-  },
-  {
-    id: "sada",
-    creator: "username",
-    game: "Remar",
-  },
-  {
-    id: "asdsadasdsa",
-    creator: "username",
-    game: "Piramide",
-  },
-];
+interface Props {
+  rooms: Room[];
+}
 
 const List = styled.ul`
   list-style: none;
@@ -29,9 +17,9 @@ const List = styled.ul`
   gap: 10px;
 `;
 
-const RoomList = (): JSX.Element => {
-  const roomsToRender = tempRooms.map((room) => (
-    <RoomCard key={room.id} room={room}></RoomCard>
+const RoomList = ({ rooms }: Props): JSX.Element => {
+  const roomsToRender = rooms.map((room) => (
+    <RoomCard key={room.id as Key} room={room}></RoomCard>
   ));
 
   return (
@@ -39,6 +27,26 @@ const RoomList = (): JSX.Element => {
       <List>{roomsToRender}</List>
     </PageHolder>
   );
+};
+
+export const getServerSideProps = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}rooms`);
+  const body = await response.json();
+
+  if (body.error) {
+    //handle api error
+    return {
+      props: {
+        rooms: [],
+      },
+    };
+  }
+
+  return {
+    props: {
+      rooms: body.rooms,
+    },
+  };
 };
 
 export default RoomList;
