@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import { mainTeal } from "./colors";
-import { globalRadius } from "./variables";
+import { backgroundBlue } from "./colors";
+import { globalPageHorizontalPadding } from "./variables";
 
 export const PageHolder = styled.div`
-  background-color: ${mainTeal};
-  boder-radius: ${globalRadius};
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: ${backgroundBlue};
+  padding: 0 ${globalPageHorizontalPadding};
 `;
