@@ -13,20 +13,25 @@ interface Props {
 }
 
 const RoomCardHolder = styled.li`
-background-color: ${mainTeal}
-border-radius: ${globalRadius}
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0 20px;`;
+  background-color: ${mainTeal};
+  border-radius: ${globalRadius};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 50px;
+`;
 
 const GameTitle = styled.h2`
   font-weight: 800;
   font-size: 18px;
+  margin: 0;
+  color: white;
 `;
 
 const Creator = styled.p`
   color: ${lightWhite};
+  margin: 0;
 `;
 
 const RoomCard = ({ room }: Props) => {
