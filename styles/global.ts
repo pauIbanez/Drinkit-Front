@@ -7,5 +7,4 @@ export const PageHolder = styled.div`
   width: 100vw;
   position: relative;
   background-color: ${backgroundBlue};
-  padding: 0 ${globalPageHorizontalPadding};
 `;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { lightWhite } from "../../styles/colors";
+import { lightWhite, sectionBlue } from "../../styles/colors";
+import { globalHeaderHeight } from "../../styles/variables";
 
 interface Props {
   title: String;
@@ -11,6 +12,11 @@ const HeaderHolder = styled.header`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  height: ${globalHeaderHeight};
+
+  background-color: ${sectionBlue};
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 `;
 
 const Subtitle = styled.h3`
