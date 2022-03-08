@@ -9,8 +9,8 @@ export interface Room {
 export interface APIRoom {
   id: string;
   leader: string;
-  isActive: Boolean;
+  isActive: boolean;
   inLobby: boolean;
-  inGame: Boolean;
+  inGame: boolean;
   game: APIGame;
 }
