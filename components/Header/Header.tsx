@@ -3,8 +3,8 @@ import { lightWhite, sectionBlue } from "../../styles/colors";
 import { globalHeaderHeight } from "../../styles/variables";
 
 export interface HeaderProps {
-  title: String;
-  subtitle: String;
+  title: string;
+  subtitle: string;
 }
 
 const HeaderHolder = styled.header`
