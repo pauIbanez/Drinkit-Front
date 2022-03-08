@@ -1,6 +1,7 @@
 import { Key } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
+import Layout from "../../components/Layout/Layout";
 import RoomCard from "../../components/RoomCard/RoomCard";
 import { PageHolder } from "../../styles/global";
 import Room from "../../types/Room";
@@ -23,7 +24,11 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     <RoomCard key={room.id as Key} room={room}></RoomCard>
   ));
 
-  return <List>{roomsToRender}</List>;
+  return (
+    <Layout header={{ title: "JOIN A ROOM", subtitle: "ROOMS LIST" }}>
+      <List>{roomsToRender}</List>
+    </Layout>
+  );
 };
 
 export const getServerSideProps = async () => {
