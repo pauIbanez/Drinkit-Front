@@ -25,7 +25,10 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
   ));
 
   return (
-    <Layout header={{ title: "JOIN A ROOM", subtitle: "ROOMS LIST" }}>
+    <Layout
+      header={{ title: "JOIN A ROOM", subtitle: "ROOMS LIST" }}
+      pageTitle={"Room List"}
+    >
       <List>{roomsToRender}</List>
     </Layout>
   );

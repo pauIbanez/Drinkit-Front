@@ -7,15 +7,16 @@ import Header, { HeaderProps } from "../Header/Header";
 
 interface Props {
   children: Children;
+  pageTitle?: String;
   header?: HeaderProps;
 }
 
-const Layout = ({ children, header }: Props): JSX.Element => {
+const Layout = ({ children, header, pageTitle }: Props): JSX.Element => {
   return (
     <>
       <Head>
         <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-        <title>Drink it!</title>
+        <title>{pageTitle ? `${pageTitle} | Drink it!` : "Drink it!"}</title>
       </Head>
       <Provider store={store}>
         <PageHolder>
