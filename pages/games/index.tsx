@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import Game from "../../components/Game/Game";
 import Layout from "../../components/Layout/Layout";
 import { lightWhite } from "../../styles/colors";
 import { CenteredContainer } from "../../styles/global";
@@ -40,11 +41,13 @@ const GamesList = ({ games }: Props): JSX.Element => {
     subtitle: "GAMES LIST",
   };
 
-  // const gamesToRender: JSX.Element[] = games.map((game: APIGame): JSX.Element => <Game game={game}/>)
+  const gamesToRender: JSX.Element[] = games.map(
+    (game: APIGame): JSX.Element => <Game key={game.name} game={game} />
+  );
   return (
     <Layout pageTitle="Games" header={header}>
       <CenteredContainer>
-        <GamesListHolder>{"gamesToRender"}</GamesListHolder>
+        <GamesListHolder>{gamesToRender}</GamesListHolder>
         <Link href={"/"} passHref>
           <Back>Back</Back>
         </Link>
