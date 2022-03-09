@@ -24,9 +24,10 @@ interface Props {
 }
 
 const GamesListHolder = styled.ul`
-  margin: 0;
+  margin: 30px 0;
   padding: 0;
   list-style: none;
+  width: 100%;
 `;
 
 const Back = styled.a`
