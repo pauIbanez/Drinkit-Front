@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, useState } from "react";
 import styled from "styled-components";
-import { lightBlack } from "../../../styles/colors";
+import { lightBlack, lightWhite, mainTeal } from "../../../styles/colors";
 import { globalRadius } from "../../../styles/variables";
 
 interface Props {
@@ -46,6 +46,8 @@ const InputCheto = styled.input`
   outline: none;
   border: none;
   background-color: ${lightBlack};
+  color: white;
+  font-family: inherit;
 `;
 
 const InputField = ({ type, name, value, onChange, label }: Props) => {
@@ -55,7 +57,9 @@ const InputField = ({ type, name, value, onChange, label }: Props) => {
     setFocused(true);
   };
   const returnLabel = (): void => {
-    setFocused(false);
+    if (value === "") {
+      setFocused(false);
+    }
   };
 
   return (
