@@ -34,7 +34,7 @@ const Back = styled.a`
   font-size: 20px;
 `;
 
-const GamesList = ({ games }: Props) => {
+const GamesList = ({ games }: Props): JSX.Element => {
   const header: Header = {
     title: "SELECT A GAME",
     subtitle: "GAMES LIST",
