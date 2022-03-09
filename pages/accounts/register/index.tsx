@@ -1,5 +1,4 @@
 import Link from "next/link";
-import InputField from "../../../components/Forms/InputField/InputField";
 import RegisterForm from "../../../components/Forms/RegisterForm/RegisterForm";
 import Layout from "../../../components/Layout/Layout";
 import {
