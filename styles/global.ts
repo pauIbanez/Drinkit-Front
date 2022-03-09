@@ -21,8 +21,17 @@ export const Tips = styled.p`
   font-size: 18px;
 `;
 
-export const Linkedin = styled.p`
+export const Linkedin = styled.a`
   color: ${mainTeal};
   text-decoration: none;
   margin: 0;
+`;
+
+export const CenteredContainer = styled.main`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 400px;
 `;
