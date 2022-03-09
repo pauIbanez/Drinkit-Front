@@ -35,3 +35,10 @@ export const CenteredContainer = styled.main`
   width: 90%;
   max-width: 400px;
 `;
+
+export const StyledForm = styled.form`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+`;
