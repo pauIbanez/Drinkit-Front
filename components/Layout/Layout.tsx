@@ -17,6 +17,7 @@ const Layout = ({ children, header, pageTitle }: Props): JSX.Element => {
       <Head>
         <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
         <title>{pageTitle ? `${pageTitle} | Drink it!` : "Drink it!"}</title>
+        <base href="/" />
       </Head>
       <Provider store={store}>
         <PageHolder>
