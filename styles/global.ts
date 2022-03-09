@@ -1,5 +1,6 @@
+import Link from "next/link";
 import styled from "styled-components";
-import { backgroundBlue } from "./colors";
+import { backgroundBlue, mainTeal } from "./colors";
 
 export const PageHolder = styled.div`
   height: 100vh;
@@ -13,4 +14,15 @@ export const MainTitle = styled.h1`
   font-weight: 800;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   margin: 40px;
+`;
+
+export const Tips = styled.p`
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+`;
+
+export const Linkedin = styled.p`
+  color: ${mainTeal};
+  text-decoration: none;
+  margin: 0;
 `;
