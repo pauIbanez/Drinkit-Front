@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, useState } from "react";
 import styled from "styled-components";
-import { lightBlack, lightWhite, mainTeal } from "../../../styles/colors";
+import { lightBlack } from "../../../styles/colors";
 import { globalRadius } from "../../../styles/variables";
 
 interface Props {
@@ -30,12 +30,8 @@ const DynamicLabel = styled.label`
   margin-left: 10px;
   ${({ focused }: LabelProps): string =>
     focused
-      ? `
-          position: absolute;
-          animation: labelOut ease-in 0.1s forwards;
-        `
-      : `
-          animation: labelIn ease-out 0.1s forwards;`}
+      ? "position: absolute; animation: labelOut ease-in 0.1s forwards;"
+      : "animation: labelIn ease-out 0.1s forwards;"}
 `;
 
 const InputCheto = styled.input`
