@@ -1,5 +1,7 @@
 import { BaseSyntheticEvent, useState } from "react";
+import { mainTeal } from "../../../styles/colors";
 import { StyledForm } from "../../../styles/global";
+import NormalButton from "../../Buttons/NormalButton";
 import InputField from "../InputField/InputField";
 
 const RegisterForm = () => {
@@ -22,8 +24,12 @@ const RegisterForm = () => {
     setFormData(newFormData);
   };
 
+  const submit = (event: BaseSyntheticEvent): void => {
+    event.preventDefault();
+  };
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={submit}>
       <InputField
         label="Name"
         name="name"
@@ -58,6 +64,12 @@ const RegisterForm = () => {
         type="password"
         value={formData.password}
         onChange={updateField}
+      />
+      <NormalButton
+        color={mainTeal}
+        submit
+        size={{ height: 30, width: 290 }}
+        text="Register"
       />
     </StyledForm>
   );

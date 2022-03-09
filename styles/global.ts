@@ -41,4 +41,6 @@ export const StyledForm = styled.form`
   align-items: center;
   flex-direction: column;
   align-items: center;
+  width: 290px;
+  gap: 17px;
 `;
