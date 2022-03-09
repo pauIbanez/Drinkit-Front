@@ -1,4 +1,5 @@
 import { BaseSyntheticEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import { mainTeal } from "../../../styles/colors";
 import { StyledForm } from "../../../styles/global";
 import NormalButton from "../../Buttons/NormalButton";
