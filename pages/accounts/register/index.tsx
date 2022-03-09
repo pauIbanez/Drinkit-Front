@@ -1,4 +1,5 @@
 import Link from "next/link";
+import InputField from "../../../components/Forms/InputField/InputField";
 import Layout from "../../../components/Layout/Layout";
 import {
   CenteredContainer,
@@ -15,7 +16,15 @@ const RegisterPage = () => {
     >
       <MainTitle>DRINK IT</MainTitle>
       <CenteredContainer>
-        <p>placeholder form</p>
+        <form>
+          <InputField
+            label="Name"
+            name="name"
+            onChange={(event) => {}}
+            type="text"
+            value=""
+          />
+        </form>
         <Tips>
           Already have an account?{" "}
           <Link href={"/accounts/login"} passHref>

@@ -11,3 +11,4 @@ export const drakMainRed = "#F44C4B";
 
 //Font colors
 export const lightWhite = "rgba(255,255,255,0.7)";
+export const lightBlack = "rgba(0,0,0,0.3)";

@@ -1,23 +1,79 @@
+import { BaseSyntheticEvent, useState } from "react";
+import styled from "styled-components";
+import { lightBlack } from "../../../styles/colors";
+import { globalRadius } from "../../../styles/variables";
+
 interface Props {
   type: string;
   name: string;
   value: string;
   label: string;
-  onChange(): Event;
+  onChange(event: BaseSyntheticEvent): void;
 }
 
+interface LabelProps {
+  focused: boolean;
+}
+
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 290px;
+  height: 40px;
+`;
+
+const DynamicLabel = styled.label`
+  color: white;
+  margin: 0;
+  z-index: 2;
+  margin-left: 10px;
+  ${({ focused }: LabelProps): string =>
+    focused
+      ? `
+          position: absolute;
+          animation: labelOut ease-in 0.1s forwards;
+        `
+      : `
+          animation: labelIn ease-out 0.1s forwards;`}
+`;
+
+const InputCheto = styled.input`
+  position: absolute;
+  inset: 0;
+  padding: 10px;
+  border-radius: ${globalRadius};
+  outline: none;
+  border: none;
+  background-color: ${lightBlack};
+`;
+
 const InputField = ({ type, name, value, onChange, label }: Props) => {
+  const [focused, setFocused] = useState(false);
+
+  const moveLabel = (): void => {
+    setFocused(true);
+  };
+  const returnLabel = (): void => {
+    setFocused(false);
+  };
+
   return (
-    <>
-      <label htmlFor={name}></label>
-      <input
+    <Wrapper>
+      <InputCheto
         type={type}
         name={name}
         id={name}
         value={value}
         onChange={onChange}
+        onFocus={moveLabel}
+        onBlur={returnLabel}
+        autoComplete="off"
       />
-    </>
+      <DynamicLabel htmlFor={name} focused={focused}>
+        {label}
+      </DynamicLabel>
+    </Wrapper>
   );
 };
 
