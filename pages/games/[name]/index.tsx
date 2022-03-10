@@ -1,7 +1,9 @@
+import Link from "next/link";
 import styled from "styled-components";
+import TextIconButton from "../../../components/Buttons/TextIconButton/TextIconButton";
 import Layout from "../../../components/Layout/Layout";
-import { lightWhite, mainTeal } from "../../../styles/colors";
-import { CenteredContainer } from "../../../styles/global";
+import { lightWhite, mainTeal, yellow } from "../../../styles/colors";
+import { Back, CenteredContainer } from "../../../styles/global";
 import { APIGame } from "../../../types/Game";
 
 interface Props {
@@ -38,6 +40,11 @@ const SectionInfo = styled.p`
   margin: 0;
 `;
 
+const Controlls = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const GameDetails = ({ game }: Props) => {
   return (
     <Layout pageTitle={game.name} color={mainTeal}>
@@ -49,6 +56,17 @@ const GameDetails = ({ game }: Props) => {
           <SectionTitle>How to play</SectionTitle>
           <SectionInfo>{game.gameInfo.howToPlay}</SectionInfo>
         </InfoSection>
+        <Controlls>
+          <Link href={"/"} passHref>
+            <Back>Back</Back>
+          </Link>
+          <TextIconButton
+            color={yellow}
+            icon="/buttonIcons/clink.png"
+            size={{ width: 130, height: 50 }}
+            text="Start"
+          />
+        </Controlls>
       </CenteredContainer>
     </Layout>
   );
