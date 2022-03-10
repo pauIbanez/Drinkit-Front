@@ -18,7 +18,7 @@ describe("Given getStaticProps", () => {
   });
 });
 
-describe("Given Register page", () => {
+describe("Given GamesList page", () => {
   describe("When it's instanciated", () => {
     test("Then it should render a Link with the text 'Back'", () => {
       const expectedLink = "Back";

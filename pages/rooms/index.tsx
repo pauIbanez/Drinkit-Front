@@ -1,7 +1,10 @@
+import Link from "next/link";
 import { Key } from "react";
 import styled from "styled-components";
 import Layout from "../../components/Layout/Layout";
 import RoomCard from "../../components/RoomCard/RoomCard";
+import { Back, CenteredContainer } from "../../styles/global";
+import Header from "../../types/Header";
 import { APIRoom, Room } from "../../types/Room";
 
 interface Props {
@@ -18,16 +21,22 @@ const List = styled.ul`
 `;
 
 const RoomList = ({ rooms }: Props): JSX.Element => {
+  const header: Header = {
+    title: "JOIN A ROOM",
+    subtitle: "ROOMS LIST",
+  };
   const roomsToRender = rooms.map((room) => (
     <RoomCard key={room.id as Key} room={room}></RoomCard>
   ));
 
   return (
-    <Layout
-      header={{ title: "JOIN A ROOM", subtitle: "ROOMS LIST" }}
-      pageTitle={"Room List"}
-    >
-      <List>{roomsToRender}</List>
+    <Layout header={header} pageTitle={"Room List"}>
+      <CenteredContainer>
+        <List>{roomsToRender}</List>
+        <Link href={"/"} passHref>
+          <Back>Back</Back>
+        </Link>
+      </CenteredContainer>
     </Layout>
   );
 };
