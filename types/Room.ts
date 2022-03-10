@@ -12,5 +12,6 @@ export interface APIRoom {
   isActive: boolean;
   inLobby: boolean;
   inGame: boolean;
+  players: string[];
   game: APIGame;
 }

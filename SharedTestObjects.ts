@@ -1,4 +1,7 @@
-export const APIGames = [
+import { APIGame } from "./types/Game";
+import { APIRoom } from "./types/Room";
+
+export const APIGames: APIGame[] = [
   {
     name: "Piramide",
     description: "ASdasdadsa",
@@ -16,5 +19,26 @@ export const APIGames = [
     duration: 0,
     minPlayers: 0,
     maxPlayers: 0,
+  },
+];
+
+export const APIRooms: APIRoom[] = [
+  {
+    players: [],
+    id: "asdasd",
+    game: APIGames[0],
+    inGame: false,
+    inLobby: true,
+    isActive: true,
+    leader: "sadsadasd",
+  },
+  {
+    players: [],
+    id: "asdasd",
+    game: APIGames[1],
+    inGame: false,
+    inLobby: true,
+    isActive: true,
+    leader: "asdasdasd",
   },
 ];
