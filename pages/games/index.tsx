@@ -2,8 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import Game from "../../components/Game/Game";
 import Layout from "../../components/Layout/Layout";
-import { lightWhite } from "../../styles/colors";
-import { CenteredContainer } from "../../styles/global";
+import { Back, CenteredContainer } from "../../styles/global";
 import { APIGame } from "../../types/Game";
 import Header from "../../types/Header";
 
@@ -16,12 +15,6 @@ const GamesListHolder = styled.ul`
   padding: 0;
   list-style: none;
   width: 100%;
-`;
-
-const Back = styled.a`
-  color: ${lightWhite};
-  text-decoration: none;
-  font-size: 20px;
 `;
 
 const GamesList = ({ games }: Props): JSX.Element => {
@@ -47,11 +40,20 @@ const GamesList = ({ games }: Props): JSX.Element => {
 
 export const getStaticProps = async () => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}games/list`);
-  const { games }: Props = await response.json();
+  const body = await response.json();
+
+  if (body.error) {
+    //handle api error
+    return {
+      props: {
+        games: [],
+      },
+    };
+  }
 
   return {
     props: {
-      games,
+      games: body.games,
     },
   };
 };

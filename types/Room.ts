@@ -1,16 +1,12 @@
 import { APIGame } from "./Game";
-
-export interface Room {
-  id: string;
-  creator: string;
-  game: string;
-}
+import Player from "./Player";
 
 export interface APIRoom {
   id: string;
-  leader: string;
+  leader: Player;
   isActive: boolean;
   inLobby: boolean;
   inGame: boolean;
+  players: string[];
   game: APIGame;
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { backgroundBlue, mainTeal } from "./colors";
+import { backgroundBlue, lightWhite, mainTeal } from "./colors";
 
 export const PageHolder = styled.div`
   height: 100vh;
@@ -42,4 +42,10 @@ export const StyledForm = styled.form`
   align-items: center;
   width: 290px;
   gap: 17px;
+`;
+
+export const Back = styled.a`
+  color: ${lightWhite};
+  text-decoration: none;
+  font-size: 20px;
 `;

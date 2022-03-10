@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { lightWhite, mainTeal } from "../../styles/colors";
 import { globalRadius } from "../../styles/variables";
-import { Room } from "../../types/Room";
+import { APIRoom } from "../../types/Room";
 
 interface Props {
-  room: Room;
+  room: APIRoom;
 }
 
 const RoomCardHolder = styled.li`
@@ -32,8 +32,8 @@ const Creator = styled.p`
 const RoomCard = ({ room }: Props) => {
   return (
     <RoomCardHolder>
-      <GameTitle>{room.game}</GameTitle>
-      <Creator>{room.creator}</Creator>
+      <GameTitle>{room.game.name}</GameTitle>
+      <Creator>{room.leader.profile.username}</Creator>
     </RoomCardHolder>
   );
 };

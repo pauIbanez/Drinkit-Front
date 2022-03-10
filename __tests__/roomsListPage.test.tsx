@@ -1,40 +1,39 @@
 import { render, screen } from "@testing-library/react";
-import GamesList, { getStaticProps } from "../pages/games";
-import { APIGames } from "../SharedTestObjects";
-import { APIGame } from "../types/Game";
+import RoomList, { getServerSideProps } from "../pages/rooms";
+import { APIRooms } from "../SharedTestObjects";
+import { APIRoom } from "../types/Room";
 
-describe("Given getStaticProps", () => {
-  describe("When it's instanciated and response ok", () => {
-    test("Then it should return an object with a property props that contains the recieved games", async () => {
+describe("Given getServerSideProps", () => {
+  describe("When it's instanciated and the response is ok", () => {
+    test("Then it should return an object with a property props that contains the recieved rooms", async () => {
       const expectedResult = {
         props: {
-          games: APIGames,
+          rooms: APIRooms,
         },
       };
 
-      const result = await getStaticProps();
+      const result = await getServerSideProps();
 
       expect(result).toEqual(expectedResult);
     });
   });
 
-  describe("When it's instanciated and response is an error", () => {
+  describe("When it's instanciated and the response is an error", () => {
     test("Then it should return an object with a property props that contains an empty array", async () => {
       const original = { ...process.env };
       process.env.NEXT_PUBLIC_API_URL = "http://fail-request/";
       interface Result {
         props: {
-          games: APIGame[];
+          rooms: APIRoom[];
         };
       }
-
       const expectedResult: Result = {
         props: {
-          games: [],
+          rooms: [],
         },
       };
 
-      const result = await getStaticProps();
+      const result = await getServerSideProps();
 
       expect(result).toEqual(expectedResult);
 
@@ -43,12 +42,12 @@ describe("Given getStaticProps", () => {
   });
 });
 
-describe("Given GamesList page", () => {
+describe("Given RoomsList page", () => {
   describe("When it's instanciated", () => {
     test("Then it should render a Link with the text 'Back'", () => {
       const expectedLink = "Back";
 
-      render(<GamesList games={APIGames} />);
+      render(<RoomList rooms={APIRooms} />);
 
       const foundLink = screen.getByRole("link", { name: expectedLink });
 
