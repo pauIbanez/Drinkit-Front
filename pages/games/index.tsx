@@ -7,18 +7,6 @@ import { CenteredContainer } from "../../styles/global";
 import { APIGame } from "../../types/Game";
 import Header from "../../types/Header";
 
-const APIGames = [
-  {
-    name: "Piramide",
-    description: "ASdasdadsa",
-    drunkness: "high",
-    rules: "asdasdasda",
-    duration: 30,
-    minPlayers: 4,
-    maxPlayers: 12,
-  },
-];
-
 interface Props {
   games: APIGame[];
 }
@@ -57,10 +45,13 @@ const GamesList = ({ games }: Props): JSX.Element => {
   );
 };
 
-export const getStaticProps = () => {
+export const getStaticProps = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}games/list`);
+  const { games }: Props = await response.json();
+
   return {
     props: {
-      games: APIGames,
+      games,
     },
   };
 };
