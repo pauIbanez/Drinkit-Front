@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import Layout from "./Layout";
 
 describe("Given Layout component", () => {
@@ -36,18 +36,4 @@ describe("Given Layout component", () => {
       expect(foundTitle).toBeInTheDocument();
     });
   });
-
-  // describe("When it's instanciated passing children and a custom title", () => {
-  //   test("Then it should render the children and change the title", () => {
-  //     const title = "something";
-  //     const expectedTitle = "something | Drink it!";
-
-  //     const buttonText = "Test Button";
-  //     const Children = <button>{buttonText}</button>;
-
-  //     render(<Layout pageTitle={title}>{Children}</Layout>);
-
-  //     expect(document.title).toBe(expectedTitle);
-  //   });
-  // });
 });
