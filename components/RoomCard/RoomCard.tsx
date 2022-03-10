@@ -32,7 +32,7 @@ const Creator = styled.p`
 const RoomCard = ({ room }: Props) => {
   return (
     <RoomCardHolder>
-      <GameTitle>{room.game}</GameTitle>
+      <GameTitle>{room.game.name}</GameTitle>
       <Creator>{room.leader.profile.username}</Creator>
     </RoomCardHolder>
   );

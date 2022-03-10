@@ -26,7 +26,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     subtitle: "ROOMS LIST",
   };
   const roomsToRender = rooms.map((room) => (
-    <RoomCard key={room.id as Key} room={room}></RoomCard>
+    <RoomCard key={room.id as Key} room={room} />
   ));
 
   return (

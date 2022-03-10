@@ -41,11 +41,20 @@ const GamesList = ({ games }: Props): JSX.Element => {
 
 export const getStaticProps = async () => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}games/list`);
-  const { games }: Props = await response.json();
+  const body = await response.json();
+
+  if (body.error) {
+    //handle api error
+    return {
+      props: {
+        games: [],
+      },
+    };
+  }
 
   return {
     props: {
-      games,
+      games: body.games,
     },
   };
 };

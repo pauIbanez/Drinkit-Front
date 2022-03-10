@@ -1,19 +1,14 @@
 import RoomCard from "./RoomCard";
 import { render, screen } from "@testing-library/react";
+import { APIRooms } from "../../SharedTestObjects";
 
 describe("Given RoomCard", () => {
   describe("When it's passed a room", () => {
     test("Then it should render the car's game and creator", () => {
-      const room = {
-        id: "qwseqweqw",
-        game: "Piramide",
-        creator: "creator username",
-      };
-
       const expectedGame = "Piramide";
-      const expectedCreator = "creator username";
+      const expectedCreator = APIRooms[0].leader.profile.username;
 
-      render(<RoomCard room={room} />);
+      render(<RoomCard room={APIRooms[0]} />);
 
       const foundGame = screen.getByRole("heading", { name: expectedGame });
       const foundCreator = screen.getByText(expectedCreator);
