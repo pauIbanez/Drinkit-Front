@@ -10,3 +10,9 @@ export const renderInBocata = (component) => {
 
   return render(component, { wrapper: bocata });
 };
+
+beforeAll(() => server.listen());
+
+afterEach(() => server.resetHandlers());
+
+afterAll(() => server.close());
