@@ -15,6 +15,7 @@ const GamesListHolder = styled.ul`
   padding: 0;
   list-style: none;
   width: 100%;
+  min-height: 400px;
 `;
 
 const GamesList = ({ games }: Props): JSX.Element => {
