@@ -63,7 +63,7 @@ const GameDetails = ({ game }: Props) => {
           <SectionInfo>{game.gameInfo.howToPlay}</SectionInfo>
         </InfoSection>
         <Controlls>
-          <Link href={"/"} passHref>
+          <Link href={"/games"} passHref>
             <Back>Back</Back>
           </Link>
           <TextIconButton
