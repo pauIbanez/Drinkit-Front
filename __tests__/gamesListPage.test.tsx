@@ -23,7 +23,7 @@ describe("Given Register page", () => {
     test("Then it should render a Link with the text 'Back'", () => {
       const expectedLink = "Back";
 
-      render(<GamesList games={[]} />);
+      render(<GamesList games={APIGames} />);
 
       const foundLink = screen.getByRole("link", { name: expectedLink });
 
