@@ -1,7 +1,7 @@
 import React, { BaseSyntheticEvent, useState } from "react";
 import { mainTeal } from "../../../styles/colors";
 import { StyledForm } from "../../../styles/global";
-import NormalButton from "../../Buttons/NormalButton";
+import NormalButton from "../../Buttons/NormalButton/NormalButton";
 import InputField from "../InputField/InputField";
 
 const RegisterForm = () => {
