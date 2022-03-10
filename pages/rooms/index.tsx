@@ -5,10 +5,10 @@ import Layout from "../../components/Layout/Layout";
 import RoomCard from "../../components/RoomCard/RoomCard";
 import { Back, CenteredContainer } from "../../styles/global";
 import Header from "../../types/Header";
-import { APIRoom, Room } from "../../types/Room";
+import { APIRoom } from "../../types/Room";
 
 interface Props {
-  rooms: Room[];
+  rooms: APIRoom[];
 }
 
 const List = styled.ul`
@@ -54,17 +54,9 @@ export const getServerSideProps = async () => {
     };
   }
 
-  const roomsToSend = body.rooms.map(
-    (room: APIRoom): Room => ({
-      creator: room.leader,
-      game: room.game.name,
-      id: room.id,
-    })
-  );
-
   return {
     props: {
-      rooms: roomsToSend,
+      rooms: body.rooms,
     },
   };
 };

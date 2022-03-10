@@ -1,5 +1,18 @@
 import { APIGame } from "./types/Game";
+import Player from "./types/Player";
 import { APIRoom } from "./types/Room";
+
+export const localUser: Player = {
+  profile: {
+    friends: [],
+    incomingRequests: [],
+    stats: {
+      sips: 312,
+      games: 14,
+    },
+    username: "local user",
+  },
+};
 
 export const APIGames: APIGame[] = [
   {
@@ -30,7 +43,7 @@ export const APIRooms: APIRoom[] = [
     inGame: false,
     inLobby: true,
     isActive: true,
-    leader: "sadsadasd",
+    leader: localUser,
   },
   {
     players: [],
@@ -39,6 +52,6 @@ export const APIRooms: APIRoom[] = [
     inGame: false,
     inLobby: true,
     isActive: true,
-    leader: "asdasdasd",
+    leader: localUser,
   },
 ];
