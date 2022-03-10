@@ -2,7 +2,6 @@ import Link from "next/link";
 import styled from "styled-components";
 import Game from "../../components/Game/Game";
 import Layout from "../../components/Layout/Layout";
-import { lightWhite } from "../../styles/colors";
 import { Back, CenteredContainer } from "../../styles/global";
 import { APIGame } from "../../types/Game";
 import Header from "../../types/Header";

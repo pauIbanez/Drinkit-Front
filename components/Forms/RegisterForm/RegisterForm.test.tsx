@@ -38,7 +38,6 @@ describe("Given Registerform", () => {
         username: "Username",
         password: "Password",
       };
-      const expectedButton = "Register";
 
       render(<RegisterForm />);
 
