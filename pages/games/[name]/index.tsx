@@ -1,4 +1,5 @@
 import Layout from "../../../components/Layout/Layout";
+import { mainTeal } from "../../../styles/colors";
 import { CenteredContainer } from "../../../styles/global";
 import { APIGame } from "../../../types/Game";
 
@@ -14,7 +15,7 @@ interface StaticProps {
 
 const GameDetails = ({ game }: Props) => {
   return (
-    <Layout pageTitle={game.name}>
+    <Layout pageTitle={game.name} color={mainTeal}>
       <CenteredContainer>
         <h1>{game.name}</h1>
       </CenteredContainer>

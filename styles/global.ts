@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { backgroundBlue, lightWhite, mainTeal } from "./colors";
+import { lightWhite, mainTeal } from "./colors";
 
 export const PageHolder = styled.div`
   height: 100vh;
   width: 100vw;
   position: relative;
-  background-color: ${backgroundBlue};
+  background-color: ${({ color }) => color};
 `;
 
 export const MainTitle = styled.h1`
