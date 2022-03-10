@@ -82,12 +82,12 @@ export const getStaticProps = async ({ params: { name } }: StaticProps) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}games/list`);
   const body = await response.json();
 
-  const game = body.games.find(
+  const foundGame = body.games.find(
     (game: APIGame) => game.name.toLowerCase() === name
   );
   return {
     props: {
-      game,
+      game: foundGame,
     },
   };
 };
