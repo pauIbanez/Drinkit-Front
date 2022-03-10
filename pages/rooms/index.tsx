@@ -18,6 +18,9 @@ const List = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+  min-height: 400px;
+  margin: 30px 0;
 `;
 
 const RoomList = ({ rooms }: Props): JSX.Element => {
