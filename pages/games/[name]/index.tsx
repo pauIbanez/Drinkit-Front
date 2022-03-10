@@ -4,6 +4,7 @@ import TextIconButton from "../../../components/Buttons/TextIconButton/TextIconB
 import Layout from "../../../components/Layout/Layout";
 import { lightWhite, mainTeal, yellow } from "../../../styles/colors";
 import { Back, CenteredContainer } from "../../../styles/global";
+import { globalPageHorizontalPadding } from "../../../styles/variables";
 import { APIGame } from "../../../types/Game";
 
 interface Props {
@@ -43,6 +44,11 @@ const SectionInfo = styled.p`
 const Controlls = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  padding: 0 ${globalPageHorizontalPadding};
+  bottom: 40px;
 `;
 
 const GameDetails = ({ game }: Props) => {

@@ -33,6 +33,7 @@ export const CenteredContainer = styled.main`
   align-items: center;
   width: 90%;
   max-width: 400px;
+  position: relative;
 `;
 
 export const StyledForm = styled.form`
