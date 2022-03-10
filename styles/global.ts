@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { backgroundBlue, lightWhite, mainTeal } from "./colors";
+import { lightWhite, mainTeal } from "./colors";
 
 export const PageHolder = styled.div`
   height: 100vh;
   width: 100vw;
   position: relative;
-  background-color: ${backgroundBlue};
+  background-color: ${({ color }) => color};
 `;
 
 export const MainTitle = styled.h1`
@@ -33,6 +33,7 @@ export const CenteredContainer = styled.main`
   align-items: center;
   width: 90%;
   max-width: 400px;
+  position: relative;
 `;
 
 export const StyledForm = styled.form`

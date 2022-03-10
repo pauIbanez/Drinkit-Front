@@ -28,6 +28,9 @@ const StyledButton = styled.button`
   color: white;
   font-size: 18px;
   margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const NormalButton = ({

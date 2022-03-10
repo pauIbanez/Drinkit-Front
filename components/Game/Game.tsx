@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { lightWhite, mainTeal } from "../../styles/colors";
 import { globalRadius } from "../../styles/variables";
@@ -51,8 +52,12 @@ const InfoItem = styled.p`
 `;
 
 const Game = ({ game }: Props): JSX.Element => {
+  const router = useRouter();
+  const gotoDetail = () => {
+    router.push(`/games/${game.name.toLowerCase()}`);
+  };
   return (
-    <StyledGame>
+    <StyledGame onClick={gotoDetail}>
       <TextSection>
         <GameName>{game.name.toUpperCase()}</GameName>
         <GameInfo>

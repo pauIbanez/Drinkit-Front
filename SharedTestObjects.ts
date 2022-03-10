@@ -17,18 +17,22 @@ export const localUser: Player = {
 export const APIGames: APIGame[] = [
   {
     name: "Piramide",
-    description: "ASdasdadsa",
+    gameInfo: {
+      setup: "perpare cards xd",
+      howToPlay: "playing",
+    },
     drunkness: "high",
-    rules: "asdasdasda",
     duration: 30,
     minPlayers: 4,
     maxPlayers: 12,
   },
   {
     name: "Remar",
-    description: "asdas",
     drunkness: "high",
-    rules: "asd",
+    gameInfo: {
+      setup: "perpare cards xd",
+      howToPlay: "playing",
+    },
     duration: 0,
     minPlayers: 0,
     maxPlayers: 0,
