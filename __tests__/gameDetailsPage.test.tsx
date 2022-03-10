@@ -1,5 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import GameDetails, { getStaticPaths } from "../pages/games/[name]";
+import GameDetails, {
+  getStaticPaths,
+  getStaticProps,
+} from "../pages/games/[name]";
 import { APIGames } from "../SharedTestObjects";
 
 describe("Given gameDetails page", () => {
@@ -53,6 +56,23 @@ describe("Given getStaticPaths", () => {
         fallback: false,
       };
       const result = await getStaticPaths();
+
+      expect(result).toEqual(expectedResult);
+    });
+  });
+});
+
+describe("Given getStaticProps", () => {
+  describe("When it's instanciated passing an objects with params and a game name", () => {
+    test("Then it should return an object with the propperty props contining the correct game", async () => {
+      const expectedResult = {
+        props: {
+          game: APIGames[0],
+        },
+      };
+      const result = await getStaticProps({
+        params: { name: APIGames[0].name.toLowerCase() },
+      });
 
       expect(result).toEqual(expectedResult);
     });
