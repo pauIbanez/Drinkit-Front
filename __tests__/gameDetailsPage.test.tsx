@@ -33,3 +33,28 @@ describe("Given gameDetails page", () => {
     });
   });
 });
+
+describe("Given getStaticPaths", () => {
+  describe("When it's instanciated", () => {
+    test("Then it should return an object with an paths that contains an object with propperty params with the games names", async () => {
+      const expectedResult = {
+        paths: [
+          {
+            params: {
+              name: "piramide",
+            },
+          },
+          {
+            params: {
+              name: "remar",
+            },
+          },
+        ],
+        fallback: false,
+      };
+      const result = await getStaticPaths();
+
+      expect(result).toEqual(expectedResult);
+    });
+  });
+});
