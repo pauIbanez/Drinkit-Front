@@ -33,13 +33,7 @@ const StyledButton = styled.button`
   justify-content: center;
 `;
 
-const TextIconButton = ({
-  text,
-  color,
-  icon,
-  size,
-  onClick = () => {},
-}: Props) => {
+const TextIconButton = ({ text, color, icon, size, onClick }: Props) => {
   return (
     <StyledButton col={color} size={size} onClick={onClick}>
       <Image src={icon} alt="Two glasses" width={24} height={24} />

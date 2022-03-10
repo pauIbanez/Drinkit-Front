@@ -33,13 +33,7 @@ const StyledButton = styled.button`
   justify-content: center;
 `;
 
-const NormalButton = ({
-  text,
-  color,
-  submit,
-  size,
-  onClick = () => {},
-}: Props) => {
+const NormalButton = ({ text, color, submit, size, onClick }: Props) => {
   return (
     <StyledButton
       col={color}
