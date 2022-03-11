@@ -20,6 +20,13 @@ export const handlers = [
     );
   }),
 
+  rest.post(
+    `${process.env.NEXT_PUBLIC_API_URL}rooms/create`,
+    (req, res, ctx) => {
+      return res(ctx.status(201), ctx.json(APIRooms[0]));
+    }
+  ),
+
   rest.get(`http://fail-request/games/list`, (req, res, ctx) => {
     return res(
       ctx.status(400),

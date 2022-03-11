@@ -6,6 +6,13 @@ import GameDetails, {
 } from "../pages/games/[name]";
 import { APIGames } from "../SharedTestObjects";
 import { renderInBocata } from "../jest.setup";
+import userEvent from "@testing-library/user-event";
+
+const mockDispatch = jest.fn();
+
+jest.mock("react-redux", () => ({
+  useDispatch: () => mockDispatch,
+}));
 
 describe("Given gameDetails page", () => {
   describe("When it's instanciated passing a game", () => {
@@ -35,6 +42,17 @@ describe("Given gameDetails page", () => {
       expect(foundHowToPlayHeading).toBeInTheDocument();
       expect(foundSetuptext).toBeInTheDocument();
       expect(foundHowToPlayText).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's instanciated passing a game and the user clicks on start and it loads fine", () => {
+    test("Then it should call dispatch and then onLoad", () => {
+      renderInBocata(<GameDetails game={APIGames[0]} />);
+
+      const foundButton = screen.getByRole("button");
+      userEvent.click(foundButton);
+
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });
