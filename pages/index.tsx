@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import IconButton from "../components/Buttons/IconButton/IconButton";
 import TextIconButton from "../components/Buttons/TextIconButton/TextIconButton";
@@ -115,6 +116,16 @@ const Stat = styled.p`
 `;
 
 const Home: NextPage = () => {
+  const router = useRouter();
+
+  const gotoGamesList = () => {
+    router.push("/games");
+  };
+
+  const gotoRoomsList = () => {
+    router.push("/rooms");
+  };
+
   return (
     <Layout>
       <FriendsButtonHolder>
@@ -137,12 +148,14 @@ const Home: NextPage = () => {
               icon="/icons/clink"
               size={{ height: 45, width: 285 }}
               text="Host Game"
+              onClick={gotoGamesList}
             />
             <TextIconButton
               color={lightBlue}
               icon="/icons/clink"
               size={{ height: 45, width: 285 }}
               text="Join Game"
+              onClick={gotoRoomsList}
             />
           </Controlls>
         </VerticalCentered>

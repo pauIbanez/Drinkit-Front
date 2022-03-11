@@ -1,5 +1,13 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Home from "../pages";
+
+const mockPush = jest.fn();
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
+}));
 
 describe("Given HomePage", () => {
   describe("When it's instanciated", () => {
@@ -31,6 +39,34 @@ describe("Given HomePage", () => {
       expect(foundJoinButton).toBeInTheDocument();
       expect(foundSettingsButton).toBeInTheDocument();
       expect(foundFriendsButton).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's and the join button is pressed", () => {
+    test("Then it should call router.push with the path '/rooms'", () => {
+      const expectedJoinButtonAlt = "Join Game icon";
+      const expectedPath = "/rooms";
+
+      render(<Home />);
+
+      const foundJoinButton = screen.getByAltText(expectedJoinButtonAlt);
+      userEvent.click(foundJoinButton);
+
+      expect(mockPush).toHaveBeenCalledWith(expectedPath);
+    });
+  });
+
+  describe("When it's and the host button is pressed", () => {
+    test("Then it should call router.push with the path '/games'", () => {
+      const expectedHostButtonAlt = "Host Game icon";
+      const expectedPath = "/games";
+
+      render(<Home />);
+
+      const foundHostButton = screen.getByAltText(expectedHostButtonAlt);
+      userEvent.click(foundHostButton);
+
+      expect(mockPush).toHaveBeenCalledWith(expectedPath);
     });
   });
 });
