@@ -67,7 +67,7 @@ const RegisterForm = () => {
       />
       <NormalButton
         color={mainTeal}
-        submit
+        isSubmit
         size={{ height: 30, width: 290 }}
         text="Register"
       />

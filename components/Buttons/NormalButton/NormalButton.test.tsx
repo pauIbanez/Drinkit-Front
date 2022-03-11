@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { BaseSyntheticEvent } from "react";
 import NormalButton from "./NormalButton";
 
 describe("Given NormalButton", () => {
@@ -56,11 +57,15 @@ describe("Given NormalButton", () => {
         height: 10,
       };
 
-      const submitfunc = jest.fn();
+      const submitfunc = jest
+        .fn()
+        .mockImplementation((event: BaseSyntheticEvent) =>
+          event.preventDefault()
+        );
 
       render(
         <form onSubmit={submitfunc}>
-          <NormalButton text={text} color={color} size={size} submit />
+          <NormalButton text={text} color={color} size={size} isSubmit />
         </form>
       );
 

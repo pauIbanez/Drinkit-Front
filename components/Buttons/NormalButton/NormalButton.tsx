@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface Props {
-  submit?: boolean;
+  isSubmit?: boolean;
   text: string;
   color: string;
   size: {
@@ -33,11 +33,11 @@ const StyledButton = styled.button`
   justify-content: center;
 `;
 
-const NormalButton = ({ text, color, submit, size, onClick }: Props) => {
+const NormalButton = ({ text, color, isSubmit, size, onClick }: Props) => {
   return (
     <StyledButton
       col={color}
-      type={submit ? "submit" : "button"}
+      type={isSubmit ? "submit" : "button"}
       size={size}
       onClick={onClick}
     >
