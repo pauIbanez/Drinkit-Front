@@ -24,12 +24,8 @@ const RegisterForm = () => {
     setFormData(newFormData);
   };
 
-  const submit = (event: BaseSyntheticEvent): void => {
-    event.preventDefault();
-  };
-
   return (
-    <StyledForm onSubmit={submit}>
+    <StyledForm>
       <InputField
         label="Name"
         name="name"
