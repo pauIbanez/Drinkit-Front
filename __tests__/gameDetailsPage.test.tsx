@@ -1,9 +1,11 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+
 import GameDetails, {
   getStaticPaths,
   getStaticProps,
 } from "../pages/games/[name]";
 import { APIGames } from "../SharedTestObjects";
+import { renderInBocata } from "../jest.setup";
 
 describe("Given gameDetails page", () => {
   describe("When it's instanciated passing a game", () => {
@@ -11,7 +13,7 @@ describe("Given gameDetails page", () => {
       const expectedSetup = "Setup";
       const expectedHowToPlay = "How to play";
 
-      render(<GameDetails game={APIGames[0]} />);
+      renderInBocata(<GameDetails game={APIGames[0]} />);
 
       const foundGameName = screen.getByRole("heading", {
         name: APIGames[0].name,
