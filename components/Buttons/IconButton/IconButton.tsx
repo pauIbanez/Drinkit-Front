@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 
 interface Props {
-  text: string;
+  alt: string;
   color: string;
   size: {
     width: number;
@@ -33,13 +33,17 @@ const StyledButton = styled.button`
   justify-content: center;
 `;
 
-const TextIconButton = ({ text, color, icon, size, onClick }: Props) => {
+const IconButton = ({ alt, icon, color, size, onClick }: Props) => {
   return (
     <StyledButton col={color} size={size} onClick={onClick}>
-      <Image src={icon} alt={`${text} icon`} width={24} height={24} />
-      {text}
+      <Image
+        src={icon}
+        alt={alt}
+        width={size.width - 5}
+        height={size.height - 5}
+      />
     </StyledButton>
   );
 };
 
-export default TextIconButton;
+export default IconButton;
