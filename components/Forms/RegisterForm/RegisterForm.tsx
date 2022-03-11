@@ -24,12 +24,8 @@ const RegisterForm = () => {
     setFormData(newFormData);
   };
 
-  const submit = (event: BaseSyntheticEvent): void => {
-    event.preventDefault();
-  };
-
   return (
-    <StyledForm onSubmit={submit}>
+    <StyledForm>
       <InputField
         label="Name"
         name="name"
@@ -67,7 +63,7 @@ const RegisterForm = () => {
       />
       <NormalButton
         color={mainTeal}
-        submit
+        isSubmit
         size={{ height: 30, width: 290 }}
         text="Register"
       />

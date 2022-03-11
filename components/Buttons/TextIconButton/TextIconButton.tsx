@@ -36,7 +36,7 @@ const StyledButton = styled.button`
 const TextIconButton = ({ text, color, icon, size, onClick }: Props) => {
   return (
     <StyledButton col={color} size={size} onClick={onClick}>
-      <Image src={icon} alt="Two glasses" width={24} height={24} />
+      <Image src={icon} alt={`${text} icon`} width={24} height={24} />
       {text}
     </StyledButton>
   );
