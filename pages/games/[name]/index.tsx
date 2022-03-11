@@ -1,7 +1,11 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import TextIconButton from "../../../components/Buttons/TextIconButton/TextIconButton";
 import Layout from "../../../components/Layout/Layout";
+import { getAddRoomThunk } from "../../../redux/thunks/roomThunks/roomThunks";
+import NewRoom from "../../../redux/thunks/roomThunks/types/NewRoom";
 import { lightWhite, mainTeal, yellow } from "../../../styles/colors";
 import { Back, CenteredContainer } from "../../../styles/global";
 import { globalPageHorizontalPadding } from "../../../styles/variables";
@@ -52,6 +56,21 @@ const Controlls = styled.div`
 `;
 
 const GameDetails = ({ game }: Props) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const onLoad = () => {
+    router.push("/rooms");
+  };
+
+  const onStart = () => {
+    const newRoom: NewRoom = {
+      leader: "62277a27672a087b0639ba76",
+      game: game.id,
+    };
+    dispatch(getAddRoomThunk(newRoom, onLoad));
+  };
+
   return (
     <Layout pageTitle={game.name} color={mainTeal}>
       <CenteredContainer>
@@ -71,6 +90,7 @@ const GameDetails = ({ game }: Props) => {
             icon="/buttonIcons/clink.png"
             size={{ width: 130, height: 50 }}
             text="Start"
+            onClick={onStart}
           />
         </Controlls>
       </CenteredContainer>

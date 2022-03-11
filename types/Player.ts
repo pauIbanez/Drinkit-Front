@@ -16,6 +16,7 @@ interface Player {
       staticUrl: string;
     };
   };
+  id: string;
 }
 
 export default Player;

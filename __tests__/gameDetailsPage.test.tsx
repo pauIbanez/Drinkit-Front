@@ -1,9 +1,19 @@
-import { render, screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+
 import GameDetails, {
   getStaticPaths,
   getStaticProps,
 } from "../pages/games/[name]";
 import { APIGames } from "../SharedTestObjects";
+import { renderInBocata } from "../jest.setup";
+import userEvent from "@testing-library/user-event";
+
+const mockPush = jest.fn();
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
+}));
 
 describe("Given gameDetails page", () => {
   describe("When it's instanciated passing a game", () => {
@@ -11,7 +21,7 @@ describe("Given gameDetails page", () => {
       const expectedSetup = "Setup";
       const expectedHowToPlay = "How to play";
 
-      render(<GameDetails game={APIGames[0]} />);
+      renderInBocata(<GameDetails game={APIGames[0]} />);
 
       const foundGameName = screen.getByRole("heading", {
         name: APIGames[0].name,
@@ -33,6 +43,17 @@ describe("Given gameDetails page", () => {
       expect(foundHowToPlayHeading).toBeInTheDocument();
       expect(foundSetuptext).toBeInTheDocument();
       expect(foundHowToPlayText).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's instanciated passing a game and the user clicks on start and it loads fine", () => {
+    test("Then it should call onLoad", async () => {
+      renderInBocata(<GameDetails game={APIGames[0]} />);
+
+      const foundButton = screen.getByRole("button");
+      userEvent.click(foundButton);
+      await waitFor(() => expect(mockPush).toHaveBeenCalledWith("/rooms"));
+      expect(mockPush).toHaveBeenCalledWith("/rooms");
     });
   });
 });

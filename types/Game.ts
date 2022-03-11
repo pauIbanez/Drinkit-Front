@@ -8,4 +8,5 @@ export interface APIGame {
   duration: number;
   minPlayers: number;
   maxPlayers: number;
+  id: string;
 }
