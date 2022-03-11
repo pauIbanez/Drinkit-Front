@@ -21,6 +21,7 @@ export const getAddRoomThunk =
       //handle errors
       return;
     }
+
     dispatch(getAddRoomAction(body));
     onLoad();
   };

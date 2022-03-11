@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 
 import GameDetails, {
   getStaticPaths,
@@ -8,10 +8,11 @@ import { APIGames } from "../SharedTestObjects";
 import { renderInBocata } from "../jest.setup";
 import userEvent from "@testing-library/user-event";
 
-const mockDispatch = jest.fn();
-
-jest.mock("react-redux", () => ({
-  useDispatch: () => mockDispatch,
+const mockPush = jest.fn();
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
 }));
 
 describe("Given gameDetails page", () => {
@@ -46,13 +47,13 @@ describe("Given gameDetails page", () => {
   });
 
   describe("When it's instanciated passing a game and the user clicks on start and it loads fine", () => {
-    test("Then it should call dispatch and then onLoad", () => {
+    test("Then it should call onLoad", async () => {
       renderInBocata(<GameDetails game={APIGames[0]} />);
 
       const foundButton = screen.getByRole("button");
       userEvent.click(foundButton);
-
-      expect(mockDispatch).toHaveBeenCalled();
+      await waitFor(() => expect(mockPush).toHaveBeenCalledWith("/rooms"));
+      expect(mockPush).toHaveBeenCalledWith("/rooms");
     });
   });
 });
