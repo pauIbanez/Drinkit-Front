@@ -1,7 +1,5 @@
 import Head from "next/head";
-import store from "../../redux/store";
 import Children from "../../types/Children";
-import { Provider } from "react-redux";
 import { PageHolder } from "../../styles/global";
 import Header, { HeaderProps } from "../Header/Header";
 import { backgroundBlue } from "../../styles/colors";
@@ -26,12 +24,10 @@ const Layout = ({
         <title>{pageTitle ? `${pageTitle} | Drink it!` : "Drink it!"}</title>
         <base href="/" />
       </Head>
-      <Provider store={store}>
-        <PageHolder color={color}>
-          {header && <Header title={header.title} subtitle={header.subtitle} />}
-          {children}
-        </PageHolder>
-      </Provider>
+      <PageHolder color={color}>
+        {header && <Header title={header.title} subtitle={header.subtitle} />}
+        {children}
+      </PageHolder>
     </>
   );
 };

@@ -12,6 +12,7 @@ export const localUser: Player = {
     },
     username: "local user",
   },
+  id: "asdasda",
 };
 
 export const APIGames: APIGame[] = [
@@ -25,6 +26,7 @@ export const APIGames: APIGame[] = [
     duration: 30,
     minPlayers: 4,
     maxPlayers: 12,
+    id: "asdasdas",
   },
   {
     name: "Remar",
@@ -36,6 +38,7 @@ export const APIGames: APIGame[] = [
     duration: 0,
     minPlayers: 0,
     maxPlayers: 0,
+    id: "sada",
   },
 ];
 

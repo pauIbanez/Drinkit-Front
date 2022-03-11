@@ -8,6 +8,6 @@ export const getLoadRoomsAction = (rooms: APIRoom[]): LoadRoomsAction => ({
 });
 
 export const getAddRoomAction = (room: APIRoom): AddRoomAction => ({
-  type: roomActionTypes.loadRooms,
+  type: roomActionTypes.addRoom,
   room,
 });

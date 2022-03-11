@@ -3,7 +3,7 @@ import { getAddRoomAction } from "../../actions/rooms/roomActionCreators";
 import NewRoom from "./types/NewRoom";
 
 export const getAddRoomThunk =
-  (newRoom: NewRoom) => async (dispatch: Dispatch) => {
+  (newRoom: NewRoom, onLoad: Function) => async (dispatch: Dispatch) => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}rooms/create`,
       {
@@ -22,4 +22,5 @@ export const getAddRoomThunk =
       return;
     }
     dispatch(getAddRoomAction(body));
+    onLoad();
   };

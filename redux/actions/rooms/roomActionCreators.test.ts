@@ -22,7 +22,7 @@ describe("Givcen getAddRoomAction", () => {
   describe("when it's instancioated passing a Room", () => {
     test("Then it should return an action with type as addRoom and the room", () => {
       const expectedAction: AddRoomAction = {
-        type: roomActionTypes.loadRooms,
+        type: roomActionTypes.addRoom,
         room: APIRooms[0],
       };
 
