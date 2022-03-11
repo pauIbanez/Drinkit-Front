@@ -10,6 +10,7 @@ import {
   lightWhite,
   mainRed,
   mainTeal,
+  sectionBlue,
 } from "../styles/colors";
 import { CenteredContainer } from "../styles/global";
 import { globalPageHorizontalPadding } from "../styles/variables";
@@ -50,6 +51,48 @@ const FriendsButtonHolder = styled.div`
   right: ${globalPageHorizontalPadding};
 `;
 
+const UserSection = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 120px;
+  width: 100%;
+  background-color: ${sectionBlue};
+  box-shadow: 0 -4px 4px ${lightBlack};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 ${globalPageHorizontalPadding};
+`;
+
+const User = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const UserData = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Username = styled.h2`
+  color: white;
+  margin: 0;
+  font-size: 18px;
+`;
+
+const Stats = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: ${lightWhite};
+`;
+
+const Stat = styled.p`
+  margin: 0;
+  font-size: 18px;
+`;
+
 const Home: NextPage = () => {
   return (
     <Layout>
@@ -82,6 +125,24 @@ const Home: NextPage = () => {
           </Controlls>
         </VerticalCentered>
       </CenteredContainer>
+      <UserSection>
+        <User>
+          <Image src="/useravatar" alt="avatar" height={75} width={75} />
+          <UserData>
+            <Username>Username</Username>
+            <Stats>
+              <Stat>Sips: 350</Stat>
+              <Stat>Games: 14</Stat>
+            </Stats>
+          </UserData>
+        </User>
+        <IconButton
+          alt="user settings icon"
+          color={mainTeal}
+          icon="/icons/settings.png"
+          size={{ height: 45, width: 45 }}
+        />
+      </UserSection>
     </Layout>
   );
 };
