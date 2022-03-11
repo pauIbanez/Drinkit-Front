@@ -25,4 +25,25 @@ describe("Given addRoomThunk", () => {
       expect(dispatch).toHaveBeenCalledWith(expectedAction);
     });
   });
+
+  describe("When it's instanciated with a new Room and dispatch and everything bad", () => {
+    test("Then it should not call dispatch", async () => {
+      const originalEnv = { ...process.env };
+      process.env.NEXT_PUBLIC_API_URL = "http://fail-request/";
+
+      const newRoom: NewRoom = {
+        game: "gameid",
+        leader: "leaderid",
+      };
+      const dispatch = jest.fn();
+      const onLoad = jest.fn();
+
+      const addRoomThunk = getAddRoomThunk(newRoom, onLoad);
+      await addRoomThunk(dispatch);
+
+      expect(dispatch).not.toHaveBeenCalled();
+
+      process.env = originalEnv;
+    });
+  });
 });

@@ -20,6 +20,15 @@ export const handlers = [
     );
   }),
 
+  rest.get(`http://fail-request/rooms/list`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json({
+        error: true,
+      })
+    );
+  }),
+
   rest.post(
     `${process.env.NEXT_PUBLIC_API_URL}rooms/create`,
     (req, res, ctx) => {
@@ -27,7 +36,7 @@ export const handlers = [
     }
   ),
 
-  rest.get(`http://fail-request/games/list`, (req, res, ctx) => {
+  rest.post(`http://fail-request/rooms/create`, (req, res, ctx) => {
     return res(
       ctx.status(400),
       ctx.json({
@@ -36,9 +45,9 @@ export const handlers = [
     );
   }),
 
-  rest.get(`http://fail-request/rooms/list`, (req, res, ctx) => {
+  rest.get(`http://fail-request/games/list`, (req, res, ctx) => {
     return res(
-      ctx.status(500),
+      ctx.status(400),
       ctx.json({
         error: true,
       })
