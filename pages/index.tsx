@@ -11,6 +11,7 @@ import {
   mainRed,
   mainTeal,
   sectionBlue,
+  vibeRed,
 } from "../styles/colors";
 import { CenteredContainer } from "../styles/global";
 import { globalPageHorizontalPadding } from "../styles/variables";
@@ -49,6 +50,24 @@ const FriendsButtonHolder = styled.div`
   position: absolute;
   top: ${globalPageHorizontalPadding};
   right: ${globalPageHorizontalPadding};
+`;
+
+const notificationSize = 17;
+
+const FriendsNotification = styled.div`
+  background-color: ${vibeRed};
+  height: ${notificationSize}px;
+  width: ${notificationSize}px;
+  position: absolute;
+  top: -${notificationSize / 3}px;
+  right: -${notificationSize / 3}px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: ${notificationSize}px;
 `;
 
 const UserSection = styled.div`
@@ -97,6 +116,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <FriendsButtonHolder>
+        <FriendsNotification>2</FriendsNotification>
         <IconButton
           alt="frinds icon"
           color={mainTeal}
