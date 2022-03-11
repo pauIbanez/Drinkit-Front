@@ -23,9 +23,11 @@ const MainTitle = styled.h1`
   color: white;
 `;
 
-const RandomPhrase = styled.p`
+const RandomPhrase = styled.h2`
   margin: 0;
   color: ${lightWhite};
+  font-size: 14px;
+  font-weight: 400;
 `;
 
 const VerticalCentered = styled.div`
@@ -118,7 +120,7 @@ const Home: NextPage = () => {
       <FriendsButtonHolder>
         <FriendsNotification>2</FriendsNotification>
         <IconButton
-          alt="frinds icon"
+          alt="friends icon"
           color={mainTeal}
           icon="/icons/friends.png"
           size={{ width: 50, height: 50 }}
@@ -127,7 +129,7 @@ const Home: NextPage = () => {
       <CenteredContainer>
         <VerticalCentered>
           <Image src="/Beer.png" alt="Beer icon" width={140} height={140} />
-          <MainTitle>Drink It</MainTitle>
+          <MainTitle>DRINK IT</MainTitle>
           <RandomPhrase>Let&apos;s just get drunk</RandomPhrase>
           <Controlls>
             <TextIconButton
