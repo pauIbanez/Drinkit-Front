@@ -1,3 +1,4 @@
+import { BaseSyntheticEvent } from "react";
 import styled from "styled-components";
 import { lightBlue } from "../../styles/colors";
 import { ButtonNormal, TextIconButton } from "../../types/Buttons";

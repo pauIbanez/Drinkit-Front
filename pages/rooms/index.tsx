@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Layout from "../../components/Layout/Layout";
 import Popup, { PopupProps, Position } from "../../components/Popup/Popup";
 import RoomCard from "../../components/RoomCard/RoomCard";
-import { getDeleteRoomThunk } from "../../redux/thunks/roomThunks/roomThunks";
+import { deleteRoomThunk } from "../../redux/thunks/roomThunks/roomThunks";
 import { lightBlue, mainRed } from "../../styles/colors";
 import { Back, CenteredContainer } from "../../styles/global";
 import Header from "../../types/Header";
@@ -55,45 +55,52 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupProps, setPopupProps] = useState(initialPopupProps);
 
-  const deleteRoom = (roomId: string) => {
-    dispatch(getDeleteRoomThunk(roomId));
+  const deleteRoom = () => {
+    dispatch(deleteRoomThunk);
   };
 
-  const onMyRoomClick = (
-    event: BaseSyntheticEvent,
-    position: Position,
-    id: string
-  ) => {
-    setShowPopup(true);
-    setPopupProps({
-      position,
-      buttons: [
-        {
-          color: lightBlue,
-          onClick: () => {},
-          text: "Join",
-        },
-        {
-          color: mainRed,
-          onClick: (event: BaseSyntheticEvent, roomId: string) => {
-            deleteRoom(roomId);
+  const getOnMyRoomClick =
+    (roomId: string) => (event: BaseSyntheticEvent, position: Position) => {
+      setShowPopup(true);
+      setPopupProps({
+        position,
+        buttons: [
+          {
+            color: lightBlue,
+            onClick: () => {},
+            text: "Join",
           },
-          text: "Delete",
-        },
-      ],
-    });
-  };
+          {
+            color: mainRed,
+            onClick: (event: BaseSyntheticEvent) => {
+              deleteRoom();
+            },
+            text: "Delete",
+          },
+        ],
+      });
+    };
 
   const myId = "622f00e91e85099995d63b07";
   const myRoom = rooms.find((room: APIRoom) => room.leader.id === myId);
-  const myRenderRoom = <RoomCard room={myRoom} onClick={onMyRoomClick} />;
+  console.log(myRoom);
+  let myRenderRoom;
+  if (myRoom) {
+    myRenderRoom = (
+      <RoomCard room={myRoom} onClick={getOnMyRoomClick(myRoom.id)} />
+    );
+  }
 
   const header: Header = {
     title: "JOIN A ROOM",
     subtitle: "ROOMS LIST",
   };
   const roomsToRender = rooms.map((room) => (
-    <RoomCard key={room.id as Key} room={room} onClick={onMyRoomClick} />
+    <RoomCard
+      key={room.id as Key}
+      room={room}
+      onClick={getOnMyRoomClick("asdas")}
+    />
   ));
 
   return (
