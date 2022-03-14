@@ -4,12 +4,7 @@ import { renderInBocata } from "../jest.setup";
 import RoomList, { getServerSideProps } from "../pages/rooms";
 import { APIRooms } from "../SharedTestObjects";
 import { APIRoom } from "../types/Room";
-
-const mockDispatch = jest.fn();
-jest.mock("react-redux", () => ({
-  useDispatch: () => mockDispatch,
-  useSelector: (): APIRoom[] => APIRooms,
-}));
+import * as redux from "react-redux";
 
 describe("Given getServerSideProps", () => {
   describe("When it's instanciated and the response is ok", () => {
@@ -66,6 +61,8 @@ describe("Given RoomsList page", () => {
   describe("When it's instanciated passing a room and it's clicked and then the button is clicked", () => {
     test("Then it should display a button with the text 'Delete' and then call dispatch", () => {
       const expectedButton = "Delete";
+      const mockDispatch = jest.fn();
+      jest.spyOn(redux, "useDispatch").mockReturnValue(mockDispatch);
 
       renderInBocata(<RoomList rooms={APIRooms} />);
 

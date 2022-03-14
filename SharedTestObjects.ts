@@ -12,7 +12,7 @@ export const localUser: Player = {
     },
     username: "local user",
   },
-  id: "asdasda",
+  id: "622f00e91e85099995d63b07",
 };
 
 export const APIGames: APIGame[] = [

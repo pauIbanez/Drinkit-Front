@@ -102,6 +102,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     title: "JOIN A ROOM",
     subtitle: "ROOMS LIST",
   };
+
   const roomsToRender = currentRooms.map((room) => (
     <RoomCard
       key={room.id as Key}
