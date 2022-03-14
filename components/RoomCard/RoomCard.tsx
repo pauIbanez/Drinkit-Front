@@ -38,13 +38,11 @@ const RoomCard = ({ room, onClick }: Props) => {
 
   const onRoomClick = (event: SyntheticEvent) => {
     const elementBoundingClientRect = reference.current.getBoundingClientRect();
-    console.log(elementBoundingClientRect);
     const position = {
       x:
         elementBoundingClientRect.x + (elementBoundingClientRect.width / 3) * 2,
       y: elementBoundingClientRect.y + elementBoundingClientRect.height / 2,
     };
-    console.log(position);
     onClick(event, position);
   };
   return (
