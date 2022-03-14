@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderInBocata } from "../jest.setup";
 import RoomList, { getServerSideProps } from "../pages/rooms";
 import { APIRooms } from "../SharedTestObjects";
 import { APIRoom } from "../types/Room";
@@ -48,7 +49,7 @@ describe("Given RoomsList page", () => {
     test("Then it should render a Link with the text 'Back'", () => {
       const expectedLink = "Back";
 
-      render(<RoomList rooms={APIRooms} />);
+      renderInBocata(<RoomList rooms={APIRooms} />);
 
       const foundLink = screen.getByRole("link", { name: expectedLink });
 
@@ -60,7 +61,7 @@ describe("Given RoomsList page", () => {
     test("Then it should display a button with the text 'Join'", () => {
       const expectedButton = "Join";
 
-      render(<RoomList rooms={APIRooms} />);
+      renderInBocata(<RoomList rooms={APIRooms} />);
 
       const foundRooms = screen.getAllByRole("listitem");
       userEvent.click(foundRooms[0]);
