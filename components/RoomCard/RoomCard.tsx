@@ -34,7 +34,7 @@ const Creator = styled.p`
 `;
 
 const RoomCard = ({ room, onClick }: Props) => {
-  const reference = useRef();
+  const reference: React.RefObject<HTMLLIElement> = useRef();
 
   const onRoomClick = (event: SyntheticEvent) => {
     const position = {
