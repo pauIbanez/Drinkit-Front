@@ -65,7 +65,7 @@ const GameDetails = ({ game }: Props) => {
 
   const onStart = () => {
     const newRoom: NewRoom = {
-      leader: "62277a27672a087b0639ba76",
+      leader: "622f00e91e85099995d63b07",
       game: game.id,
     };
     dispatch(getAddRoomThunk(newRoom, onLoad));

@@ -13,7 +13,6 @@ interface Props {
 
 const List = styled.ul`
   list-style: none;
-  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -23,7 +22,26 @@ const List = styled.ul`
   margin: 30px 0;
 `;
 
+const SectionTitle = styled.h2`
+  font-size: 25px;
+  font-weight: 800;
+  color: white;
+  align-self: flex-start;
+  margin: 0;
+`;
+const MyRoomContainer = styled.div`
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+`;
+
 const RoomList = ({ rooms }: Props): JSX.Element => {
+  const myId = "622f00e91e85099995d63b07";
+  const myRoom = rooms.find((room: APIRoom) => room.leader.id === myId);
+  const myRenderRoom = <RoomCard room={myRoom} />;
+
   const header: Header = {
     title: "JOIN A ROOM",
     subtitle: "ROOMS LIST",
@@ -35,6 +53,13 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
   return (
     <Layout header={header} pageTitle={"Room List"}>
       <CenteredContainer>
+        {myRoom && (
+          <>
+            <SectionTitle>My Room</SectionTitle>
+            <MyRoomContainer>{myRenderRoom}</MyRoomContainer>
+          </>
+        )}
+        <SectionTitle>Rooms List</SectionTitle>
         <List>{roomsToRender}</List>
         <Link href={"/"} passHref>
           <Back>Back</Back>
