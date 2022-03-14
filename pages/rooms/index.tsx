@@ -6,7 +6,7 @@ import Layout from "../../components/Layout/Layout";
 import Popup, { PopupProps, Position } from "../../components/Popup/Popup";
 import RoomCard from "../../components/RoomCard/RoomCard";
 import { getLoadRoomsAction } from "../../redux/actions/rooms/roomActionCreators";
-import { deleteRoomThunk } from "../../redux/thunks/roomThunks/roomThunks";
+import { getDeleteRoomThunk as getDeleteRoomThunk } from "../../redux/thunks/roomThunks/roomThunks";
 import { lightBlue, mainRed } from "../../styles/colors";
 import { Back, CenteredContainer } from "../../styles/global";
 import Header from "../../types/Header";
@@ -62,8 +62,8 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupProps, setPopupProps] = useState(initialPopupProps);
 
-  const deleteRoom = () => {
-    dispatch(deleteRoomThunk);
+  const deleteRoom = (roomId: string) => {
+    dispatch(getDeleteRoomThunk(roomId));
   };
 
   const getOnMyRoomClick =
@@ -80,7 +80,8 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
           {
             color: mainRed,
             onClick: (event: BaseSyntheticEvent) => {
-              deleteRoom();
+              deleteRoom(roomId);
+              setShowPopup(false);
             },
             text: "Delete",
           },
