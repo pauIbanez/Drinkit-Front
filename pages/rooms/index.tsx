@@ -1,15 +1,17 @@
 import Link from "next/link";
-import { BaseSyntheticEvent, Key, useState } from "react";
-import { useDispatch } from "react-redux";
+import { BaseSyntheticEvent, Key, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Layout from "../../components/Layout/Layout";
 import Popup, { PopupProps, Position } from "../../components/Popup/Popup";
 import RoomCard from "../../components/RoomCard/RoomCard";
+import { getLoadRoomsAction } from "../../redux/actions/rooms/roomActionCreators";
 import { deleteRoomThunk } from "../../redux/thunks/roomThunks/roomThunks";
 import { lightBlue, mainRed } from "../../styles/colors";
 import { Back, CenteredContainer } from "../../styles/global";
 import Header from "../../types/Header";
 import { APIRoom } from "../../types/Room";
+import State from "../../types/State";
 
 interface Props {
   rooms: APIRoom[];
@@ -44,6 +46,10 @@ const MyRoomContainer = styled.div`
 const RoomList = ({ rooms }: Props): JSX.Element => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getLoadRoomsAction(rooms));
+  }, [dispatch, rooms]);
+
   const initialPopupProps: PopupProps = {
     position: {
       x: 0,
@@ -52,6 +58,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     buttons: [],
   };
 
+  const currentRooms = useSelector((state: State) => state.rooms);
   const [showPopup, setShowPopup] = useState(false);
   const [popupProps, setPopupProps] = useState(initialPopupProps);
 
@@ -82,7 +89,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     };
 
   const myId = "622f00e91e85099995d63b07";
-  const myRoom = rooms.find((room: APIRoom) => room.leader.id === myId);
+  const myRoom = currentRooms.find((room: APIRoom) => room.leader.id === myId);
   let myRenderRoom;
   if (myRoom) {
     myRenderRoom = (
@@ -94,7 +101,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     title: "JOIN A ROOM",
     subtitle: "ROOMS LIST",
   };
-  const roomsToRender = rooms.map((room) => (
+  const roomsToRender = currentRooms.map((room) => (
     <RoomCard
       key={room.id as Key}
       room={room}
