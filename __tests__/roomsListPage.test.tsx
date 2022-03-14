@@ -8,6 +8,7 @@ import { APIRoom } from "../types/Room";
 const mockDispatch = jest.fn();
 jest.mock("react-redux", () => ({
   useDispatch: () => mockDispatch,
+  useSelector: (): APIRoom[] => APIRooms,
 }));
 
 describe("Given getServerSideProps", () => {
