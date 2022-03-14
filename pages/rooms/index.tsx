@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Key } from "react";
+import { BaseSyntheticEvent, Key, useState } from "react";
 import styled from "styled-components";
 import Layout from "../../components/Layout/Layout";
+import Popup, { PopupProps, Position } from "../../components/Popup/Popup";
 import RoomCard from "../../components/RoomCard/RoomCard";
 import { Back, CenteredContainer } from "../../styles/global";
 import Header from "../../types/Header";
@@ -38,34 +39,57 @@ const MyRoomContainer = styled.div`
 `;
 
 const RoomList = ({ rooms }: Props): JSX.Element => {
+  const initialPopupProps: PopupProps = {
+    position: {
+      x: 0,
+      y: 0,
+    },
+    buttons: [],
+  };
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupProps, setPopupProps] = useState(initialPopupProps);
+
+  const onMyRoomClick = (event: BaseSyntheticEvent, position: Position) => {
+    setShowPopup(true);
+    setPopupProps({ position, buttons: [] });
+  };
+
   const myId = "622f00e91e85099995d63b07";
   const myRoom = rooms.find((room: APIRoom) => room.leader.id === myId);
-  const myRenderRoom = <RoomCard room={myRoom} />;
+  const myRenderRoom = <RoomCard room={myRoom} onClick={onMyRoomClick} />;
 
   const header: Header = {
     title: "JOIN A ROOM",
     subtitle: "ROOMS LIST",
   };
   const roomsToRender = rooms.map((room) => (
-    <RoomCard key={room.id as Key} room={room} />
+    <RoomCard key={room.id as Key} room={room} onClick={onMyRoomClick} />
   ));
 
   return (
-    <Layout header={header} pageTitle={"Room List"}>
-      <CenteredContainer>
-        {myRoom && (
-          <>
-            <SectionTitle>My Room</SectionTitle>
-            <MyRoomContainer>{myRenderRoom}</MyRoomContainer>
-          </>
-        )}
-        <SectionTitle>Rooms List</SectionTitle>
-        <List>{roomsToRender}</List>
-        <Link href={"/"} passHref>
-          <Back>Back</Back>
-        </Link>
-      </CenteredContainer>
-    </Layout>
+    <>
+      <Popup
+        position={popupProps.position}
+        buttons={popupProps.buttons}
+        show={showPopup}
+      />
+      <Layout header={header} pageTitle={"Room List"}>
+        <CenteredContainer>
+          {myRoom && (
+            <>
+              <SectionTitle>My Room</SectionTitle>
+              <MyRoomContainer>{myRenderRoom}</MyRoomContainer>
+            </>
+          )}
+          <SectionTitle>Rooms List</SectionTitle>
+          <List>{roomsToRender}</List>
+          <Link href={"/"} passHref>
+            <Back>Back</Back>
+          </Link>
+        </CenteredContainer>
+      </Layout>
+    </>
   );
 };
 

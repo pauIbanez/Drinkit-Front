@@ -1,10 +1,13 @@
+import { BaseSyntheticEvent, SyntheticEvent, useRef } from "react";
 import styled from "styled-components";
 import { lightWhite, mainTeal } from "../../styles/colors";
 import { globalRadius } from "../../styles/variables";
 import { APIRoom } from "../../types/Room";
+import { Position } from "../Popup/Popup";
 
 interface Props {
   room: APIRoom;
+  onClick(event: BaseSyntheticEvent, position: Position): void;
 }
 
 const RoomCardHolder = styled.li`
@@ -30,9 +33,18 @@ const Creator = styled.p`
   margin: 0;
 `;
 
-const RoomCard = ({ room }: Props) => {
+const RoomCard = ({ room, onClick }: Props) => {
+  const reference = useRef();
+
+  const onRoomClick = (event: SyntheticEvent) => {
+    const position = {
+      x: reference.current.getBoundingClientRect().x,
+      y: reference.current.getBoundingClientRect().y,
+    };
+    onClick(event, position);
+  };
   return (
-    <RoomCardHolder>
+    <RoomCardHolder onClick={onRoomClick} ref={reference}>
       <GameTitle>{room.game.name}</GameTitle>
       <Creator>{room.leader.profile.username}</Creator>
     </RoomCardHolder>
