@@ -25,3 +25,23 @@ export const getAddRoomThunk =
     dispatch(getAddRoomAction(body));
     onLoad();
   };
+
+const getDeleteRoomThunk = (roomId: string) => async (dispatch: Dispatch) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}rooms/create`,
+    {
+      method: "DELETE",
+      headers: {
+        authorization: "Bearer placeholdertoken",
+      },
+    }
+  );
+
+  const body = await response.json();
+
+  if (body.error) {
+    //handle errors
+    return;
+  }
+  dispatch();
+};

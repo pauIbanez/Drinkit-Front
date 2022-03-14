@@ -5,6 +5,11 @@ import RoomList, { getServerSideProps } from "../pages/rooms";
 import { APIRooms } from "../SharedTestObjects";
 import { APIRoom } from "../types/Room";
 
+const mockDispatch = jest.fn();
+jest.mock("react-redux", () => ({
+  useDispatch: () => mockDispatch,
+}));
+
 describe("Given getServerSideProps", () => {
   describe("When it's instanciated and the response is ok", () => {
     test("Then it should return an object with a property props that contains the recieved rooms", async () => {
@@ -57,9 +62,9 @@ describe("Given RoomsList page", () => {
     });
   });
 
-  describe("When it's instanciated passing a room and it's clicked", () => {
-    test("Then it should display a button with the text 'Join'", () => {
-      const expectedButton = "Join";
+  describe("When it's instanciated passing a room and it's clicked and then the button is clicked", () => {
+    test("Then it should display a button with the text 'Delete' and then call dispatch", () => {
+      const expectedButton = "Delete";
 
       renderInBocata(<RoomList rooms={APIRooms} />);
 
@@ -67,7 +72,12 @@ describe("Given RoomsList page", () => {
       userEvent.click(foundRooms[0]);
 
       const foundButton = screen.getByRole("button", { name: expectedButton });
+
       expect(foundButton).toBeInTheDocument();
+
+      userEvent.click(foundButton);
+
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });
