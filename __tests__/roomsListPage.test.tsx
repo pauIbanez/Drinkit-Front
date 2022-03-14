@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import RoomList, { getServerSideProps } from "../pages/rooms";
 import { APIRooms } from "../SharedTestObjects";
 import { APIRoom } from "../types/Room";
@@ -52,6 +53,20 @@ describe("Given RoomsList page", () => {
       const foundLink = screen.getByRole("link", { name: expectedLink });
 
       expect(foundLink).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's instanciated passing a room and it's clicked", () => {
+    test("Then it should display a button with the text 'Join'", () => {
+      const expectedButton = "Join";
+
+      render(<RoomList rooms={APIRooms} />);
+
+      const foundRooms = screen.getAllByRole("listitem");
+      userEvent.click(foundRooms[0]);
+
+      const foundButton = screen.getByRole("button", { name: expectedButton });
+      expect(foundButton).toBeInTheDocument();
     });
   });
 });
