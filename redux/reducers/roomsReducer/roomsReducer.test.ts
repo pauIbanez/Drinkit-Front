@@ -3,6 +3,7 @@ import { APIRoom } from "../../../types/Room";
 import roomActionTypes from "../../actions/rooms/roomActionTypes";
 import {
   AddRoomAction,
+  DeleteRoomAction,
   LoadRoomsAction,
 } from "../../actions/rooms/types/RoomActions";
 import roomsReducer from "./roomsReducer";
@@ -40,6 +41,21 @@ describe("Given roomsReducer", () => {
       const action: AddRoomAction = {
         type: roomActionTypes.addRoom,
         room: APIRooms[0],
+      };
+
+      const newRooms = roomsReducer(APIRooms, action);
+
+      expect(newRooms).toEqual(expectedNewRooms);
+    });
+  });
+
+  describe("When it's passed an action with type deleteRoom with a room id ans 2 currentRooms", () => {
+    test("Then it should return 1 room without the deleted one", () => {
+      const expectedNewRooms = [APIRooms[0]];
+
+      const action: DeleteRoomAction = {
+        type: roomActionTypes.deleteRoom,
+        roomid: APIRooms[1].id,
       };
 
       const newRooms = roomsReducer(APIRooms, action);

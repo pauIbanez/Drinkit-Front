@@ -11,6 +11,17 @@ export const handlers = [
     );
   }),
 
+  rest.get(`http://fail-request/games/list`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        error: true,
+      })
+    );
+  }),
+
+  //ROOMS ===========================================================
+
   rest.get(`${process.env.NEXT_PUBLIC_API_URL}rooms/list`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -45,7 +56,14 @@ export const handlers = [
     );
   }),
 
-  rest.get(`http://fail-request/games/list`, (req, res, ctx) => {
+  rest.delete(
+    `${process.env.NEXT_PUBLIC_API_URL}rooms/delete`,
+    (req, res, ctx) => {
+      return res(ctx.status(201), ctx.json({}));
+    }
+  ),
+
+  rest.delete(`http://fail-request/rooms/delete`, (req, res, ctx) => {
     return res(
       ctx.status(400),
       ctx.json({

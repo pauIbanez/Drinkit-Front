@@ -1,3 +1,4 @@
+import { BaseSyntheticEvent } from "react";
 import styled from "styled-components";
 import { lightBlue } from "../../styles/colors";
 import { ButtonNormal, TextIconButton } from "../../types/Buttons";
@@ -31,10 +32,13 @@ const PopupMain = styled.div`
   min-height: 60px;
   width: 115px;
   position: absolute;
-  top: -25px;
+  top: -35px;
   left: 10px;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px 0;
   align-items: center;
   justify-content: center;
 `;

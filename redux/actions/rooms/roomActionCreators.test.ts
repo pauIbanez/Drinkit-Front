@@ -1,10 +1,18 @@
 import { APIRooms } from "../../../SharedTestObjects";
-import { getAddRoomAction, getLoadRoomsAction } from "./roomActionCreators";
+import {
+  getAddRoomAction,
+  getDeleteRoomAction,
+  getLoadRoomsAction,
+} from "./roomActionCreators";
 import roomActionTypes from "./roomActionTypes";
-import { AddRoomAction, LoadRoomsAction } from "./types/RoomActions";
+import {
+  AddRoomAction,
+  DeleteRoomAction,
+  LoadRoomsAction,
+} from "./types/RoomActions";
 
 describe("Givcen getLoadRoomsAction", () => {
-  describe("when it's instancioated passing an array of Rooms", () => {
+  describe("when it's instanciated passing an array of Rooms", () => {
     test("Then it should return an action with type as loadRooms and the array of rooms", () => {
       const expectedAction: LoadRoomsAction = {
         type: roomActionTypes.loadRooms,
@@ -19,7 +27,7 @@ describe("Givcen getLoadRoomsAction", () => {
 });
 
 describe("Givcen getAddRoomAction", () => {
-  describe("when it's instancioated passing a Room", () => {
+  describe("when it's instanciated passing a Room", () => {
     test("Then it should return an action with type as addRoom and the room", () => {
       const expectedAction: AddRoomAction = {
         type: roomActionTypes.addRoom,
@@ -27,6 +35,21 @@ describe("Givcen getAddRoomAction", () => {
       };
 
       const recievedAction = getAddRoomAction(APIRooms[0]);
+
+      expect(recievedAction).toEqual(expectedAction);
+    });
+  });
+});
+
+describe("Givcen getDeleteRoomAction", () => {
+  describe("when it's instanciated passing a roomid", () => {
+    test("Then it should return an action with type as deleteRoom and the roomid", () => {
+      const expectedAction: DeleteRoomAction = {
+        type: roomActionTypes.deleteRoom,
+        roomid: APIRooms[0].id,
+      };
+
+      const recievedAction = getDeleteRoomAction(APIRooms[0].id);
 
       expect(recievedAction).toEqual(expectedAction);
     });

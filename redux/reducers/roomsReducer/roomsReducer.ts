@@ -4,6 +4,7 @@ import defaultAction from "../../actions/defaultAction";
 import roomActionTypes from "../../actions/rooms/roomActionTypes";
 import {
   AddRoomAction,
+  DeleteRoomAction,
   LoadRoomsAction,
 } from "../../actions/rooms/types/RoomActions";
 
@@ -20,6 +21,12 @@ const roomsReducer = (
 
     case roomActionTypes.addRoom:
       newRooms = [...currentRooms, (action as AddRoomAction).room];
+      break;
+
+    case roomActionTypes.deleteRoom:
+      newRooms = currentRooms.filter(
+        ({ id }) => id !== (action as DeleteRoomAction).roomid
+      );
       break;
 
     default:

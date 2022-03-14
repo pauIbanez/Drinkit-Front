@@ -1,8 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderInBocata } from "../jest.setup";
 import RoomList, { getServerSideProps } from "../pages/rooms";
 import { APIRooms } from "../SharedTestObjects";
 import { APIRoom } from "../types/Room";
+import * as redux from "react-redux";
 
 describe("Given getServerSideProps", () => {
   describe("When it's instanciated and the response is ok", () => {
@@ -48,7 +50,7 @@ describe("Given RoomsList page", () => {
     test("Then it should render a Link with the text 'Back'", () => {
       const expectedLink = "Back";
 
-      render(<RoomList rooms={APIRooms} />);
+      renderInBocata(<RoomList rooms={APIRooms} />);
 
       const foundLink = screen.getByRole("link", { name: expectedLink });
 
@@ -56,17 +58,24 @@ describe("Given RoomsList page", () => {
     });
   });
 
-  describe("When it's instanciated passing a room and it's clicked", () => {
-    test("Then it should display a button with the text 'Join'", () => {
-      const expectedButton = "Join";
+  describe("When it's instanciated passing a room and it's clicked and then the button is clicked", () => {
+    test("Then it should display a button with the text 'Delete' and then call dispatch", () => {
+      const expectedButton = "Delete";
+      const mockDispatch = jest.fn();
+      jest.spyOn(redux, "useDispatch").mockReturnValue(mockDispatch);
 
-      render(<RoomList rooms={APIRooms} />);
+      renderInBocata(<RoomList rooms={APIRooms} />);
 
       const foundRooms = screen.getAllByRole("listitem");
       userEvent.click(foundRooms[0]);
 
       const foundButton = screen.getByRole("button", { name: expectedButton });
+
       expect(foundButton).toBeInTheDocument();
+
+      userEvent.click(foundButton);
+
+      expect(mockDispatch).toHaveBeenCalled();
     });
   });
 });
