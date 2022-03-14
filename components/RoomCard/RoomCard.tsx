@@ -40,8 +40,11 @@ const RoomCard = ({ room, onClick }: Props) => {
     const elementBoundingClientRect = reference.current.getBoundingClientRect();
     const position = {
       x:
-        elementBoundingClientRect.x + (elementBoundingClientRect.width / 3) * 2,
-      y: elementBoundingClientRect.y + elementBoundingClientRect.height / 2,
+        elementBoundingClientRect.x + (elementBoundingClientRect.width / 8) * 5,
+      y:
+        elementBoundingClientRect.top +
+        window.scrollY +
+        elementBoundingClientRect.height / 2,
     };
     onClick(event, position);
   };
