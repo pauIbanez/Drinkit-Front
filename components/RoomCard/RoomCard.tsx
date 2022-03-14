@@ -37,10 +37,14 @@ const RoomCard = ({ room, onClick }: Props) => {
   const reference: React.RefObject<HTMLLIElement> = useRef();
 
   const onRoomClick = (event: SyntheticEvent) => {
+    const elementBoundingClientRect = reference.current.getBoundingClientRect();
+    console.log(elementBoundingClientRect);
     const position = {
-      x: reference.current.getBoundingClientRect().x,
-      y: reference.current.getBoundingClientRect().y,
+      x:
+        elementBoundingClientRect.x + (elementBoundingClientRect.width / 3) * 2,
+      y: elementBoundingClientRect.y + elementBoundingClientRect.height / 2,
     };
+    console.log(position);
     onClick(event, position);
   };
   return (
