@@ -8,3 +8,7 @@ export interface LoadRoomsAction extends Action {
 export interface AddRoomAction extends Action {
   room: APIRoom;
 }
+
+export interface DeleteRoomAction extends Action {
+  roomid: string;
+}
