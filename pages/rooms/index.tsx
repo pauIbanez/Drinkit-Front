@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Layout from "../../components/Layout/Layout";
 import Popup, { PopupProps, Position } from "../../components/Popup/Popup";
 import RoomCard from "../../components/RoomCard/RoomCard";
+import { lightBlue } from "../../styles/colors";
 import { Back, CenteredContainer } from "../../styles/global";
 import Header from "../../types/Header";
 import { APIRoom } from "../../types/Room";
@@ -52,7 +53,16 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
 
   const onMyRoomClick = (event: BaseSyntheticEvent, position: Position) => {
     setShowPopup(true);
-    setPopupProps({ position, buttons: [] });
+    setPopupProps({
+      position,
+      buttons: [
+        {
+          color: lightBlue,
+          onClick: () => {},
+          text: "Join",
+        },
+      ],
+    });
   };
 
   const myId = "622f00e91e85099995d63b07";

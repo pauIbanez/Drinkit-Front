@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { AnyButton, TextIconButton } from "../../types/Buttons";
+import { lightBlue } from "../../styles/colors";
+import { ButtonNormal, TextIconButton } from "../../types/Buttons";
+import NormalButton from "../Buttons/NormalButton/NormalButton";
 
 export interface Position {
   x: number;
@@ -9,7 +11,7 @@ interface PopupContainerProps extends Position {
   show: boolean;
 }
 export interface PopupProps {
-  buttons: AnyButton[];
+  buttons: ButtonNormal[];
   position: Position;
   show?: boolean;
 }
@@ -26,12 +28,15 @@ const PopupContainer = styled.div`
 
 const PopupMain = styled.div`
   background-color: white;
-  height: 95px;
+  min-height: 60px;
   width: 115px;
   position: absolute;
-  top: -50px;
+  top: -25px;
   left: 10px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const PopupArrowsCont = styled.div`
@@ -50,10 +55,22 @@ const PopupArrowsCont = styled.div`
 `;
 
 const Popup = ({ buttons, position, show }: PopupProps): JSX.Element => {
+  const buttonsToRender = buttons.map(
+    (button: ButtonNormal): JSX.Element => (
+      <NormalButton
+        key={button.text}
+        color={button.color}
+        size={{ width: 100, height: 33 }}
+        text={button.text}
+        onClick={button.onClick}
+      />
+    )
+  );
+
   return (
     <PopupContainer x={position.x} y={position.y} show={show}>
-      <PopupArrowsCont></PopupArrowsCont>
-      <PopupMain>a</PopupMain>
+      <PopupArrowsCont />
+      <PopupMain>{buttonsToRender}</PopupMain>
     </PopupContainer>
   );
 };

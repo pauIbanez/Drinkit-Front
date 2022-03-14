@@ -1,13 +1,12 @@
-import ButtonTypes from "./ButtonTypes";
+import { BaseSyntheticEvent } from "react";
 
 interface Button {
-  type: ButtonTypes;
   color: string;
 }
 
 export interface ButtonNormal extends Button {
   text: string;
-  onClick: Function;
+  onClick(event: BaseSyntheticEvent): void;
 }
 
 export interface ButtonIcon extends Button {
