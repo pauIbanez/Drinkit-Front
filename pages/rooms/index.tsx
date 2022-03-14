@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { BaseSyntheticEvent, Key, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Layout from "../../components/Layout/Layout";
 import Popup, { PopupProps, Position } from "../../components/Popup/Popup";
 import RoomCard from "../../components/RoomCard/RoomCard";
-import { lightBlue } from "../../styles/colors";
+import { lightBlue, mainRed } from "../../styles/colors";
 import { Back, CenteredContainer } from "../../styles/global";
 import Header from "../../types/Header";
 import { APIRoom } from "../../types/Room";
@@ -40,6 +41,8 @@ const MyRoomContainer = styled.div`
 `;
 
 const RoomList = ({ rooms }: Props): JSX.Element => {
+  const dispatch = useDispatch();
+
   const initialPopupProps: PopupProps = {
     position: {
       x: 0,
@@ -51,6 +54,10 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupProps, setPopupProps] = useState(initialPopupProps);
 
+  const deleteRoom = () => {
+    dispatch();
+  };
+
   const onMyRoomClick = (event: BaseSyntheticEvent, position: Position) => {
     setShowPopup(true);
     setPopupProps({
@@ -60,6 +67,11 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
           color: lightBlue,
           onClick: () => {},
           text: "Join",
+        },
+        {
+          color: mainRed,
+          onClick: deleteRoom,
+          text: "Delete",
         },
       ],
     });
