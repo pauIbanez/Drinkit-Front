@@ -1,25 +1,10 @@
-interface Button {
-  type: ButtonTypes;
-  color: string;
+import { AnyButton, TextIconButton } from "../../types/Buttons";
+
+interface Props {
+  buttons: [AnyButton];
 }
 
-interface ButtonNormal extends Button {
-  text: string;
-  onClick: Function;
-}
-
-interface ButtonIcon extends Button {
-  icon: string;
-  onClick: Function;
-}
-
-interface TextIconButton extends Button {
-  text: string;
-  icon: string;
-  onClick: Function;
-}
-
-const Popup = ({ ...props }): JSX.Element => {
+const Popup = ({ buttons }: Props): JSX.Element => {
   return <></>;
 };
 
