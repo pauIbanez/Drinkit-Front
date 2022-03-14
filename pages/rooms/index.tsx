@@ -83,7 +83,6 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
 
   const myId = "622f00e91e85099995d63b07";
   const myRoom = rooms.find((room: APIRoom) => room.leader.id === myId);
-  console.log(myRoom);
   let myRenderRoom;
   if (myRoom) {
     myRenderRoom = (
