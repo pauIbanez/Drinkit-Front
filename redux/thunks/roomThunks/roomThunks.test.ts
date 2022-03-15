@@ -1,5 +1,4 @@
 import { APIRooms } from "../../../SharedTestObjects";
-import { getDeleteRoomAction } from "../../actions/rooms/roomActionCreators";
 import roomActionTypes from "../../actions/rooms/roomActionTypes";
 import {
   AddRoomAction,

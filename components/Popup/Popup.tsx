@@ -1,7 +1,5 @@
-import { BaseSyntheticEvent } from "react";
 import styled from "styled-components";
-import { lightBlue } from "../../styles/colors";
-import { ButtonNormal, TextIconButton } from "../../types/Buttons";
+import { ButtonNormal } from "../../types/Buttons";
 import NormalButton from "../Buttons/NormalButton/NormalButton";
 
 export interface Position {
