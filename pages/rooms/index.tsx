@@ -89,6 +89,21 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
       });
     };
 
+  const getOnOtherRoomClick =
+    (roomId: string) => (event: BaseSyntheticEvent, position: Position) => {
+      setShowPopup(true);
+      setPopupProps({
+        position,
+        buttons: [
+          {
+            color: lightBlue,
+            onClick: () => {},
+            text: "Join",
+          },
+        ],
+      });
+    };
+
   const myId = "622f00e91e85099995d63b07";
   const myRoom = currentRooms.find((room: APIRoom) => room.leader.id === myId);
   let myRenderRoom;
@@ -103,13 +118,24 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     subtitle: "ROOMS LIST",
   };
 
-  const roomsToRender = currentRooms.map((room) => (
-    <RoomCard
-      key={room.id as Key}
-      room={room}
-      onClick={getOnMyRoomClick("asdas")}
-    />
-  ));
+  let roomsToRender;
+  if (myRoom) {
+    const otherRooms = currentRooms.filter(
+      (room: APIRoom) => room.leader.id !== myId
+    );
+
+    roomsToRender = otherRooms.map((room) => (
+      <RoomCard key={room.id as Key} room={room} />
+    ));
+  } else {
+    roomsToRender = currentRooms.map((room) => (
+      <RoomCard
+        key={room.id as Key}
+        room={room}
+        onClick={getOnOtherRoomClick(room.id)}
+      />
+    ));
+  }
 
   return (
     <>

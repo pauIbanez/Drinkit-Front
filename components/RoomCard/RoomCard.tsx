@@ -7,7 +7,7 @@ import { Position } from "../Popup/Popup";
 
 interface Props {
   room: APIRoom;
-  onClick(event: BaseSyntheticEvent, position: Position): void;
+  onClick?(event: BaseSyntheticEvent, position: Position): void;
 }
 
 const RoomCardHolder = styled.li`
@@ -37,6 +37,9 @@ const RoomCard = ({ room, onClick }: Props) => {
   const reference: React.RefObject<HTMLLIElement> = useRef();
 
   const onRoomClick = (event: SyntheticEvent) => {
+    if (!onClick) {
+      return;
+    }
     const elementBoundingClientRect = reference.current.getBoundingClientRect();
     const position = {
       x:
