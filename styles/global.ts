@@ -50,4 +50,5 @@ export const Back = styled.a`
   color: ${lightWhite};
   text-decoration: none;
   font-size: 20px;
+  z-index: 3;
 `;

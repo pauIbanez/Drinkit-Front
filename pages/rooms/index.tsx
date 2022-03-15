@@ -43,6 +43,10 @@ const MyRoomContainer = styled.div`
   width: 100%;
 `;
 
+const UpperLink = styled(Link)`
+  z-index: 3;
+`;
+
 const RoomList = ({ rooms }: Props): JSX.Element => {
   const dispatch = useDispatch();
 
@@ -164,9 +168,9 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
           )}
           <SectionTitle>Rooms List</SectionTitle>
           <List>{roomsToRender}</List>
-          <Link href={"/"} passHref>
+          <UpperLink href={"/"} passHref>
             <Back>Back</Back>
-          </Link>
+          </UpperLink>
         </CenteredContainer>
       </Layout>
     </>
