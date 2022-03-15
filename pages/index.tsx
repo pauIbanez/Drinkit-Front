@@ -15,7 +15,10 @@ import {
   vibeRed,
 } from "../styles/colors";
 import { CenteredContainer } from "../styles/global";
-import { globalPageHorizontalPadding } from "../styles/variables";
+import {
+  globalPageBottomPadding,
+  globalPageHorizontalPadding,
+} from "../styles/variables";
 
 const MainTitle = styled.h1`
   font-size: 36px;
@@ -33,7 +36,7 @@ const RandomPhrase = styled.h2`
 
 const VerticalCentered = styled.div`
   display: flex;
-  height: 100vh;
+  height: ${window.innerHeight - globalPageBottomPadding}px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
