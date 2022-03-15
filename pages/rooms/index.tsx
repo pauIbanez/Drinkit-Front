@@ -43,6 +43,10 @@ const MyRoomContainer = styled.div`
   width: 100%;
 `;
 
+const UpperLink = styled(Link)`
+  z-index: 3;
+`;
+
 const RoomList = ({ rooms }: Props): JSX.Element => {
   const dispatch = useDispatch();
 
@@ -50,12 +54,17 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     dispatch(getLoadRoomsAction(rooms));
   }, [dispatch, rooms]);
 
+  const hidePopup = () => {
+    setShowPopup(false);
+  };
+
   const initialPopupProps: PopupProps = {
     position: {
       x: 0,
       y: 0,
     },
     buttons: [],
+    hide: hidePopup,
   };
 
   const currentRooms = useSelector((state: State) => state.rooms);
@@ -68,8 +77,10 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
 
   const getOnMyRoomClick =
     (roomId: string) => (event: BaseSyntheticEvent, position: Position) => {
+      event.stopPropagation();
       setShowPopup(true);
       setPopupProps({
+        ...initialPopupProps,
         position,
         buttons: [
           {
@@ -89,6 +100,23 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
       });
     };
 
+  const getOnOtherRoomClick =
+    (roomId: string) => (event: BaseSyntheticEvent, position: Position) => {
+      event.stopPropagation();
+      setShowPopup(true);
+      setPopupProps({
+        ...initialPopupProps,
+        position,
+        buttons: [
+          {
+            color: lightBlue,
+            onClick: () => {},
+            text: "Join",
+          },
+        ],
+      });
+    };
+
   const myId = "622f00e91e85099995d63b07";
   const myRoom = currentRooms.find((room: APIRoom) => room.leader.id === myId);
   let myRenderRoom;
@@ -103,13 +131,24 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     subtitle: "ROOMS LIST",
   };
 
-  const roomsToRender = currentRooms.map((room) => (
-    <RoomCard
-      key={room.id as Key}
-      room={room}
-      onClick={getOnMyRoomClick("asdas")}
-    />
-  ));
+  let roomsToRender;
+  if (myRoom) {
+    const otherRooms = currentRooms.filter(
+      (room: APIRoom) => room.leader.id !== myId
+    );
+
+    roomsToRender = otherRooms.map((room) => (
+      <RoomCard key={room.id as Key} room={room} />
+    ));
+  } else {
+    roomsToRender = currentRooms.map((room) => (
+      <RoomCard
+        key={room.id as Key}
+        room={room}
+        onClick={getOnOtherRoomClick(room.id)}
+      />
+    ));
+  }
 
   return (
     <>
@@ -117,6 +156,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
         position={popupProps.position}
         buttons={popupProps.buttons}
         show={showPopup}
+        hide={hidePopup}
       />
       <Layout header={header} pageTitle={"Room List"}>
         <CenteredContainer>
@@ -128,9 +168,9 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
           )}
           <SectionTitle>Rooms List</SectionTitle>
           <List>{roomsToRender}</List>
-          <Link href={"/"} passHref>
+          <UpperLink href={"/"} passHref>
             <Back>Back</Back>
-          </Link>
+          </UpperLink>
         </CenteredContainer>
       </Layout>
     </>

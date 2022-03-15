@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { lightWhite, mainTeal } from "./colors";
+import { globalPageBottomPadding } from "./variables";
 
 export const PageHolder = styled.div`
   min-height: 100vh;
   width: 100vw;
   position: relative;
   background-color: ${({ color }) => color};
-  padding-bottom: 30px;
+  padding-bottom: ${globalPageBottomPadding}px;
 `;
 
 export const MainTitle = styled.h1`
@@ -50,4 +51,5 @@ export const Back = styled.a`
   color: ${lightWhite};
   text-decoration: none;
   font-size: 20px;
+  z-index: 3;
 `;

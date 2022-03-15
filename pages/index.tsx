@@ -33,7 +33,6 @@ const RandomPhrase = styled.h2`
 
 const VerticalCentered = styled.div`
   display: flex;
-  height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -71,6 +70,14 @@ const FriendsNotification = styled.div`
   justify-content: center;
   font-size: 10px;
   line-height: ${notificationSize}px;
+`;
+
+const CenteredCenteredContainer = styled.div`
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const UserSection = styled.div`
@@ -137,29 +144,31 @@ const Home: NextPage = () => {
           size={{ width: 50, height: 50 }}
         />
       </FriendsButtonHolder>
-      <CenteredContainer>
-        <VerticalCentered>
-          <Image src="/Beer.png" alt="Beer icon" width={140} height={140} />
-          <MainTitle>DRINK IT</MainTitle>
-          <RandomPhrase>Let&apos;s just get drunk</RandomPhrase>
-          <Controlls>
-            <TextIconButton
-              color={mainRed}
-              icon="/icons/clink"
-              size={{ height: 45, width: 285 }}
-              text="Host Game"
-              onClick={gotoGamesList}
-            />
-            <TextIconButton
-              color={lightBlue}
-              icon="/icons/clink"
-              size={{ height: 45, width: 285 }}
-              text="Join Game"
-              onClick={gotoRoomsList}
-            />
-          </Controlls>
-        </VerticalCentered>
-      </CenteredContainer>
+      <CenteredCenteredContainer>
+        <CenteredContainer>
+          <VerticalCentered>
+            <Image src="/Beer.png" alt="Beer icon" width={140} height={140} />
+            <MainTitle>DRINK IT</MainTitle>
+            <RandomPhrase>Let&apos;s just get drunk</RandomPhrase>
+            <Controlls>
+              <TextIconButton
+                color={mainRed}
+                icon="/icons/clink"
+                size={{ height: 45, width: 285 }}
+                text="Host Game"
+                onClick={gotoGamesList}
+              />
+              <TextIconButton
+                color={lightBlue}
+                icon="/icons/clink"
+                size={{ height: 45, width: 285 }}
+                text="Join Game"
+                onClick={gotoRoomsList}
+              />
+            </Controlls>
+          </VerticalCentered>
+        </CenteredContainer>
+      </CenteredCenteredContainer>
       <UserSection>
         <User>
           <Image src="/useravatar" alt="avatar" height={75} width={75} />
