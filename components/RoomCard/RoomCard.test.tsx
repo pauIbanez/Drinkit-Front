@@ -9,7 +9,7 @@ describe("Given RoomCard", () => {
       const expectedGame = "Piramide";
       const expectedCreator = APIRooms[0].leader.profile.username;
 
-      render(<RoomCard room={APIRooms[0]} onClick={() => {}} />);
+      render(<RoomCard room={APIRooms[0]} />);
 
       const foundGame = screen.getByRole("heading", { name: expectedGame });
       const foundCreator = screen.getByText(expectedCreator);
