@@ -11,10 +11,15 @@ export interface Position {
 interface PopupContainerProps extends Position {
   show: boolean;
 }
+interface PopupHidderProps {
+  show: boolean;
+}
+
 export interface PopupProps {
   buttons: ButtonNormal[];
   position: Position;
   show?: boolean;
+  hide(): void;
 }
 
 const PopupContainer = styled.div`
@@ -58,7 +63,14 @@ const PopupArrowsCont = styled.div`
   border-right: 11px solid white;
 `;
 
-const Popup = ({ buttons, position, show }: PopupProps): JSX.Element => {
+const PopupHidder = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  ${(props: PopupHidderProps) => (!props.show ? "pointer-events: none;" : "")}
+`;
+
+const Popup = ({ buttons, position, show, hide }: PopupProps): JSX.Element => {
   const buttonsToRender = buttons.map(
     (button: ButtonNormal): JSX.Element => (
       <NormalButton
@@ -72,10 +84,13 @@ const Popup = ({ buttons, position, show }: PopupProps): JSX.Element => {
   );
 
   return (
-    <PopupContainer x={position.x} y={position.y} show={show}>
-      <PopupArrowsCont />
-      <PopupMain>{buttonsToRender}</PopupMain>
-    </PopupContainer>
+    <>
+      <PopupContainer x={position.x} y={position.y} show={show}>
+        <PopupArrowsCont />
+        <PopupMain>{buttonsToRender}</PopupMain>
+      </PopupContainer>
+      <PopupHidder onClick={hide} show={show} />
+    </>
   );
 };
 

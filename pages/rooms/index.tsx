@@ -50,12 +50,17 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     dispatch(getLoadRoomsAction(rooms));
   }, [dispatch, rooms]);
 
+  const hidePopup = () => {
+    setShowPopup(false);
+  };
+
   const initialPopupProps: PopupProps = {
     position: {
       x: 0,
       y: 0,
     },
     buttons: [],
+    hide: hidePopup,
   };
 
   const currentRooms = useSelector((state: State) => state.rooms);
@@ -68,8 +73,10 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
 
   const getOnMyRoomClick =
     (roomId: string) => (event: BaseSyntheticEvent, position: Position) => {
+      event.stopPropagation();
       setShowPopup(true);
       setPopupProps({
+        ...initialPopupProps,
         position,
         buttons: [
           {
@@ -91,8 +98,10 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
 
   const getOnOtherRoomClick =
     (roomId: string) => (event: BaseSyntheticEvent, position: Position) => {
+      event.stopPropagation();
       setShowPopup(true);
       setPopupProps({
+        ...initialPopupProps,
         position,
         buttons: [
           {
@@ -143,6 +152,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
         position={popupProps.position}
         buttons={popupProps.buttons}
         show={showPopup}
+        hide={hidePopup}
       />
       <Layout header={header} pageTitle={"Room List"}>
         <CenteredContainer>

@@ -19,6 +19,7 @@ const RoomCardHolder = styled.li`
   padding: 0 20px;
   width: 100%;
   height: 50px;
+  z-index: 2;
 `;
 
 const GameTitle = styled.h2`
