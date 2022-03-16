@@ -1,4 +1,5 @@
 import React, { BaseSyntheticEvent, useState } from "react";
+import useAPI from "../../../hooks/useAPI";
 import { mainTeal } from "../../../styles/colors";
 import { StyledForm } from "../../../styles/global";
 import NormalButton from "../../Buttons/NormalButton/NormalButton";
@@ -13,15 +14,20 @@ const RegisterForm = () => {
     password: "",
   };
 
+  const { registerUser } = useAPI();
+
+  const [errors, setErrors] = useState("");
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(blankForm);
 
-  const onError = () => {
+  const onError = (error) => {
     setLoading(false);
   };
+  const onSuccess = () => {};
 
   const onSubmit = () => {
     setLoading(true);
+    registerUser(formData, onError, onSuccess);
   };
 
   const updateField = (event: BaseSyntheticEvent): void => {
@@ -34,7 +40,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <StyledForm>
+    <StyledForm onSubmit={onSubmit}>
       <InputField
         label="Name"
         name="name"

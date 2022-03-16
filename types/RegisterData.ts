@@ -2,7 +2,7 @@ interface RegisterData {
   name: string;
   lastName: string;
   email: string;
-  usernamne: string;
+  username: string;
   password: string;
 }
 
