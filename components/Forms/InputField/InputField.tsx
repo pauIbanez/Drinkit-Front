@@ -8,6 +8,7 @@ interface Props {
   name: string;
   value: string;
   label: string;
+  required?: boolean;
   onChange(event: BaseSyntheticEvent): void;
 }
 
@@ -46,7 +47,14 @@ const InputCheto = styled.input`
   font-family: inherit;
 `;
 
-const InputField = ({ type, name, value, onChange, label }: Props) => {
+const InputField = ({
+  type,
+  name,
+  value,
+  onChange,
+  label,
+  required,
+}: Props) => {
   const [focused, setFocused] = useState(false);
 
   const moveLabel = (): void => {
@@ -69,6 +77,7 @@ const InputField = ({ type, name, value, onChange, label }: Props) => {
         onFocus={moveLabel}
         onBlur={returnLabel}
         autoComplete="off"
+        required={required}
       />
       <DynamicLabel htmlFor={name} focused={focused}>
         {label}

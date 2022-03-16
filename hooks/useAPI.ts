@@ -10,6 +10,9 @@ const useAPI = () => {
       `${process.env.NEXT_PUBLIC_API_URL}accounts/register`,
       {
         method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
         body: JSON.stringify(registerData),
       }
     );
