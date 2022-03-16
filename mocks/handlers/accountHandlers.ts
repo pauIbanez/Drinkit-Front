@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import { mockUrls } from "../mockUrls";
 
 export const accountHandlers = [
   rest.post(
@@ -8,7 +9,7 @@ export const accountHandlers = [
     }
   ),
 
-  rest.post(`https://failemail.com/accounts/register`, (req, res, ctx) => {
+  rest.post(`${mockUrls.failEmail}accounts/register`, (req, res, ctx) => {
     return res(
       ctx.status(400),
       ctx.json({
@@ -18,7 +19,7 @@ export const accountHandlers = [
     );
   }),
 
-  rest.post(`https://failusername.com/accounts/register`, (req, res, ctx) => {
+  rest.post(`${mockUrls.failUsername}accounts/register`, (req, res, ctx) => {
     return res(
       ctx.status(400),
       ctx.json({
@@ -28,7 +29,7 @@ export const accountHandlers = [
     );
   }),
 
-  rest.post(`https://failpassword.com/accounts/register`, (req, res, ctx) => {
+  rest.post(`${mockUrls.failPassword}accounts/register`, (req, res, ctx) => {
     return res(
       ctx.status(400),
       ctx.json({

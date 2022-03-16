@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { APIGames } from "../../SharedTestObjects";
+import { mockUrls } from "../mockUrls";
 
 export const gameHandlers = [
   //GAMES ===========================================================
@@ -12,7 +13,7 @@ export const gameHandlers = [
     );
   }),
 
-  rest.get(`http://fail-request/games/list`, (req, res, ctx) => {
+  rest.get(`${mockUrls.failUrl}games/list`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({

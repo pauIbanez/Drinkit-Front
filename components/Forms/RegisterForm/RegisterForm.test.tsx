@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { mockUrls } from "../../../mocks/mockUrls";
 import RegisterForm from "./RegisterForm";
 
 describe("Given Registerform", () => {
@@ -94,7 +95,7 @@ describe("Given Registerform", () => {
   describe("When it's instanciated and the user completes the form with everything bad with error 'email' ", () => {
     test("Then it should display the error message 'This email is already registered'", async () => {
       const originalEnv = { ...process.env };
-      process.env.NEXT_PUBLIC_API_URL = "https://failemail.com/";
+      process.env.NEXT_PUBLIC_API_URL = mockUrls.failEmail;
 
       const labels = {
         name: "Name",
@@ -134,7 +135,7 @@ describe("Given Registerform", () => {
   describe("When it's instanciated and the user completes the form with everything bad with error 'username' ", () => {
     test("Then it should display the error message 'This username is already in use'", async () => {
       const originalEnv = { ...process.env };
-      process.env.NEXT_PUBLIC_API_URL = "https://failusername.com/";
+      process.env.NEXT_PUBLIC_API_URL = mockUrls.failUsername;
 
       const labels = {
         name: "Name",
@@ -174,7 +175,7 @@ describe("Given Registerform", () => {
   describe("When it's instanciated and the user completes the form with everything bad with error 'The password must be at lease 8 characters long' ", () => {
     test("Then it should display the error message 'The password must be at lease 8 characters long'", async () => {
       const originalEnv = { ...process.env };
-      process.env.NEXT_PUBLIC_API_URL = "https://failpassword.com/";
+      process.env.NEXT_PUBLIC_API_URL = mockUrls.failPassword;
 
       const labels = {
         name: "Name",

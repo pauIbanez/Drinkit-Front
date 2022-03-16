@@ -1,3 +1,4 @@
+import { mockUrls } from "../../../mocks/mockUrls";
 import { APIRooms } from "../../../SharedTestObjects";
 import roomActionTypes from "../../actions/rooms/roomActionTypes";
 import {
@@ -32,7 +33,7 @@ describe("Given addRoomThunk", () => {
   describe("When it's instanciated with a new Room and dispatch and everything bad", () => {
     test("Then it should not call dispatch", async () => {
       const originalEnv = { ...process.env };
-      process.env.NEXT_PUBLIC_API_URL = "http://fail-request/";
+      process.env.NEXT_PUBLIC_API_URL = mockUrls.failUrl;
 
       const newRoom: NewRoom = {
         game: "gameid",
@@ -71,7 +72,7 @@ describe("Given deleteRoomThunk", () => {
   describe("When it's instanciated with a roomid and dispatch and everything bad", () => {
     test("Then it should not call dispatch", async () => {
       const originalEnv = { ...process.env };
-      process.env.NEXT_PUBLIC_API_URL = "http://fail-request/";
+      process.env.NEXT_PUBLIC_API_URL = mockUrls.failUrl;
 
       const dispatch = jest.fn();
 

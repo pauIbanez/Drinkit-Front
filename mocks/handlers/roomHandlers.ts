@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { APIRooms } from "../../SharedTestObjects";
+import { mockUrls } from "../mockUrls";
 
 export const roomHandlers = [
   rest.get(`${process.env.NEXT_PUBLIC_API_URL}rooms/list`, (req, res, ctx) => {
@@ -11,7 +12,7 @@ export const roomHandlers = [
     );
   }),
 
-  rest.get(`http://fail-request/rooms/list`, (req, res, ctx) => {
+  rest.get(`${mockUrls.failUrl}rooms/list`, (req, res, ctx) => {
     return res(
       ctx.status(500),
       ctx.json({
@@ -27,7 +28,7 @@ export const roomHandlers = [
     }
   ),
 
-  rest.post(`http://fail-request/rooms/create`, (req, res, ctx) => {
+  rest.post(`${mockUrls.failUrl}rooms/create`, (req, res, ctx) => {
     return res(
       ctx.status(400),
       ctx.json({
@@ -43,7 +44,7 @@ export const roomHandlers = [
     }
   ),
 
-  rest.delete(`http://fail-request/rooms/delete`, (req, res, ctx) => {
+  rest.delete(`${mockUrls.failUrl}rooms/delete`, (req, res, ctx) => {
     return res(
       ctx.status(400),
       ctx.json({

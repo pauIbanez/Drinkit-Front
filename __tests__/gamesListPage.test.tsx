@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { mockUrls } from "../mocks/mockUrls";
 import GamesList, { getStaticProps } from "../pages/games";
 import { APIGames } from "../SharedTestObjects";
 import { APIGame } from "../types/Game";
@@ -21,7 +22,7 @@ describe("Given getStaticProps", () => {
   describe("When it's instanciated and response is an error", () => {
     test("Then it should return an object with a property props that contains an empty array", async () => {
       const original = { ...process.env };
-      process.env.NEXT_PUBLIC_API_URL = "http://fail-request/";
+      process.env.NEXT_PUBLIC_API_URL = mockUrls.failUrl;
       interface Result {
         props: {
           games: APIGame[];
