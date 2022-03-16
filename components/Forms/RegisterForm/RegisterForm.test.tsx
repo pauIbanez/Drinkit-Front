@@ -170,4 +170,44 @@ describe("Given Registerform", () => {
       process.env = originalEnv;
     });
   });
+
+  describe("When it's instanciated and the user completes the form with everything bad with error 'The password must be at lease 8 characters long' ", () => {
+    test("Then it should display the error message 'The password must be at lease 8 characters long'", async () => {
+      const originalEnv = { ...process.env };
+      process.env.NEXT_PUBLIC_API_URL = "https://failpassword.com/";
+
+      const labels = {
+        name: "Name",
+        lname: "Last name",
+        email: "Email",
+        username: "Username",
+        password: "Password",
+      };
+
+      const expectedError = "The password must be at lease 8 characters long";
+
+      const onFinished = jest.fn();
+
+      render(<RegisterForm onFinished={onFinished} />);
+
+      const foundName = screen.getByLabelText(labels.name);
+      const foundLName = screen.getByLabelText(labels.lname);
+      const foundEmail = screen.getByLabelText(labels.email);
+      const foundUsername = screen.getByLabelText(labels.username);
+      const foundPassword = screen.getByLabelText(labels.password);
+      const foundButton = screen.getByRole("button", { name: "Register" });
+
+      userEvent.type(foundName, "naim");
+      userEvent.type(foundLName, "lat name");
+      userEvent.type(foundEmail, "someimail@gimail.com");
+      userEvent.type(foundUsername, "usernaim");
+      userEvent.type(foundPassword, "passguord");
+      userEvent.click(foundButton);
+
+      const foundError = await screen.findByText(expectedError);
+
+      expect(foundError).toBeInTheDocument();
+      process.env = originalEnv;
+    });
+  });
 });

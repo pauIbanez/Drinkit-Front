@@ -101,4 +101,14 @@ export const handlers = [
       })
     );
   }),
+
+  rest.post(`https://failpassword.com/accounts/register`, (req, res, ctx) => {
+    return res(
+      ctx.status(400),
+      ctx.json({
+        error: true,
+        message: "The password must be at lease 8 characters long",
+      })
+    );
+  }),
 ];
