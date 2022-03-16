@@ -5,6 +5,7 @@ import RoomList, { getServerSideProps } from "../pages/rooms";
 import { APIRooms } from "../SharedTestObjects";
 import { APIRoom } from "../types/Room";
 import * as redux from "react-redux";
+import { mockUrls } from "../mocks/mockUrls";
 
 describe("Given getServerSideProps", () => {
   describe("When it's instanciated and the response is ok", () => {
@@ -24,7 +25,7 @@ describe("Given getServerSideProps", () => {
   describe("When it's instanciated and the response is an error", () => {
     test("Then it should return an object with a property props that contains an empty array", async () => {
       const original = { ...process.env };
-      process.env.NEXT_PUBLIC_API_URL = "http://fail-request/";
+      process.env.NEXT_PUBLIC_API_URL = mockUrls.failUrl;
       interface Result {
         props: {
           rooms: APIRoom[];
