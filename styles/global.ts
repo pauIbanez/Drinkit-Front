@@ -53,3 +53,22 @@ export const Back = styled.a`
   font-size: 20px;
   z-index: 3;
 `;
+
+export const InfoHolder = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  gap: 5px;
+`;
+
+export const InfoTitle = styled.h2`
+  color: white;
+  font-size: 30px;
+  margin: 0;
+`;
+
+export const Info = styled.p`
+  color: ${lightWhite};
+  font-size: 17px;
+  margin: 0;
+`;
