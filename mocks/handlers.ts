@@ -82,12 +82,22 @@ export const handlers = [
     }
   ),
 
-  rest.post(`http://fail-request/accounts/register`, (req, res, ctx) => {
+  rest.post(`https://failemail.com/accounts/register`, (req, res, ctx) => {
     return res(
       ctx.status(400),
       ctx.json({
         error: true,
-        message: "error msg",
+        message: "email",
+      })
+    );
+  }),
+
+  rest.post(`https://failusername.com/accounts/register`, (req, res, ctx) => {
+    return res(
+      ctx.status(400),
+      ctx.json({
+        error: true,
+        message: "username",
       })
     );
   }),

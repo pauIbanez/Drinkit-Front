@@ -24,13 +24,13 @@ describe("Given useAPI registerUser", () => {
   });
 
   describe("when it's instanciated and everything bad", () => {
-    test("Then it should call the onError callback with 'error msg'", async () => {
+    test("Then it should call the onError callback with 'email'", async () => {
       const originalEnv = { ...process.env };
-      process.env.NEXT_PUBLIC_API_URL = "http://fail-request/";
+      process.env.NEXT_PUBLIC_API_URL = "https://failemail.com/";
 
       const { registerUser } = useAPI();
 
-      const expectedErrorMsg = "error msg";
+      const expectedErrorMsg = "email";
 
       const userData: RegisterData = {
         name: "sumname",
