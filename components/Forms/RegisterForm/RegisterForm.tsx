@@ -13,7 +13,16 @@ const RegisterForm = () => {
     password: "",
   };
 
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(blankForm);
+
+  const onError = () => {
+    setLoading(false);
+  };
+
+  const onSubmit = () => {
+    setLoading(true);
+  };
 
   const updateField = (event: BaseSyntheticEvent): void => {
     const newFormData = {
