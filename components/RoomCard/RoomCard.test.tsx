@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 describe("Given RoomCard", () => {
   describe("When it's passed a room", () => {
-    test("Then it should render the car's game and creator", () => {
+    test("Then it should render the room's game and creator", () => {
       const expectedGame = "Piramide";
       const expectedCreator = APIRooms[0].leader.profile.username;
 
@@ -13,6 +13,7 @@ describe("Given RoomCard", () => {
 
       const foundGame = screen.getByRole("heading", { name: expectedGame });
       const foundCreator = screen.getByText(expectedCreator);
+      userEvent.click(foundGame);
 
       expect(foundGame).toBeInTheDocument();
       expect(foundCreator).toBeInTheDocument();
