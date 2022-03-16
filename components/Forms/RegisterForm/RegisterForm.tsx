@@ -40,8 +40,17 @@ const RegisterForm = ({ onFinished }: Props) => {
 
   const onError = (error: string) => {
     setLoading(false);
-    const formattedError = error.replace('"', "");
-    const errorStrings = formattedError.split(",");
+    if (error === "email") {
+      setErrors([<p key={"email"}>This email is already registered</p>]);
+      return;
+    }
+
+    if (error === "username") {
+      setErrors([<p key={"username"}>This username is already in use</p>]);
+      return;
+    }
+
+    const errorStrings = error.split(",");
     const errorsToRender = errorStrings.map(
       (error: string): JSX.Element => <p key={error}>{error}</p>
     );
