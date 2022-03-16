@@ -22,4 +22,32 @@ describe("Given useAPI registerUser", () => {
       expect(onSuccess).toHaveBeenCalled();
     });
   });
+
+  describe("when it's instanciated and everything bad", () => {
+    test("Then it should call the onError callback with 'error msg'", async () => {
+      const originalEnv = { ...process.env };
+      process.env.NEXT_PUBLIC_API_URL = "http://fail-request/";
+
+      const { registerUser } = useAPI();
+
+      const expectedErrorMsg = "error msg";
+
+      const userData: RegisterData = {
+        name: "sumname",
+        lastName: "sumlname",
+        email: "sumemail",
+        username: "sumusername",
+        password: "sumpass",
+      };
+      const onError = jest.fn();
+      const onSuccess = jest.fn();
+
+      await registerUser(userData, onError, onSuccess);
+
+      expect(onError).toHaveBeenCalledWith(expectedErrorMsg);
+      expect(onSuccess).not.toHaveBeenCalled();
+
+      process.env = originalEnv;
+    });
+  });
 });

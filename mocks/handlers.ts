@@ -87,7 +87,7 @@ export const handlers = [
       ctx.status(400),
       ctx.json({
         error: true,
-        send: "error msg",
+        message: "error msg",
       })
     );
   }),
