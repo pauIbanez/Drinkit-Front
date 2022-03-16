@@ -14,7 +14,7 @@ interface Props {
   error?: string;
 }
 
-const activationPage = ({ activated, error }: Props) => {
+const ActivationPage = ({ activated, error }: Props) => {
   return (
     <Layout
       pageTitle="Activation"
@@ -74,4 +74,4 @@ export const getServerSideProps = async ({ params: { token } }: Params) => {
   };
 };
 
-export default activationPage;
+export default ActivationPage;
