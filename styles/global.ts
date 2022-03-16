@@ -57,6 +57,7 @@ export const Back = styled.a`
 export const InfoHolder = styled.section`
   display: flex;
   flex-direction: column;
+  width: 290px;
   gap: 5px;
 `;
 
@@ -68,6 +69,6 @@ export const InfoTitle = styled.h2`
 
 export const Info = styled.p`
   color: ${lightWhite};
-  font-size: 20px;
+  font-size: 17px;
   margin: 0;
 `;

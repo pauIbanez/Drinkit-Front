@@ -4,6 +4,9 @@ import RegisterForm from "../../../components/Forms/RegisterForm/RegisterForm";
 import Layout from "../../../components/Layout/Layout";
 import {
   CenteredContainer,
+  Info,
+  InfoHolder,
+  InfoTitle,
   Linkedin,
   MainTitle,
   Tips,
@@ -23,13 +26,26 @@ const RegisterPage = () => {
     >
       <MainTitle>DRINK IT</MainTitle>
       <CenteredContainer>
-        <RegisterForm onFinished={onFinished} />
-        <Tips>
-          Already have an account?{" "}
-          <Link href={"/accounts/login"} passHref>
-            <Linkedin>Log in</Linkedin>
-          </Link>
-        </Tips>
+        {!email ? (
+          <>
+            <RegisterForm onFinished={onFinished} />
+            <Tips>
+              Already have an account?{" "}
+              <Link href={"/accounts/login"} passHref>
+                <Linkedin>Log in</Linkedin>
+              </Link>
+            </Tips>
+          </>
+        ) : (
+          <InfoHolder>
+            <InfoTitle>Verification</InfoTitle>
+            <Info>Your user has been submitted. Now just one last step!</Info>
+            <Info>
+              We&apos;ve sent you a verification email to {email} please check
+              your inbox and start geting fucked up as soon as posible.
+            </Info>
+          </InfoHolder>
+        )}
       </CenteredContainer>
     </Layout>
   );
