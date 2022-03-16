@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import RegisterForm from "./RegisterForm";
 
@@ -13,7 +13,9 @@ describe("Given Registerform", () => {
         password: "Password",
       };
 
-      render(<RegisterForm />);
+      const onFinished = jest.fn();
+
+      render(<RegisterForm onFinished={onFinished} />);
 
       const foundName = screen.getByLabelText(labels.name);
       const foundLName = screen.getByLabelText(labels.lname);
@@ -38,8 +40,9 @@ describe("Given Registerform", () => {
         username: "Username",
         password: "Password",
       };
+      const onFinished = jest.fn();
 
-      render(<RegisterForm />);
+      render(<RegisterForm onFinished={onFinished} />);
 
       const foundName: HTMLInputElement = screen.getByLabelText(labels.name);
       const foundLName: HTMLInputElement = screen.getByLabelText(labels.lname);
@@ -49,6 +52,162 @@ describe("Given Registerform", () => {
 
       expect(foundName.value).toBe("name");
       expect(foundLName.value).toBe("last name");
+    });
+  });
+
+  describe("When it's instanciated and the user completes the form with everything ok", () => {
+    test("Then it should called the passed onFinished function with the email", async () => {
+      const labels = {
+        name: "Name",
+        lname: "Last name",
+        email: "Email",
+        username: "Username",
+        password: "Password",
+      };
+
+      const email = "someimail@gimail.com";
+
+      const onFinished = jest.fn();
+
+      render(<RegisterForm onFinished={onFinished} />);
+
+      const foundName = screen.getByLabelText(labels.name);
+      const foundLName = screen.getByLabelText(labels.lname);
+      const foundEmail = screen.getByLabelText(labels.email);
+      const foundUsername = screen.getByLabelText(labels.username);
+      const foundPassword = screen.getByLabelText(labels.password);
+      const foundButton = screen.getByRole("button", { name: "Register" });
+
+      userEvent.type(foundName, "naim");
+      userEvent.type(foundLName, "lat name");
+      userEvent.type(foundEmail, email);
+      userEvent.type(foundUsername, "usernaim");
+      userEvent.type(foundPassword, "passguord");
+      userEvent.click(foundButton);
+
+      await waitFor(() => expect(onFinished).toHaveBeenCalledWith(email));
+
+      expect(onFinished).toHaveBeenCalledWith(email);
+    });
+  });
+
+  describe("When it's instanciated and the user completes the form with everything bad with error 'email' ", () => {
+    test("Then it should display the error message 'This email is already registered'", async () => {
+      const originalEnv = { ...process.env };
+      process.env.NEXT_PUBLIC_API_URL = "https://failemail.com/";
+
+      const labels = {
+        name: "Name",
+        lname: "Last name",
+        email: "Email",
+        username: "Username",
+        password: "Password",
+      };
+
+      const expectedError = "This email is already registered";
+
+      const onFinished = jest.fn();
+
+      render(<RegisterForm onFinished={onFinished} />);
+
+      const foundName = screen.getByLabelText(labels.name);
+      const foundLName = screen.getByLabelText(labels.lname);
+      const foundEmail = screen.getByLabelText(labels.email);
+      const foundUsername = screen.getByLabelText(labels.username);
+      const foundPassword = screen.getByLabelText(labels.password);
+      const foundButton = screen.getByRole("button", { name: "Register" });
+
+      userEvent.type(foundName, "naim");
+      userEvent.type(foundLName, "lat name");
+      userEvent.type(foundEmail, "someimail@gimail.com");
+      userEvent.type(foundUsername, "usernaim");
+      userEvent.type(foundPassword, "passguord");
+      userEvent.click(foundButton);
+
+      const foundError = await screen.findByText(expectedError);
+
+      expect(foundError).toBeInTheDocument();
+      process.env = originalEnv;
+    });
+  });
+
+  describe("When it's instanciated and the user completes the form with everything bad with error 'username' ", () => {
+    test("Then it should display the error message 'This username is already in use'", async () => {
+      const originalEnv = { ...process.env };
+      process.env.NEXT_PUBLIC_API_URL = "https://failusername.com/";
+
+      const labels = {
+        name: "Name",
+        lname: "Last name",
+        email: "Email",
+        username: "Username",
+        password: "Password",
+      };
+
+      const expectedError = "This username is already in use";
+
+      const onFinished = jest.fn();
+
+      render(<RegisterForm onFinished={onFinished} />);
+
+      const foundName = screen.getByLabelText(labels.name);
+      const foundLName = screen.getByLabelText(labels.lname);
+      const foundEmail = screen.getByLabelText(labels.email);
+      const foundUsername = screen.getByLabelText(labels.username);
+      const foundPassword = screen.getByLabelText(labels.password);
+      const foundButton = screen.getByRole("button", { name: "Register" });
+
+      userEvent.type(foundName, "naim");
+      userEvent.type(foundLName, "lat name");
+      userEvent.type(foundEmail, "someimail@gimail.com");
+      userEvent.type(foundUsername, "usernaim");
+      userEvent.type(foundPassword, "passguord");
+      userEvent.click(foundButton);
+
+      const foundError = await screen.findByText(expectedError);
+
+      expect(foundError).toBeInTheDocument();
+      process.env = originalEnv;
+    });
+  });
+
+  describe("When it's instanciated and the user completes the form with everything bad with error 'The password must be at lease 8 characters long' ", () => {
+    test("Then it should display the error message 'The password must be at lease 8 characters long'", async () => {
+      const originalEnv = { ...process.env };
+      process.env.NEXT_PUBLIC_API_URL = "https://failpassword.com/";
+
+      const labels = {
+        name: "Name",
+        lname: "Last name",
+        email: "Email",
+        username: "Username",
+        password: "Password",
+      };
+
+      const expectedError = "The password must be at lease 8 characters long";
+
+      const onFinished = jest.fn();
+
+      render(<RegisterForm onFinished={onFinished} />);
+
+      const foundName = screen.getByLabelText(labels.name);
+      const foundLName = screen.getByLabelText(labels.lname);
+      const foundEmail = screen.getByLabelText(labels.email);
+      const foundUsername = screen.getByLabelText(labels.username);
+      const foundPassword = screen.getByLabelText(labels.password);
+      const foundButton = screen.getByRole("button", { name: "Register" });
+
+      userEvent.type(foundName, "naim");
+      userEvent.type(foundLName, "lat name");
+      userEvent.type(foundEmail, "someimail@gimail.com");
+      userEvent.type(foundUsername, "usernaim");
+      userEvent.type(foundPassword, "passguord");
+      userEvent.click(foundButton);
+
+      const foundError = await screen.findByText(expectedError);
+
+      expect(foundError).toBeInTheDocument();
+      process.env = originalEnv;
     });
   });
 });
