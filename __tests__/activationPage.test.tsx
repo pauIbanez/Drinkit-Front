@@ -19,4 +19,22 @@ describe("Given activationPage", () => {
       expect(foundLink).toBeInTheDocument();
     });
   });
+
+  describe("When it's instanciated passing activated as false and an error", () => {
+    test("Then it should display a heading with the text 'Activation failed' and the error", () => {
+      const activated = false;
+      const expectedHeading = "Activation failed";
+      const expectedError = "Some error";
+
+      render(<ActivationPage activated={activated} error={expectedError} />);
+
+      const foundHeading = screen.getByRole("heading", {
+        name: expectedHeading,
+      });
+      const foundError = screen.getByText(expectedError);
+
+      expect(foundHeading).toBeInTheDocument();
+      expect(foundError).toBeInTheDocument();
+    });
+  });
 });
