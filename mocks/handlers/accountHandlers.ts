@@ -38,4 +38,24 @@ export const accountHandlers = [
       })
     );
   }),
+
+  rest.get(
+    `${process.env.NEXT_PUBLIC_API_URL}accounts/activate/token`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({}));
+    }
+  ),
+
+  rest.get(
+    `${process.env.NEXT_PUBLIC_API_URL}accounts/activate/invalidToken`,
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          error: true,
+          message: "error message",
+        })
+      );
+    }
+  ),
 ];

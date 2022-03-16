@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import ActivationPage from "../pages/accounts/activate/[token]";
+import ActivationPage, {
+  getServerSideProps,
+} from "../pages/accounts/activate/[token]";
 
 describe("Given activationPage", () => {
   describe("When it's instanciated passing activated as true", () => {
@@ -35,6 +37,49 @@ describe("Given activationPage", () => {
 
       expect(foundHeading).toBeInTheDocument();
       expect(foundError).toBeInTheDocument();
+    });
+  });
+});
+
+describe("Given getServerSideProps", () => {
+  describe("When it's passed a valid token", () => {
+    test("Then it should return an object with the prop activated as true", async () => {
+      const expectedResult = {
+        props: {
+          activated: true,
+        },
+      };
+
+      const passedParams = {
+        params: {
+          token: "token",
+        },
+      };
+
+      const result = await getServerSideProps(passedParams);
+
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe("When it's passed an invalid valid token", () => {
+    test("Then it should return an object with the prop activated as false and the error: 'error message'", async () => {
+      const expectedResult = {
+        props: {
+          activated: false,
+          error: "error message",
+        },
+      };
+
+      const passedParams = {
+        params: {
+          token: "invalidToken",
+        },
+      };
+
+      const result = await getServerSideProps(passedParams);
+
+      expect(result).toEqual(expectedResult);
     });
   });
 });
