@@ -34,7 +34,7 @@ const RegisterForm = ({ onFinished }: Props) => {
 
   const { registerUser } = useAPI();
 
-  const [errors, setErrors] = useState([<></>]);
+  const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(blankForm);
 
