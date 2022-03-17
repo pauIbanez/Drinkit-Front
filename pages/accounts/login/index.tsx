@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LoginForm from "../../../components/Forms/LoginForm/LoginForm";
 import RegisterForm from "../../../components/Forms/RegisterForm/RegisterForm";
 import Layout from "../../../components/Layout/Layout";
 import {
@@ -16,6 +17,7 @@ const LoginPage = () => {
     >
       <MainTitle>DRINK IT</MainTitle>
       <CenteredContainer>
+        <LoginForm />
         <Tips>
           Don&apos;t have an account?{" "}
           <Link href={"/accounts/register"} passHref>
