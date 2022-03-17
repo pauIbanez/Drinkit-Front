@@ -7,7 +7,9 @@ export const getLoadUserAction = (user: Player): LoadUserAction => ({
   user,
 });
 
-export const getAddRoomAction = (change: PlayerChange): UpdateUserAction => ({
+export const getUpdateUserAction = (
+  change: PlayerChange
+): UpdateUserAction => ({
   type: userActionTypes.updateUser,
   change,
 });
