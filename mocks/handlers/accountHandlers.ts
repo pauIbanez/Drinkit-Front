@@ -58,4 +58,18 @@ export const accountHandlers = [
       );
     }
   ),
+
+  rest.post(
+    `${process.env.NEXT_PUBLIC_API_URL}accounts/login`,
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({ token: "token" }));
+    }
+  ),
+
+  rest.post(`${mockUrls.failUrl}accounts/login`, (req, res, ctx) => {
+    return res(
+      ctx.status(401),
+      ctx.json({ error: true, message: "error message" })
+    );
+  }),
 ];

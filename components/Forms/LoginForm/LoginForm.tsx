@@ -7,10 +7,6 @@ import { StyledForm } from "../../../styles/global";
 import NormalButton from "../../Buttons/NormalButton/NormalButton";
 import InputField from "../InputField/InputField";
 
-interface Props {
-  onFinished(email: string): void;
-}
-
 const ErrorMessages = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,16 +19,14 @@ const ErrorMessages = styled.div`
   }
 `;
 
-const RegisterForm = ({ onFinished }: Props) => {
+const LoginForm = () => {
   const blankForm = {
-    name: "",
-    lastName: "",
-    email: "",
     username: "",
     password: "",
   };
 
-  const { registerUser } = useAPI();
+  const router = useRouter();
+  const { loginUser } = useAPI();
 
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -40,15 +34,6 @@ const RegisterForm = ({ onFinished }: Props) => {
 
   const onError = (error: string) => {
     setLoading(false);
-    if (error === "email") {
-      setErrors([<p key={"email"}>This email is already registered</p>]);
-      return;
-    }
-
-    if (error === "username") {
-      setErrors([<p key={"username"}>This username is already in use</p>]);
-      return;
-    }
 
     const errorStrings = error.split(",");
     const errorsToRender = errorStrings.map(
@@ -57,14 +42,14 @@ const RegisterForm = ({ onFinished }: Props) => {
     setErrors(errorsToRender);
   };
   const onSuccess = () => {
+    router.push("/");
     setLoading(false);
-    onFinished(formData.email);
   };
 
   const onSubmit = (event: BaseSyntheticEvent) => {
     event.preventDefault();
     setLoading(true);
-    registerUser(formData, onError, onSuccess);
+    loginUser(formData, onError, onSuccess);
   };
 
   const updateField = (event: BaseSyntheticEvent): void => {
@@ -79,30 +64,6 @@ const RegisterForm = ({ onFinished }: Props) => {
   return (
     <>
       <StyledForm onSubmit={onSubmit}>
-        <InputField
-          label="Name"
-          name="name"
-          type="text"
-          value={formData.name}
-          onChange={updateField}
-          required
-        />
-        <InputField
-          label="Last name"
-          name="lastName"
-          type="text"
-          value={formData.lastName}
-          onChange={updateField}
-          required
-        />
-        <InputField
-          label="Email"
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={updateField}
-          required
-        />
         <InputField
           label="Username"
           name="username"
@@ -126,7 +87,7 @@ const RegisterForm = ({ onFinished }: Props) => {
             color={mainTeal}
             isSubmit
             size={{ height: 30, width: 290 }}
-            text="Register"
+            text="Log in"
           />
         )}
       </StyledForm>
@@ -135,4 +96,4 @@ const RegisterForm = ({ onFinished }: Props) => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

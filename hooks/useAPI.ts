@@ -1,3 +1,4 @@
+import LoginData from "../types/LoginData";
 import RegisterData from "../types/RegisterData";
 
 const useAPI = () => {
@@ -26,7 +27,33 @@ const useAPI = () => {
 
     onSuccess();
   };
-  return { registerUser };
+
+  const loginUser = async (
+    loginData: LoginData,
+    onError: Function,
+    onSuccess: Function
+  ) => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}accounts/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      }
+    );
+
+    const body = await response.json();
+
+    if (body.error) {
+      onError(body.message);
+      return;
+    }
+
+    onSuccess();
+  };
+  return { registerUser, loginUser };
 };
 
 export default useAPI;
