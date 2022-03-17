@@ -1,3 +1,4 @@
+import _ from "lodash";
 import Action from "../../../types/Action";
 import Player from "../../../types/Player";
 import defaultAction from "../../actions/defaultAction";
@@ -20,11 +21,7 @@ const userReducer = (
       break;
 
     case userActionTypes.updateUser:
-      let tempNewUser = Object.assign(
-        (action as UpdateUserAction).change,
-        currentUser
-      );
-      newUser = JSON.parse(JSON.stringify(tempNewUser));
+      newUser = _.merge(currentUser, (action as UpdateUserAction).change);
       break;
 
     default:
