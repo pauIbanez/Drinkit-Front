@@ -19,4 +19,20 @@ interface Player {
   id: string;
 }
 
+export interface PlayerChange {
+  profile?: {
+    friends?: string[] | Player[];
+    incomingRequests?: string[] | Player[];
+    stats?: {
+      sips?: number;
+      games?: number;
+    };
+  };
+  info?: {
+    avatar?: {
+      staticUrl?: string;
+    };
+  };
+}
+
 export default Player;
