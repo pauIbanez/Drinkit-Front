@@ -45,6 +45,7 @@ const LoginForm = () => {
     setErrors(errorsToRender);
   };
   const onSuccess = (token: string) => {
+    localStorage.setItem("token", token);
     dispatch(getLoadUserThunk(token));
     router.push("/");
     setLoading(false);
