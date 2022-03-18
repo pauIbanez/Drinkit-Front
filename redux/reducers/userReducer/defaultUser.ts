@@ -9,6 +9,10 @@ const defaultUser: Player = {
       games: 0,
       sips: 0,
     },
+    avatar: {
+      staticUrl: "https://url.com/image.png",
+      backup: "https://url.com/image.png",
+    },
     username: "username",
   },
 };

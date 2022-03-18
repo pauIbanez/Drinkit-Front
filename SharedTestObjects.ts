@@ -10,6 +10,10 @@ export const localUser: Player = {
       sips: 312,
       games: 14,
     },
+    avatar: {
+      staticUrl: "https://url.com/image.png",
+      backup: "https://url.com/image.png",
+    },
     username: "local user",
   },
   id: "622f00e91e85099995d63b07",
