@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderInBocata } from "../../jest.setup";
 import Layout from "./Layout";
 
 describe("Given Layout component", () => {
@@ -7,7 +8,7 @@ describe("Given Layout component", () => {
       const buttonText = "Test Button";
       const Children = <button>{buttonText}</button>;
 
-      render(<Layout>{Children}</Layout>);
+      renderInBocata(<Layout>{Children}</Layout>);
 
       const foundButton = screen.getByRole("button", { name: buttonText });
 
@@ -25,7 +26,7 @@ describe("Given Layout component", () => {
       const buttonText = "Test Button";
       const Children = <button>{buttonText}</button>;
 
-      render(<Layout header={header}>{Children}</Layout>);
+      renderInBocata(<Layout header={header}>{Children}</Layout>);
 
       const foundButton = screen.getByRole("button", { name: buttonText });
       const foundTitle = screen.getByRole("heading", {

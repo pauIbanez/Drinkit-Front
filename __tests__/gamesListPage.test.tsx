@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderInBocata } from "../jest.setup";
 import { mockUrls } from "../mocks/mockUrls";
 import GamesList, { getStaticProps } from "../pages/games";
 import { APIGames } from "../SharedTestObjects";
@@ -49,7 +50,7 @@ describe("Given GamesList page", () => {
     test("Then it should render a Link with the text 'Back'", () => {
       const expectedLink = "Back";
 
-      render(<GamesList games={APIGames} />);
+      renderInBocata(<GamesList games={APIGames} />);
 
       const foundLink = screen.getByRole("link", { name: expectedLink });
 

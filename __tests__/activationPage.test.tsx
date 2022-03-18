@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderInBocata } from "../jest.setup";
 import ActivationPage, {
   getServerSideProps,
 } from "../pages/accounts/activate/[token]";
@@ -10,7 +11,7 @@ describe("Given activationPage", () => {
       const expectedHeading = "Activation";
       const excpectedLink = "Log in";
 
-      render(<ActivationPage activated={activated} />);
+      renderInBocata(<ActivationPage activated={activated} />);
 
       const foundHeading = screen.getByRole("heading", {
         name: expectedHeading,
@@ -28,7 +29,9 @@ describe("Given activationPage", () => {
       const expectedHeading = "Activation failed";
       const expectedError = "Some error";
 
-      render(<ActivationPage activated={activated} error={expectedError} />);
+      renderInBocata(
+        <ActivationPage activated={activated} error={expectedError} />
+      );
 
       const foundHeading = screen.getByRole("heading", {
         name: expectedHeading,

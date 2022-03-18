@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderInBocata } from "../../../jest.setup";
 import { mockUrls } from "../../../mocks/mockUrls";
 import LoginForm from "./LoginForm";
 
@@ -18,7 +19,7 @@ describe("Given LoginForm", () => {
         password: "Password",
       };
 
-      render(<LoginForm />);
+      renderInBocata(<LoginForm />);
 
       const foundUsername = screen.getByLabelText(labels.username);
       const foundPassword = screen.getByLabelText(labels.password);
@@ -37,7 +38,7 @@ describe("Given LoginForm", () => {
       const expectedButton = "Log in";
       const expectedRoute = "/";
 
-      render(<LoginForm />);
+      renderInBocata(<LoginForm />);
 
       const foundUsername = screen.getByLabelText(labels.username);
       const foundPassword = screen.getByLabelText(labels.password);
@@ -64,7 +65,7 @@ describe("Given LoginForm", () => {
       const expectedButton = "Log in";
       const expectedErrorMessage = "error message";
 
-      render(<LoginForm />);
+      renderInBocata(<LoginForm />);
 
       const foundUsername = screen.getByLabelText(labels.username);
       const foundPassword = screen.getByLabelText(labels.password);

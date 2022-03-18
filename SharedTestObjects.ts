@@ -1,8 +1,10 @@
+import defaultUser from "./redux/reducers/userReducer/defaultUser";
 import { APIGame } from "./types/Game";
 import Player from "./types/Player";
 import { APIRoom } from "./types/Room";
 
 export const localUser: Player = {
+  token: "token",
   profile: {
     friends: [],
     incomingRequests: [],
@@ -54,7 +56,7 @@ export const APIRooms: APIRoom[] = [
     inGame: false,
     inLobby: true,
     isActive: true,
-    leader: localUser,
+    leader: defaultUser,
   },
   {
     players: [],
