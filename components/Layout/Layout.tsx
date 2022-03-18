@@ -26,15 +26,12 @@ const Layout = ({
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    console.log(router.pathname, router.pathname.includes("login"));
-
     if (token) {
       dispatch(getLoadUserThunk(token));
     } else if (
       !router.pathname.includes("login") &&
       !router.pathname.includes("register")
     ) {
-      console.log(!router.pathname.includes("login"));
       router.push("/accounts/login");
     }
   }, [dispatch, router]);
