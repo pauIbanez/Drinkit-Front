@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import React, { BaseSyntheticEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import useAPI from "../../../hooks/useAPI";
+import { getLoadUserThunk } from "../../../redux/thunks/userThunks/userThunks";
 import { mainTeal, yellow } from "../../../styles/colors";
 import { StyledForm } from "../../../styles/global";
 import NormalButton from "../../Buttons/NormalButton/NormalButton";
@@ -27,6 +29,7 @@ const LoginForm = () => {
 
   const router = useRouter();
   const { loginUser } = useAPI();
+  const dispatch = useDispatch();
 
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -41,7 +44,8 @@ const LoginForm = () => {
     );
     setErrors(errorsToRender);
   };
-  const onSuccess = () => {
+  const onSuccess = (token: string) => {
+    dispatch(getLoadUserThunk(token));
     router.push("/");
     setLoading(false);
   };
