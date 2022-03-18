@@ -14,6 +14,8 @@ export const getLoadUserThunk =
 
     const body = await response.json();
 
+    body.token = token;
+
     if (body.error) {
       //handle errors
       return;

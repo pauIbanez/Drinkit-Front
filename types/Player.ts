@@ -1,4 +1,5 @@
 interface Player {
+  token?: string;
   profile: {
     username: string;
     friends: string[] | Player[];

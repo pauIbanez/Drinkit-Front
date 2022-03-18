@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import TextIconButton from "../../../components/Buttons/TextIconButton/TextIconButton";
 import Layout from "../../../components/Layout/Layout";
@@ -10,6 +10,7 @@ import { lightWhite, mainTeal, yellow } from "../../../styles/colors";
 import { Back, CenteredContainer } from "../../../styles/global";
 import { globalPageHorizontalPadding } from "../../../styles/variables";
 import { APIGame } from "../../../types/Game";
+import State from "../../../types/State";
 
 interface Props {
   game: APIGame;
@@ -57,6 +58,9 @@ const Controlls = styled.div`
 
 const GameDetails = ({ game }: Props) => {
   const dispatch = useDispatch();
+
+  const { user } = useSelector((state: State) => state);
+
   const router = useRouter();
 
   const onLoad = () => {
@@ -68,7 +72,7 @@ const GameDetails = ({ game }: Props) => {
       leader: "622f00e91e85099995d63b07",
       game: game.id,
     };
-    dispatch(getAddRoomThunk(newRoom, onLoad));
+    dispatch(getAddRoomThunk(newRoom, onLoad, user.token));
   };
 
   return (

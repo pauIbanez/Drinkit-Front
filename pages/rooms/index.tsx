@@ -49,6 +49,7 @@ const UpperLink = styled(Link)`
 
 const RoomList = ({ rooms }: Props): JSX.Element => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state: State): State => state);
 
   useEffect(() => {
     dispatch(getLoadRoomsAction(rooms));
@@ -72,7 +73,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
   const [popupProps, setPopupProps] = useState(initialPopupProps);
 
   const deleteRoom = (roomId: string) => {
-    dispatch(getDeleteRoomThunk(roomId));
+    dispatch(getDeleteRoomThunk(roomId, user.token));
   };
 
   const getOnMyRoomClick =
@@ -116,8 +117,6 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
         ],
       });
     };
-
-  const { user } = useSelector((state: State): State => state);
 
   const myId = user.id;
   const myRoom = currentRooms.find((room: APIRoom) => room.leader.id === myId);
