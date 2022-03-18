@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import IconButton from "../components/Buttons/IconButton/IconButton";
 import TextIconButton from "../components/Buttons/TextIconButton/TextIconButton";
@@ -16,6 +17,7 @@ import {
 } from "../styles/colors";
 import { CenteredContainer } from "../styles/global";
 import { globalPageHorizontalPadding } from "../styles/variables";
+import State from "../types/State";
 
 const MainTitle = styled.h1`
   font-size: 36px;
@@ -125,6 +127,8 @@ const Stat = styled.p`
 const Home: NextPage = () => {
   const router = useRouter();
 
+  const { user } = useSelector((state: State): State => state);
+
   const gotoGamesList = () => {
     router.push("/games");
   };
@@ -171,12 +175,17 @@ const Home: NextPage = () => {
       </CenteredCenteredContainer>
       <UserSection>
         <User>
-          <Image src="/useravatar" alt="avatar" height={75} width={75} />
+          <Image
+            src={user.profile.avatar.staticUrl}
+            alt="avatar"
+            height={75}
+            width={75}
+          />
           <UserData>
-            <Username>Username</Username>
+            <Username>{user.profile.username}</Username>
             <Stats>
-              <Stat>Sips: 350</Stat>
-              <Stat>Games: 14</Stat>
+              <Stat>Sips: {user.profile.stats.sips}</Stat>
+              <Stat>Games: {user.profile.stats.games}</Stat>
             </Stats>
           </UserData>
         </User>
