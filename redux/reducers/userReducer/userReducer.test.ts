@@ -28,11 +28,12 @@ describe("Given userReducer", () => {
             sips: 2000,
           },
           username: "elPapi",
-        },
-        info: {
           avatar: {
             staticUrl: "https://someurl.com/images/yes/muchreral.png",
+            backup: "https://someurl.com/images/yes/muchreral.png",
           },
+        },
+        info: {
           email: "someemail@gmail.com",
           lastName: "supa",
           name: "mr.",
@@ -62,11 +63,12 @@ describe("Given userReducer", () => {
             sips: 2000,
           },
           username: "elPapi",
-        },
-        info: {
           avatar: {
             staticUrl: "https://someurl.com/images/yes/muchreral.png",
+            backup: "https://backupurl.cum/save.png",
           },
+        },
+        info: {
           email: "someemail@gmail.com",
           lastName: "supa",
           name: "mr.",
@@ -82,12 +84,13 @@ describe("Given userReducer", () => {
             games: 36,
             sips: 2050,
           },
+          avatar: {
+            staticUrl: "https://someurl.com/images/yes/other.png",
+            backup: "https://backupurl.cum/save.png",
+          },
           username: "elPapi",
         },
         info: {
-          avatar: {
-            staticUrl: "https://someurl.com/images/yes/other.png",
-          },
           email: "someemail@gmail.com",
           lastName: "supa",
           name: "mr.",
@@ -100,8 +103,6 @@ describe("Given userReducer", () => {
             games: 36,
             sips: 2050,
           },
-        },
-        info: {
           avatar: {
             staticUrl: "https://someurl.com/images/yes/other.png",
           },
