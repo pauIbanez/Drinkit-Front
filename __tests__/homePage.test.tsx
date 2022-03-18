@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderInBocata } from "../jest.setup";
 import Home from "../pages";
 
 const mockPush = jest.fn();
@@ -20,7 +21,7 @@ describe("Given HomePage", () => {
       const expectedSettingsAlt = "user settings icon";
       const expectedFriendsAlt = "friends icon";
 
-      render(<Home />);
+      renderInBocata(<Home />);
 
       const foundTitle = screen.getByRole("heading", { name: expectedTitle });
       const foundSubtitle = screen.getByRole("heading", {
@@ -47,7 +48,7 @@ describe("Given HomePage", () => {
       const expectedJoinButtonAlt = "Join Game icon";
       const expectedPath = "/rooms";
 
-      render(<Home />);
+      renderInBocata(<Home />);
 
       const foundJoinButton = screen.getByAltText(expectedJoinButtonAlt);
       userEvent.click(foundJoinButton);
@@ -61,7 +62,7 @@ describe("Given HomePage", () => {
       const expectedHostButtonAlt = "Host Game icon";
       const expectedPath = "/games";
 
-      render(<Home />);
+      renderInBocata(<Home />);
 
       const foundHostButton = screen.getByAltText(expectedHostButtonAlt);
       userEvent.click(foundHostButton);

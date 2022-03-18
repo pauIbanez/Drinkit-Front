@@ -1,5 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { renderInBocata } from "../jest.setup";
 import RegisterPage from "../pages/accounts/register";
 
 describe("Given Register page", () => {
@@ -8,7 +9,7 @@ describe("Given Register page", () => {
       const expectedHeading = "DRINK IT";
       const expectedLink = "Log in";
 
-      render(<RegisterPage />);
+      renderInBocata(<RegisterPage />);
 
       const foundHeading = screen.getByRole("heading", {
         name: expectedHeading,
@@ -27,7 +28,7 @@ describe("Given Register page", () => {
       const expectedText =
         "We've sent you a verification email to someimail@gimail.com please check your inbox and start geting fucked up as soon as posible.";
 
-      render(<RegisterPage />);
+      renderInBocata(<RegisterPage />);
 
       const labels = {
         name: "Name",

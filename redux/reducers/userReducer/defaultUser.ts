@@ -10,7 +10,7 @@ const defaultUser: Player = {
       sips: 0,
     },
     avatar: {
-      staticUrl: "https://url.com/image.png",
+      staticUrl: "/avatar.png",
       backup: "https://url.com/image.png",
     },
     username: "username",

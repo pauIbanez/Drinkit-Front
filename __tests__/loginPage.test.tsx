@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { renderInBocata } from "../jest.setup";
 import LoginPage from "../pages/accounts/login";
 
 describe("Given Login page", () => {
@@ -7,7 +8,7 @@ describe("Given Login page", () => {
       const expectedHeading = "DRINK IT";
       const expectedLink = "Sign up";
 
-      render(<LoginPage />);
+      renderInBocata(<LoginPage />);
 
       const foundHeading = screen.getByRole("heading", {
         name: expectedHeading,

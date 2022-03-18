@@ -6,13 +6,15 @@ import {
 import NewRoom from "./types/NewRoom";
 
 export const getAddRoomThunk =
-  (newRoom: NewRoom, onLoad: Function) => async (dispatch: Dispatch) => {
+  (newRoom: NewRoom, onLoad: Function, token: string) =>
+  async (dispatch: Dispatch) => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}rooms/create`,
       {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(newRoom),
       }
@@ -30,13 +32,13 @@ export const getAddRoomThunk =
   };
 
 export const getDeleteRoomThunk =
-  (roomId: string) => async (dispatch: Dispatch) => {
+  (roomId: string, token: string) => async (dispatch: Dispatch) => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}rooms/delete`,
       {
         method: "DELETE",
         headers: {
-          authorization: "Bearer placeholdertoken",
+          authorization: `Bearer ${token}`,
         },
       }
     );

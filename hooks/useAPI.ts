@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import LoginData from "../types/LoginData";
 import RegisterData from "../types/RegisterData";
 
@@ -51,7 +52,7 @@ const useAPI = () => {
       return;
     }
 
-    onSuccess();
+    onSuccess(body.token);
   };
   return { registerUser, loginUser };
 };
