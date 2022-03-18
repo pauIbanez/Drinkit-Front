@@ -81,7 +81,7 @@ export const accountHandlers = [
     }
   ),
 
-  rest.post(`${mockUrls.failUrl}accounts/my-account`, (req, res, ctx) => {
+  rest.get(`${mockUrls.failUrl}accounts/my-account`, (req, res, ctx) => {
     return res(
       ctx.status(401),
       ctx.json({ error: true, message: "error message" })
