@@ -7,14 +7,15 @@ interface Player {
       sips: number;
       games: number;
     };
+    avatar: {
+      staticUrl: string;
+      backup: string;
+    };
   };
   info?: {
     name: string;
     lastName: string;
     email: string;
-    avatar: {
-      staticUrl: string;
-    };
   };
   id: string;
 }
@@ -27,10 +28,9 @@ export interface PlayerChange {
       sips?: number;
       games?: number;
     };
-  };
-  info?: {
     avatar?: {
       staticUrl?: string;
+      backup?: string;
     };
   };
 }
