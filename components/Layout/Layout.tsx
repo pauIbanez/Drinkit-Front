@@ -6,6 +6,7 @@ import { backgroundBlue } from "../../styles/colors";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getLoadUserThunk } from "../../redux/thunks/userThunks/userThunks";
+import { useRouter } from "next/router";
 
 interface Props {
   children: Children;
@@ -21,13 +22,19 @@ const Layout = ({
   color = backgroundBlue,
 }: Props): JSX.Element => {
   const dispatch = useDispatch();
+  const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (token) {
       dispatch(getLoadUserThunk(token));
+    } else if (
+      !router.pathname.includes("login") &&
+      !router.pathname.includes("register")
+    ) {
+      router.push("/accounts/login");
     }
-  }, [dispatch]);
+  }, [dispatch, router]);
   return (
     <>
       <Head>
