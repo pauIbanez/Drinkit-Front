@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
 import styled from "styled-components";
 import IconButton from "../components/Buttons/IconButton/IconButton";
 import TextIconButton from "../components/Buttons/TextIconButton/TextIconButton";
 import Layout from "../components/Layout/Layout";
-import { getLoadUserThunk } from "../redux/thunks/userThunks/userThunks";
+
 import {
   lightBlack,
   lightBlue,
@@ -129,16 +129,7 @@ const Stat = styled.p`
 const Home: NextPage = () => {
   const router = useRouter();
 
-  const { user } = useSelector((state: State): State => state);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      dispatch(getLoadUserThunk(token));
-    }
-  }, [dispatch]);
+  const { user } = useSelector((state: State) => state);
 
   const gotoGamesList = () => {
     router.push("/games");

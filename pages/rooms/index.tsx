@@ -117,7 +117,9 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
       });
     };
 
-  const myId = "622f00e91e85099995d63b07";
+  const { user } = useSelector((state: State): State => state);
+
+  const myId = user.id;
   const myRoom = currentRooms.find((room: APIRoom) => room.leader.id === myId);
   let myRenderRoom;
   if (myRoom) {

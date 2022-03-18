@@ -3,6 +3,9 @@ import Children from "../../types/Children";
 import { PageHolder } from "../../styles/global";
 import Header, { HeaderProps } from "../Header/Header";
 import { backgroundBlue } from "../../styles/colors";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getLoadUserThunk } from "../../redux/thunks/userThunks/userThunks";
 
 interface Props {
   children: Children;
@@ -17,6 +20,14 @@ const Layout = ({
   pageTitle,
   color = backgroundBlue,
 }: Props): JSX.Element => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      dispatch(getLoadUserThunk(token));
+    }
+  }, [dispatch]);
   return (
     <>
       <Head>
