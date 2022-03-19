@@ -18,7 +18,7 @@ import {
   vibeRed,
 } from "../styles/colors";
 import { CenteredContainer } from "../styles/global";
-import { globalPageHorizontalPadding } from "../styles/variables";
+import { globalPageHorizontalPadding, globalRadius } from "../styles/variables";
 import State from "../types/State";
 
 const MainTitle = styled.h1`
@@ -101,7 +101,7 @@ const UserSection = styled.div`
 
 const User = styled.div`
   display: flex;
-  gap: 5px;
+  gap: 15px;
 `;
 
 const UserData = styled.section`
@@ -124,6 +124,11 @@ const Stats = styled.div`
 const Stat = styled.p`
   margin: 0;
   font-size: 18px;
+`;
+
+const Avatar = styled(Image)`
+  object-fit: contain;
+  border-radius: ${globalRadius};
 `;
 
 const Home: NextPage = () => {
@@ -177,7 +182,7 @@ const Home: NextPage = () => {
       </CenteredCenteredContainer>
       <UserSection>
         <User>
-          <Image
+          <Avatar
             src={user.profile.avatar.staticUrl}
             alt="avatar"
             height={75}
