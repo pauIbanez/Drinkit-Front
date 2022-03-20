@@ -144,6 +144,8 @@ const Home: NextPage = () => {
     router.push("/rooms");
   };
 
+  console.log(process.env.NEXT_PUBLIC_API_URL);
+
   return (
     <Layout>
       <FriendsButtonHolder>
