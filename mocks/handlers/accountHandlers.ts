@@ -81,6 +81,10 @@ export const accountHandlers = [
     }
   ),
 
+  rest.get(`${mockUrls.goodUrl}accounts/my-account`, (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(localUser));
+  }),
+
   rest.get(`${mockUrls.failUrl}accounts/my-account`, (req, res, ctx) => {
     return res(
       ctx.status(401),

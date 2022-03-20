@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderInBocata } from "../jest.setup";
+import { mockUrls } from "../mocks/mockUrls";
 import Home from "../pages";
 
 const mockPush = jest.fn();
@@ -9,6 +10,17 @@ jest.mock("next/router", () => ({
     push: mockPush,
   }),
 }));
+
+let originalEnv: NodeJS.ProcessEnv;
+
+beforeAll(() => {
+  originalEnv = { ...process.env };
+  process.env.NEXT_PUBLIC_API_URL = mockUrls.goodUrl;
+});
+
+afterAll(() => {
+  process.env = originalEnv;
+});
 
 describe("Given HomePage", () => {
   describe("When it's instanciated", () => {
