@@ -10,6 +10,17 @@ jest.mock("next/router", () => ({
   }),
 }));
 
+let originalEnv: NodeJS.ProcessEnv;
+
+beforeAll(() => {
+  originalEnv = { ...process.env };
+  process.env.NEXT_PUBLIC_API_URL = "/";
+});
+
+afterAll(() => {
+  process.env = originalEnv;
+});
+
 describe("Given HomePage", () => {
   describe("When it's instanciated", () => {
     test("Then it should render 2 headings with 'DRINK IT' and 'Let's just get drunk', 4 buttons and the user data", () => {
