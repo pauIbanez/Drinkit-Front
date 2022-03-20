@@ -183,7 +183,7 @@ const Home: NextPage = () => {
       <UserSection>
         <User>
           <Avatar
-            src={user.profile.avatar.staticUrl}
+            src={`${process.env.NEXT_PUBLIC_API_URL}avatars/${user.profile.avatar.staticUrl}`}
             alt="avatar"
             height={75}
             width={75}

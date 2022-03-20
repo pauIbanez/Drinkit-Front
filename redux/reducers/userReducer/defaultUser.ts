@@ -10,8 +10,9 @@ const defaultUser: Player = {
       sips: 0,
     },
     avatar: {
-      staticUrl: "/avatar.png",
-      backup: "https://url.com/image.png",
+      staticUrl: "default-avatar.png",
+      backup:
+        "https://firebasestorage.googleapis.com/v0/b/drinkit-bc8d7.appspot.com/o/default-avatar.png?alt=media&token=9ad386c6-b494-42bb-afc9-ce05989179eb",
     },
     username: "username",
   },
