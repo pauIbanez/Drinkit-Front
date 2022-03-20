@@ -4,6 +4,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ["localhost", "drinkit-back.onrender.com"],
+  },
 };
 
 module.exports = nextConfig;
