@@ -1,5 +1,5 @@
-import { mockUrls } from "../mocks/mockUrls";
-import RegisterData from "../types/RegisterData";
+import { mockUrls } from "../../mocks/mockUrls";
+import RegisterData from "../../types/RegisterData";
 import useAPI from "./useAPI";
 
 describe("Given useAPI registerUser", () => {

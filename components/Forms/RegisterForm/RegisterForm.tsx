@@ -1,7 +1,6 @@
-import { useRouter } from "next/router";
 import React, { BaseSyntheticEvent, useState } from "react";
 import styled from "styled-components";
-import useAPI from "../../../hooks/useAPI";
+import useAPI from "../../../hooks/useAPI/useAPI";
 import { mainTeal, yellow } from "../../../styles/colors";
 import { StyledForm } from "../../../styles/global";
 import NormalButton from "../../Buttons/NormalButton/NormalButton";

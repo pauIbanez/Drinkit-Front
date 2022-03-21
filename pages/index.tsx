@@ -1,12 +1,14 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import styled from "styled-components";
 import IconButton from "../components/Buttons/IconButton/IconButton";
 import TextIconButton from "../components/Buttons/TextIconButton/TextIconButton";
 import Layout from "../components/Layout/Layout";
+import useWebsockets from "../hooks/useWebscokets/useWebsockets";
 
 import {
   lightBlack,
@@ -133,7 +135,7 @@ const Avatar = styled(Image)`
 
 const Home: NextPage = () => {
   const router = useRouter();
-
+  const { startConnection } = useWebsockets();
   const { user } = useSelector((state: State) => state);
 
   const gotoGamesList = () => {
@@ -144,7 +146,11 @@ const Home: NextPage = () => {
     router.push("/rooms");
   };
 
-  console.log(process.env.NEXT_PUBLIC_API_URL);
+  useEffect(() => {
+    if (user.id) {
+      startConnection(user.id);
+    }
+  }, [startConnection, user.id]);
 
   return (
     <Layout>
