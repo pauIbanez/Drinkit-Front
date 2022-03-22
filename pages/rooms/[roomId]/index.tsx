@@ -7,7 +7,12 @@ import TextIconButton from "../../../components/Buttons/TextIconButton/TextIconB
 import Layout from "../../../components/Layout/Layout";
 import WSContext from "../../../contexts/wsContext";
 import { getUpdateStateAction } from "../../../redux/actions/piramideLobby/piramideLobbyActionCreators";
-import { lightBlack, mainRed, mainTeal } from "../../../styles/colors";
+import {
+  lightBlack,
+  lightWhite,
+  mainRed,
+  mainTeal,
+} from "../../../styles/colors";
 import { CenteredContainer } from "../../../styles/global";
 import { globalRadius } from "../../../styles/variables";
 import Player from "../../../types/Player";
@@ -127,6 +132,12 @@ const Modifier = styled.div`
   border-radius: ${globalRadius};
 `;
 
+const NoModifier = styled.p`
+  color: ${lightWhite};
+  margin: 5px 0;
+  font-size: 12px;
+`;
+
 const LobbyPage = (): JSX.Element => {
   const router = useRouter();
   const { roomId } = router.query;
@@ -155,6 +166,8 @@ const LobbyPage = (): JSX.Element => {
   console.log(piramideLobby);
 
   let usersToRender: JSX.Element[] = [];
+  let modifiersToRender: JSX.Element[] = [];
+
   if (piramideLobby.connectedPlayers) {
     const connectedToRender = piramideLobby.connectedPlayers.map(
       (player: Player) => (
@@ -180,6 +193,16 @@ const LobbyPage = (): JSX.Element => {
           <Username>Waiting...</Username>
         </PlayerHolder>
       );
+    }
+
+    modifiersToRender = piramideLobby.modifiers.map((modifier) => (
+      <Modifier key={modifier}>{modifier}</Modifier>
+    ));
+
+    if (modifiersToRender.length === 0) {
+      modifiersToRender = [
+        <NoModifier key={"no-modifier"}>No modifiers active...</NoModifier>,
+      ];
     }
 
     usersToRender = [...connectedToRender, ...restToRender];
@@ -225,10 +248,7 @@ const LobbyPage = (): JSX.Element => {
           </SettingsSection>
           <SettingsSection>
             <SettingTitle>Modifiers</SettingTitle>
-            <ModifierHolder>
-              <Modifier />
-              <Modifier />
-            </ModifierHolder>
+            <ModifierHolder>{modifiersToRender}</ModifierHolder>
           </SettingsSection>
         </Settigns>
       </CenteredContainer>
