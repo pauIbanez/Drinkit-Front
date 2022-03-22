@@ -111,6 +111,19 @@ const LobbySettingName = styled.p`
   font-size: 12px;
 `;
 
+const ModifierHolder = styled.div`
+  display: flex;
+  gap: 10px;
+  width: 100%;
+`;
+
+const Modifier = styled.div`
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  border-radius: ${globalRadius};
+`;
+
 const LobbyPage = (): JSX.Element => {
   const router = useRouter();
   const { roomId } = router.query;
@@ -206,6 +219,13 @@ const LobbyPage = (): JSX.Element => {
                 <LobbySettingName>Leftovers</LobbySettingName>
               </LobbySetting>
             </LobbySettingHolder>
+          </SettingsSection>
+          <SettingsSection>
+            <SettingTitle>Modifiers</SettingTitle>
+            <ModifierHolder>
+              <Modifier />
+              <Modifier />
+            </ModifierHolder>
           </SettingsSection>
         </Settigns>
       </CenteredContainer>
