@@ -5,7 +5,7 @@ import Layout from "../../../components/Layout/Layout";
 import useWebsockets from "../../../hooks/useWebscokets/useWebsockets";
 import State from "../../../types/State";
 
-const lobbyPage = (): JSX.Element => {
+const LobbyPage = (): JSX.Element => {
   const router = useRouter();
   const { sendMessage, connection } = useWebsockets();
   const { user } = useSelector((state: State): State => state);
@@ -30,4 +30,4 @@ const lobbyPage = (): JSX.Element => {
   );
 };
 
-export default lobbyPage;
+export default LobbyPage;
