@@ -194,15 +194,15 @@ const LobbyPage = (): JSX.Element => {
             <SettingTitle>Game Setings</SettingTitle>
             <LobbySettingHolder>
               <LobbySetting>
-                <LobbySettingIcon active={false} />
+                <LobbySettingIcon active={piramideLobby.twoDecks} />
                 <LobbySettingName>Two decks</LobbySettingName>
               </LobbySetting>
               <LobbySetting>
-                <LobbySettingIcon active={true} />
+                <LobbySettingIcon active={piramideLobby.jokers} />
                 <LobbySettingName>Jokers</LobbySettingName>
               </LobbySetting>
               <LobbySetting>
-                <LobbySettingIcon active={false} />
+                <LobbySettingIcon active={piramideLobby.leftovers} />
                 <LobbySettingName>Leftovers</LobbySettingName>
               </LobbySetting>
             </LobbySettingHolder>
