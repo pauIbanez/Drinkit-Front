@@ -23,6 +23,7 @@ const HorizontalContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   color: white;
+  margin: 20px 0;
 `;
 
 const RoomCode = styled.p`
@@ -40,6 +41,7 @@ const PlayersSection = styled.section`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const PlayerHolder = styled.div`
@@ -67,6 +69,7 @@ const Settigns = styled.section`
   flex-direction: column;
   width: 100%;
   gap: 30px;
+  margin-top: 50px;
 `;
 
 const SettingsSection = styled.div`
