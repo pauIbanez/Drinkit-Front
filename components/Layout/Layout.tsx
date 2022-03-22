@@ -3,10 +3,12 @@ import Children from "../../types/Children";
 import { PageHolder } from "../../styles/global";
 import Header, { HeaderProps } from "../Header/Header";
 import { backgroundBlue } from "../../styles/colors";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getLoadUserThunk } from "../../redux/thunks/userThunks/userThunks";
 import { useRouter } from "next/router";
+import useWebsockets from "../../hooks/useWebscokets/useWebsockets";
+import State from "../../types/State";
 
 interface Props {
   children: Children;
@@ -23,6 +25,9 @@ const Layout = ({
 }: Props): JSX.Element => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { startConnection } = useWebsockets();
+  const { user } = useSelector((state: State): State => state);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -35,6 +40,12 @@ const Layout = ({
       router.push("/accounts/login");
     }
   }, [dispatch, router]);
+
+  useEffect(() => {
+    if (user.id) {
+      startConnection(user.id);
+    }
+  }, [startConnection, user.id]);
   return (
     <>
       <Head>
