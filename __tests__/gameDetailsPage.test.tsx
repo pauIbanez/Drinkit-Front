@@ -16,6 +16,15 @@ jest.mock("next/router", () => ({
 }));
 
 describe("Given gameDetails page", () => {
+  let originalEnv;
+  beforeAll(() => {
+    originalEnv = { ...process.env };
+    process.env.NEXT_PUBLIC_WS_URL = "wss://testUrl.com/ws";
+  });
+
+  afterAll(() => {
+    process.env = originalEnv;
+  });
   describe("When it's instanciated passing a game", () => {
     test("Then it should display the game's name, a heading with the text 'Setup' and a heading with the text 'How to play' plus the setup and howToPlay texts of the game object", () => {
       const expectedSetup = "Setup";
