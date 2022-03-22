@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getLoadUserThunk } from "../../redux/thunks/userThunks/userThunks";
 import { useRouter } from "next/router";
-import useWebsockets from "../../hooks/useWebscokets/useWebsockets";
 import State from "../../types/State";
+import WSContextProvider from "../../contexts/WSContextProvider";
 
 interface Props {
   children: Children;
@@ -25,8 +25,6 @@ const Layout = ({
 }: Props): JSX.Element => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { startConnection } = useWebsockets();
-  const { user } = useSelector((state: State): State => state);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -41,11 +39,6 @@ const Layout = ({
     }
   }, [dispatch, router]);
 
-  useEffect(() => {
-    if (user.id) {
-      startConnection(user.id);
-    }
-  }, [startConnection, user.id]);
   return (
     <>
       <Head>
@@ -53,10 +46,12 @@ const Layout = ({
         <title>{pageTitle ? `${pageTitle} | Drink it!` : "Drink it!"}</title>
         <base href="/" />
       </Head>
-      <PageHolder color={color}>
-        {header && <Header title={header.title} subtitle={header.subtitle} />}
-        {children}
-      </PageHolder>
+      <WSContextProvider>
+        <PageHolder color={color}>
+          {header && <Header title={header.title} subtitle={header.subtitle} />}
+          {children}
+        </PageHolder>
+      </WSContextProvider>
     </>
   );
 };
