@@ -127,7 +127,11 @@ const LobbyPage = (): JSX.Element => {
     >
       <CenteredContainer>
         <HorizontalContainer>
-          <RoomCode>HS6Y</RoomCode> <PlayerCounter>3/7</PlayerCounter>
+          <RoomCode>HS6Y</RoomCode>
+          <PlayerCounter>
+            {piramideLobby.connectedPlayers &&
+              `${piramideLobby.connectedPlayers.length}/${piramideLobby.maxPlayers}`}
+          </PlayerCounter>
           <TextIconButton
             color={mainRed}
             icon="/icons/sda"
