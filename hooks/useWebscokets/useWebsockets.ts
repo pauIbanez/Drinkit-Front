@@ -1,6 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 const useWebsockets = () => {
+  const [connection, setConnection] = useState(null);
+
   const startConnection = useCallback((id) => {
     const socketConnection = new WebSocket(process.env.NEXT_PUBLIC_WS_URL);
 
@@ -12,9 +14,17 @@ const useWebsockets = () => {
         })
       );
     };
+    setConnection(socketConnection);
   }, []);
 
-  return { startConnection };
+  const sendMessage = useCallback(
+    (message: object) => {
+      connection.send(JSON.stringify(message));
+    },
+    [connection]
+  );
+
+  return { startConnection, sendMessage, connection };
 };
 
 export default useWebsockets;
