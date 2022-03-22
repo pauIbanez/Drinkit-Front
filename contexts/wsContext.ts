@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const wsContext = createContext(null);
-wsContext.displayName = "Websocket context";
+const WSContext = createContext(null);
+WSContext.displayName = "Websocket context";
 
-export default wsContext;
+export default WSContext;
