@@ -7,7 +7,7 @@ import TextIconButton from "../../../components/Buttons/TextIconButton/TextIconB
 import Layout from "../../../components/Layout/Layout";
 import WSContext from "../../../contexts/wsContext";
 import { getUpdateStateAction } from "../../../redux/actions/piramideLobby/piramideLobbyActionCreators";
-import { mainRed } from "../../../styles/colors";
+import { lightBlack, mainRed, mainTeal } from "../../../styles/colors";
 import { CenteredContainer } from "../../../styles/global";
 import { globalRadius } from "../../../styles/variables";
 import Player from "../../../types/Player";
@@ -60,6 +60,55 @@ const Username = styled.p`
   margin: 0;
   color: white;
   fnt-size: 13px;
+`;
+
+const Settigns = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 30px;
+`;
+
+const SettingsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const SettingTitle = styled.h2`
+  color: white;
+  margin: 0;
+  font-size: 13px;
+`;
+
+const LobbySettingHolder = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const LobbySetting = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+
+interface LobbySettingIconProps {
+  active: boolean;
+}
+
+const LobbySettingIcon = styled.div`
+  height: 30px;
+  width: 30px;
+  border-radius: ${globalRadius};
+  background-color: ${({ active }: LobbySettingIconProps) =>
+    active ? mainTeal : lightBlack};
+`;
+
+const LobbySettingName = styled.p`
+  color: white;
+  margin: 0;
+  font-size: 12px;
 `;
 
 const LobbyPage = (): JSX.Element => {
@@ -140,6 +189,25 @@ const LobbyPage = (): JSX.Element => {
           />
         </HorizontalContainer>
         <PlayersSection>{usersToRender}</PlayersSection>
+        <Settigns>
+          <SettingsSection>
+            <SettingTitle>Game Setings</SettingTitle>
+            <LobbySettingHolder>
+              <LobbySetting>
+                <LobbySettingIcon active={false} />
+                <LobbySettingName>Two decks</LobbySettingName>
+              </LobbySetting>
+              <LobbySetting>
+                <LobbySettingIcon active={true} />
+                <LobbySettingName>Jokers</LobbySettingName>
+              </LobbySetting>
+              <LobbySetting>
+                <LobbySettingIcon active={false} />
+                <LobbySettingName>Leftovers</LobbySettingName>
+              </LobbySetting>
+            </LobbySettingHolder>
+          </SettingsSection>
+        </Settigns>
       </CenteredContainer>
     </Layout>
   );
