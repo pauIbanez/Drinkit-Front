@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Children from "../types/Children";
+import State from "../types/State";
 import WSContext from "./wsContext";
 
 interface Props {
@@ -12,11 +14,15 @@ const WSContextProvider = ({ children }: Props) => {
   const [wsInstance, setWSInstance] = useState(null);
   const [ready, setReady] = useState(false);
 
+  const { user } = useSelector((state: State) => state);
+
   useEffect(() => {
-    setWSInstance(
-      isBrowser ? new WebSocket(process.env.NEXT_PUBLIC_WS_URL) : null
-    );
-  }, [isBrowser]);
+    if (user.id) {
+      setWSInstance(
+        isBrowser ? new WebSocket(process.env.NEXT_PUBLIC_WS_URL) : null
+      );
+    }
+  }, [isBrowser, user.id]);
 
   useEffect(() => {
     if (wsInstance) {
@@ -24,13 +30,13 @@ const WSContextProvider = ({ children }: Props) => {
         wsInstance.send(
           JSON.stringify({
             type: "conn-open",
-            userId: "6234bafc6ef9f9168034f489",
+            userId: user.id,
           })
         );
         setReady(true);
       };
     }
-  }, [wsInstance]);
+  }, [user.id, wsInstance]);
 
   return (
     <WSContext.Provider value={{ wsInstance, ready }}>
