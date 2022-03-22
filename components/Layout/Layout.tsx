@@ -4,11 +4,10 @@ import { PageHolder } from "../../styles/global";
 import Header, { HeaderProps } from "../Header/Header";
 import { backgroundBlue } from "../../styles/colors";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { getLoadUserThunk } from "../../redux/thunks/userThunks/userThunks";
 import { useRouter } from "next/router";
-import State from "../../types/State";
-import WSContextProvider from "../../contexts/WSContextProvider";
+import WSContext from "../../contexts/wsContext";
 
 interface Props {
   children: Children;
@@ -25,6 +24,8 @@ const Layout = ({
 }: Props): JSX.Element => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const wsInstance = useContext(WSContext);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -46,12 +47,10 @@ const Layout = ({
         <title>{pageTitle ? `${pageTitle} | Drink it!` : "Drink it!"}</title>
         <base href="/" />
       </Head>
-      <WSContextProvider>
-        <PageHolder color={color}>
-          {header && <Header title={header.title} subtitle={header.subtitle} />}
-          {children}
-        </PageHolder>
-      </WSContextProvider>
+      <PageHolder color={color}>
+        {header && <Header title={header.title} subtitle={header.subtitle} />}
+        {children}
+      </PageHolder>
     </>
   );
 };

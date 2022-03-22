@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Children from "../types/Children";
 import WSContext from "./wsContext";
 
@@ -7,31 +7,35 @@ interface Props {
 }
 
 const WSContextProvider = ({ children }: Props) => {
+  const isBrowser = typeof window !== "undefined";
+
+  const [wsInstance, setWSInstance] = useState(null);
   const [ready, setReady] = useState(false);
 
-  const socketConnection = new WebSocket(process.env.NEXT_PUBLIC_WS_URL);
-
-  socketConnection.onopen = () => {
-    socketConnection.send(
-      JSON.stringify({
-        type: "conn-open",
-        userId: "6234bafc6ef9f9168034f489",
-      })
+  useEffect(() => {
+    setWSInstance(
+      isBrowser ? new WebSocket(process.env.NEXT_PUBLIC_WS_URL) : null
     );
-    console.log("connection opened");
-    setReady(true);
-    socketConnection.onmessage = (message: object) => {
-      console.log(JSON.stringify(message));
-    };
-  };
+  }, [isBrowser]);
 
-  const contextValue = {
-    ready,
-    connection: socketConnection,
-  };
+  useEffect(() => {
+    if (wsInstance) {
+      wsInstance.onopen = () => {
+        wsInstance.send(
+          JSON.stringify({
+            type: "conn-open",
+            userId: "6234bafc6ef9f9168034f489",
+          })
+        );
+        setReady(true);
+      };
+    }
+  }, [wsInstance]);
 
   return (
-    <WSContext.Provider value={contextValue}>{children}</WSContext.Provider>
+    <WSContext.Provider value={{ wsInstance, ready }}>
+      {children}
+    </WSContext.Provider>
   );
 };
 

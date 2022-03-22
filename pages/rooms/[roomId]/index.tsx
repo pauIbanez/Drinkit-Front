@@ -1,15 +1,34 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
-import { useSelector } from "react-redux";
 import Layout from "../../../components/Layout/Layout";
 import WSContext from "../../../contexts/wsContext";
-import State from "../../../types/State";
+
+interface Message {
+  data: string;
+}
 
 const LobbyPage = (): JSX.Element => {
   const router = useRouter();
   const { roomId } = router.query;
 
-  const { connection } = useContext(WSContext);
+  const { wsInstance, ready } = useContext(WSContext);
+
+  useEffect(() => {
+    if (ready && roomId) {
+      wsInstance.send(
+        JSON.stringify({
+          reason: "lobby",
+          game: "piramide",
+          type: "join",
+          lobby: roomId,
+          userId: "6234bafc6ef9f9168034f489",
+        })
+      );
+      wsInstance.onmessage = ({ data }: Message) => {
+        console.log(JSON.parse(data));
+      };
+    }
+  }, [ready, roomId, wsInstance]);
 
   return (
     <Layout>
