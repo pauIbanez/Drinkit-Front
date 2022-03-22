@@ -1,27 +1,36 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Layout from "../../../components/Layout/Layout";
-import useWebsockets from "../../../hooks/useWebscokets/useWebsockets";
+import WSContext from "../../../contexts/wsContext";
 import State from "../../../types/State";
+
+interface Message {
+  data: string;
+}
 
 const LobbyPage = (): JSX.Element => {
   const router = useRouter();
-  const { sendMessage, connection } = useWebsockets();
-  const { user } = useSelector((state: State): State => state);
   const { roomId } = router.query;
+  const { user } = useSelector((state: State) => state);
+  const { wsInstance, ready } = useContext(WSContext);
 
   useEffect(() => {
-    if (connection) {
-      sendMessage({
-        reason: "lobby",
-        game: "piramide",
-        type: "join",
-        lobby: roomId,
-        player: user.id,
-      });
+    if (ready && roomId && user.id) {
+      wsInstance.send(
+        JSON.stringify({
+          reason: "lobby",
+          game: "piramide",
+          type: "join",
+          lobby: roomId,
+          userId: user.id,
+        })
+      );
+      wsInstance.onmessage = ({ data }: Message) => {
+        console.log(JSON.parse(data));
+      };
     }
-  }, [connection, roomId, sendMessage, user.id]);
+  }, [ready, roomId, user.id, wsInstance]);
 
   return (
     <Layout>
