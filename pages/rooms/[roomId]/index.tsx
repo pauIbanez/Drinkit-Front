@@ -164,6 +164,7 @@ const LobbyPage = (): JSX.Element => {
   }, [dispatch, ready, roomId, user.id, wsInstance]);
 
   console.log(piramideLobby);
+  console.log(user);
 
   let usersToRender: JSX.Element[] = [];
   let modifiersToRender: JSX.Element[] = [];

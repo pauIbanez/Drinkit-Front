@@ -72,7 +72,24 @@ export const APIRooms: APIRoom[] = [
 
 export const lobby: PiramideLobby = {
   id: "lobbyid",
-  connectedPlayers: [],
+  connectedPlayers: [
+    {
+      id: "leaderId",
+      profile: {
+        avatar: {
+          backup: "backup",
+          staticUrl: "static",
+        },
+        friends: [],
+        incomingRequests: [],
+        stats: {
+          games: 0,
+          sips: 0,
+        },
+        username: "username",
+      },
+    },
+  ],
   jokers: false,
   leader: {
     id: "leaderId",
@@ -90,7 +107,7 @@ export const lobby: PiramideLobby = {
       username: "username",
     },
   },
-  leftovers: false,
+  leftovers: true,
   maxPlayers: 7,
   minPlayers: 4,
   modifiers: [],

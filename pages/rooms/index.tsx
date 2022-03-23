@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { BaseSyntheticEvent, Key, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -68,6 +69,7 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
     hide: hidePopup,
   };
 
+  const router = useRouter();
   const currentRooms = useSelector((state: State) => state.rooms);
   const [showPopup, setShowPopup] = useState(false);
   const [popupProps, setPopupProps] = useState(initialPopupProps);
@@ -86,7 +88,9 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
         buttons: [
           {
             color: lightBlue,
-            onClick: () => {},
+            onClick: () => {
+              router.push(`/rooms/${roomId}`);
+            },
             text: "Join",
           },
           {
@@ -111,7 +115,9 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
         buttons: [
           {
             color: lightBlue,
-            onClick: () => {},
+            onClick: () => {
+              router.push(`/rooms/${roomId}`);
+            },
             text: "Join",
           },
         ],
