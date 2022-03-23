@@ -150,7 +150,7 @@ const Home: NextPage = () => {
         <IconButton
           alt="friends icon"
           color={mainTeal}
-          icon="/icons/friends.png"
+          icon="/icons/frien.png"
           size={{ width: 50, height: 50 }}
         />
       </FriendsButtonHolder>
@@ -163,14 +163,14 @@ const Home: NextPage = () => {
             <Controlls>
               <TextIconButton
                 color={mainRed}
-                icon="/icons/clink"
+                icon="/icons/clink.png"
                 size={{ height: 45, width: 285 }}
                 text="Host Game"
                 onClick={gotoGamesList}
               />
               <TextIconButton
                 color={lightBlue}
-                icon="/icons/clink"
+                icon="/icons/beer.png"
                 size={{ height: 45, width: 285 }}
                 text="Join Game"
                 onClick={gotoRoomsList}
@@ -198,7 +198,7 @@ const Home: NextPage = () => {
         <IconButton
           alt="user settings icon"
           color={mainTeal}
-          icon="/icons/settings.png"
+          icon="/icons/config.png"
           size={{ height: 45, width: 45 }}
         />
       </UserSection>
