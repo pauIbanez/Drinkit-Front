@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { lightWhite, mainTeal } from "../../styles/colors";
@@ -28,10 +29,8 @@ const TextSection = styled.div`
   justify-content: space-between;
 `;
 
-const Icon = styled.div`
-  background-color: white;
-  width: 60px;
-  height: 60px;
+const Icon = styled(Image)`
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 const GameName = styled.h2`
@@ -56,6 +55,7 @@ const Game = ({ game }: Props): JSX.Element => {
   const gotoDetail = () => {
     router.push(`/games/${game.name.toLowerCase()}`);
   };
+
   return (
     <StyledGame onClick={gotoDetail}>
       <TextSection>
@@ -66,7 +66,12 @@ const Game = ({ game }: Props): JSX.Element => {
           <InfoItem>{`Players: ${game.minPlayers} - ${game.maxPlayers}`}</InfoItem>
         </GameInfo>
       </TextSection>
-      <Icon />
+      <Icon
+        src="/game-icons/piramide.png"
+        alt="piramide icon"
+        width={75}
+        height={75}
+      />
     </StyledGame>
   );
 };

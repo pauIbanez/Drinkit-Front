@@ -31,6 +31,7 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 7px;
 `;
 
 const TextIconButton = ({ text, color, icon, size, onClick }: Props) => {
