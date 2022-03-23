@@ -1,5 +1,6 @@
 import defaultUser from "./redux/reducers/userReducer/defaultUser";
 import { APIGame } from "./types/Game";
+import PiramideLobby from "./types/PiramideLobby";
 import Player from "./types/Player";
 import { APIRoom } from "./types/Room";
 
@@ -68,3 +69,47 @@ export const APIRooms: APIRoom[] = [
     leader: localUser,
   },
 ];
+
+export const lobby: PiramideLobby = {
+  id: "lobbyid",
+  connectedPlayers: [
+    {
+      id: "leaderId",
+      profile: {
+        avatar: {
+          backup: "backup",
+          staticUrl: "static",
+        },
+        friends: [],
+        incomingRequests: [],
+        stats: {
+          games: 0,
+          sips: 0,
+        },
+        username: "username",
+      },
+    },
+  ],
+  jokers: false,
+  leader: {
+    id: "leaderId",
+    profile: {
+      avatar: {
+        backup: "backup",
+        staticUrl: "static",
+      },
+      friends: [],
+      incomingRequests: [],
+      stats: {
+        games: 0,
+        sips: 0,
+      },
+      username: "username",
+    },
+  },
+  leftovers: true,
+  maxPlayers: 7,
+  minPlayers: 4,
+  modifiers: [],
+  twoDecks: false,
+};
