@@ -60,7 +60,7 @@ const PlayerHolder = styled.div`
 
 const Avatar = styled(Image)`
   border-radius: ${globalRadius};
-  object-fit: contain;
+  object-fit: fill;
 `;
 
 const Username = styled.p`
@@ -180,6 +180,7 @@ const LobbyPage = (): JSX.Element => {
         </PlayerHolder>
       )
     );
+
     const missingPlayers = piramideLobby.maxPlayers - connectedToRender.length;
 
     let restToRender: JSX.Element[] = [];
@@ -187,7 +188,12 @@ const LobbyPage = (): JSX.Element => {
     for (let i = 0; i < missingPlayers; i++) {
       restToRender.push(
         <PlayerHolder key={i}>
-          <Avatar height={70} width={70} src="/default.png" alt="user avatar" />
+          <Avatar
+            height={70}
+            width={70}
+            src="/avatar/avatar-cover.png"
+            alt="user avatar"
+          />
           <Username>Waiting...</Username>
         </PlayerHolder>
       );
@@ -220,7 +226,7 @@ const LobbyPage = (): JSX.Element => {
           </PlayerCounter>
           <TextIconButton
             color={mainRed}
-            icon="/icons/sda"
+            icon="/icons/share.png"
             text="Invite"
             size={{ height: 35, width: 100 }}
           />
