@@ -91,7 +91,7 @@ const GameDetails = ({ game }: Props) => {
           </Link>
           <TextIconButton
             color={yellow}
-            icon="/buttonIcons/clink.png"
+            icon="/icons/clink.png"
             size={{ width: 130, height: 50 }}
             text="Start"
             onClick={onStart}
