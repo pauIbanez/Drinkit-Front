@@ -110,6 +110,6 @@ export const lobby: PiramideLobby = {
   leftovers: true,
   maxPlayers: 7,
   minPlayers: 4,
-  modifiers: [],
+  modifiers: ["asd"],
   twoDecks: false,
 };
