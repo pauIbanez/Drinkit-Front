@@ -18,6 +18,7 @@ const customJestConfig = {
     "**/*.ts",
     "!pages/_app.tsx",
     "!.scannerwork/**/*",
+    "!contexts/WSContextProvider.tsx",
   ],
 };
 
