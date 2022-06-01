@@ -34,6 +34,10 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:disabled {
+    filter: brightness(0.7);
+  }
 `;
 
 const NormalButton = ({
