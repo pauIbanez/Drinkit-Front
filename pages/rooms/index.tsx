@@ -76,37 +76,6 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupProps, setPopupProps] = useState(initialPopupProps);
 
-  // const deleteRoom = (roomId: string) => {
-  //   dispatch(getDeleteRoomThunk(roomId, user.token));
-  // };
-
-  // const getOnMyRoomClick =
-  //   (roomId: string) => (event: BaseSyntheticEvent, position: Position) => {
-  //     event.stopPropagation();
-  //     setShowPopup(true);
-  //     setPopupProps({
-  //       ...initialPopupProps,
-  //       position,
-  //       buttons: [
-  //         {
-  //           color: lightBlue,
-  //           onClick: () => {
-  //             router.push(`/rooms/${roomId}`);
-  //           },
-  //           text: "Join",
-  //         },
-  //         {
-  //           color: mainRed,
-  //           onClick: (event: BaseSyntheticEvent) => {
-  //             deleteRoom(roomId);
-  //             setShowPopup(false);
-  //           },
-  //           text: "Delete",
-  //         },
-  //       ],
-  //     });
-  //   };
-
   const getOnRoomClick =
     (roomId: string) => (event: BaseSyntheticEvent, position: Position) => {
       event.stopPropagation();
@@ -126,30 +95,12 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
       });
     };
 
-  // const myId = user.id;
-  // const myRoom = currentRooms.find((room: APIRoom) => room.leader.id === myId);
-  // let myRenderRoom;
-  // if (myRoom) {
-  //   myRenderRoom = (
-  //     <RoomCard room={myRoom} onClick={getOnMyRoomClick(myRoom.id)} />
-  //   );
-  // }
-
   const header: Header = {
     title: "JOIN A ROOM",
     subtitle: "ROOMS LIST",
   };
 
   let roomsToRender;
-  // if (myRoom) {
-  //   const otherRooms = currentRooms.filter(
-  //     (room: APIRoom) => room.leader.id !== myId
-  //   );
-
-  //   roomsToRender = otherRooms.map((room) => (
-  //     <RoomCard key={room.id as Key} room={room} />
-  //   ));
-  // } else {
   roomsToRender = currentRooms.map((room) => (
     <RoomCard
       key={room.id as Key}
@@ -157,7 +108,6 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
       onClick={getOnRoomClick(room.id)}
     />
   ));
-  // }
 
   return (
     <>
@@ -169,12 +119,6 @@ const RoomList = ({ rooms }: Props): JSX.Element => {
       />
       <Layout header={header} pageTitle={"Room List"}>
         <CenteredContainer>
-          {/* {myRoom && (
-            <>
-              <SectionTitle>My Room</SectionTitle>
-              <MyRoomContainer>{myRenderRoom}</MyRoomContainer>
-            </>
-          )} */}
           <SectionTitle>Join a room</SectionTitle>
           <RoomIdForm />
           <SectionTitle>Rooms List</SectionTitle>
