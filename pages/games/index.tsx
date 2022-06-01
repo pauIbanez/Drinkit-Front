@@ -27,6 +27,7 @@ const GamesList = ({ games }: Props): JSX.Element => {
   const gamesToRender: JSX.Element[] = games.map(
     (game: APIGame): JSX.Element => <Game key={game.name} game={game} />
   );
+
   return (
     <Layout pageTitle="Games" header={header}>
       <CenteredContainer>
