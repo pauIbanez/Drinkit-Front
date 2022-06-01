@@ -4,7 +4,7 @@ import GameDetails, {
   getStaticPaths,
   getStaticProps,
 } from "../pages/games/[name]";
-import { APIGames } from "../SharedTestObjects";
+import { APIGames, APIRooms } from "../SharedTestObjects";
 import { renderInBocata } from "../jest.setup";
 import userEvent from "@testing-library/user-event";
 
@@ -61,8 +61,10 @@ describe("Given gameDetails page", () => {
 
       const foundButton = screen.getByRole("button");
       userEvent.click(foundButton);
-      await waitFor(() => expect(mockPush).toHaveBeenCalledWith("/rooms"));
-      expect(mockPush).toHaveBeenCalledWith("/rooms");
+      await waitFor(() =>
+        expect(mockPush).toHaveBeenCalledWith(`/rooms/${APIRooms[0].id}`)
+      );
+      expect(mockPush).toHaveBeenCalledWith(`/rooms/${APIRooms[0].id}`);
     });
   });
 });

@@ -28,7 +28,7 @@ export const getAddRoomThunk =
     }
 
     dispatch(getAddRoomAction(body));
-    onLoad();
+    onLoad(body.id);
   };
 
 export const getDeleteRoomThunk =

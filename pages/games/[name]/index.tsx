@@ -63,13 +63,13 @@ const GameDetails = ({ game }: Props) => {
 
   const router = useRouter();
 
-  const onLoad = () => {
-    router.push("/rooms");
+  const onLoad = (roomId: string) => {
+    router.push(`/rooms/${roomId}`);
   };
 
   const onStart = () => {
     const newRoom: NewRoom = {
-      leader: "622f00e91e85099995d63b07",
+      leader: localStorage.getItem("id"),
       game: game.id,
     };
     dispatch(getAddRoomThunk(newRoom, onLoad, user.token));
