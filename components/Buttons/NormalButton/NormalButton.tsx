@@ -6,23 +6,26 @@ interface Props {
   text: string;
   color: string;
   size: {
-    width: number;
+    width?: number;
     height: number;
   };
   onClick?(event?: BaseSyntheticEvent): void;
+  disabled: boolean;
 }
 
 interface ButtonProps {
   col: string;
   size: {
-    width: number;
+    width?: number;
     height: number;
   };
 }
 
 const StyledButton = styled.button`
   ${({ col, size }: ButtonProps) =>
-    `background-color: ${col}; height:${size.height}px; width: ${size.width}px;`}
+    `background-color: ${col}; 
+  height:${size.height}px; 
+  width: ${size.width ? `${size.width}px;` : "100%;"}`}
   border: 1px solid white;
   border-radius: 5px;
   font-family: inherit;
@@ -33,13 +36,21 @@ const StyledButton = styled.button`
   justify-content: center;
 `;
 
-const NormalButton = ({ text, color, isSubmit, size, onClick }: Props) => {
+const NormalButton = ({
+  text,
+  color,
+  isSubmit,
+  size,
+  onClick,
+  disabled,
+}: Props) => {
   return (
     <StyledButton
       col={color}
       type={isSubmit ? "submit" : "button"}
       size={size}
       onClick={onClick}
+      disabled={disabled}
     >
       {text}
     </StyledButton>
