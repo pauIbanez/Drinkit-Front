@@ -1,7 +1,6 @@
 import { BaseSyntheticEvent, useState } from "react";
 import styled from "styled-components";
 import { lightBlack, lightWhite, mainTeal } from "../../../styles/colors";
-import { StyledForm } from "../../../styles/global";
 import { globalRadius } from "../../../styles/variables";
 import NormalButton from "../../Buttons/NormalButton/NormalButton";
 
@@ -9,10 +8,18 @@ const HiddenLabel = styled.label`
   display: none;
 `;
 
-const inputPadding = 15;
+const RoomIdFormElement = styled.form`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 13px;
+  margin-bottom: 20px;
+`;
 
 const Wrapper = styled.div`
-  margin: ${inputPadding}px 0 ${inputPadding / 2}px;
+  margin: 30px 0 6px;
   position: relative;
   display: flex;
   align-items: center;
@@ -58,7 +65,7 @@ const RoomIdForm = () => {
   const onJoinClick = () => {};
 
   return (
-    <StyledForm>
+    <RoomIdFormElement>
       <Wrapper>
         <HiddenLabel htmlFor="roomId">Room Id</HiddenLabel>
         <InputCheto
@@ -75,11 +82,11 @@ const RoomIdForm = () => {
         color={mainTeal}
         text="Join"
         isSubmit
-        size={{ height: 30 }}
+        size={{ height: 35 }}
         onClick={onJoinClick}
         disabled={!validRoomId}
       />
-    </StyledForm>
+    </RoomIdFormElement>
   );
 };
 
