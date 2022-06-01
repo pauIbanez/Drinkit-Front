@@ -219,7 +219,7 @@ const LobbyPage = (): JSX.Element => {
     >
       <CenteredContainer>
         <HorizontalContainer>
-          <RoomCode>HS6Y</RoomCode>
+          <RoomCode>{piramideLobby.sharedId}</RoomCode>
           <PlayerCounter>
             {piramideLobby.connectedPlayers &&
               `${piramideLobby.connectedPlayers.length}/${piramideLobby.maxPlayers}`}

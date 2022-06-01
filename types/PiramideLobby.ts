@@ -2,6 +2,7 @@ import Player from "./Player";
 
 interface PiramideLobby {
   id: string;
+  sharedId: string;
   minPlayers: number;
   maxPlayers: number;
   jokers: boolean;
