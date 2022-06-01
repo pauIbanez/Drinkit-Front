@@ -1,3 +1,4 @@
+import { Router, useRouter } from "next/router";
 import { BaseSyntheticEvent, useState } from "react";
 import styled from "styled-components";
 import { lightBlack, lightWhite, mainTeal } from "../../../styles/colors";
@@ -45,6 +46,8 @@ const InputCheto = styled.input`
 `;
 
 const RoomIdForm = () => {
+  const router = useRouter();
+
   const [roomId, setRoomId] = useState("");
   const [validRoomId, setValidRoomId] = useState(false);
 
@@ -62,7 +65,10 @@ const RoomIdForm = () => {
     }
   };
 
-  const onJoinClick = () => {};
+  const onJoinClick = (event: BaseSyntheticEvent) => {
+    event.preventDefault();
+    router.push(`/rooms/${roomId}`);
+  };
 
   return (
     <RoomIdFormElement>
