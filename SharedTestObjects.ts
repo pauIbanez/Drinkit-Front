@@ -72,6 +72,7 @@ export const APIRooms: APIRoom[] = [
 
 export const lobby: PiramideLobby = {
   id: "lobbyid",
+  sharedId: "HEWA",
   connectedPlayers: [
     {
       id: "leaderId",

@@ -10,7 +10,7 @@ interface Props {
     height: number;
   };
   onClick?(event?: BaseSyntheticEvent): void;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 interface ButtonProps {
