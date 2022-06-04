@@ -227,6 +227,18 @@ const LobbyPage = (): JSX.Element => {
     usersToRender = [...connectedToRender, ...restToRender];
   }
 
+  const onLeaveClick = () => {
+    wsInstance.send(
+      JSON.stringify({
+        reason: "lobby",
+        game: "piramide",
+        type: "leave",
+        lobby: roomId,
+        userId: user.id,
+      })
+    );
+  };
+
   return (
     <Layout
       pageTitle="Piramide lobby"
@@ -271,7 +283,7 @@ const LobbyPage = (): JSX.Element => {
           </SettingsSection>
         </Settigns>
       </CenteredContainer>
-      <PiramideFooter isLeader={localLeader} />
+      <PiramideFooter isLeader={localLeader} onLeaveClick={onLeaveClick} />
     </Layout>
   );
 };
