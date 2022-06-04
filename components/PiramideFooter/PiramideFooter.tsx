@@ -1,9 +1,19 @@
+import Link from "next/link";
 import styled from "styled-components";
 import { lightWhite, sectionBlue } from "../../styles/colors";
-import { globalFooterHeight } from "../../styles/variables";
+import { Back } from "../../styles/global";
+import {
+  globalFooterHeight,
+  globalPageHorizontalPadding,
+} from "../../styles/variables";
 
 export interface PiramideFooterProps {
   isLeader: boolean;
+  onLeaveClick(): void;
+}
+
+interface LeaveButtonProps {
+  onClick(): void;
 }
 
 const FooterHolder = styled.footer`
@@ -13,8 +23,8 @@ const FooterHolder = styled.footer`
   right: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 ${globalPageHorizontalPadding} 0 ${globalPageHorizontalPadding};
 
   height: ${globalFooterHeight};
 
@@ -22,13 +32,35 @@ const FooterHolder = styled.footer`
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 `;
 
-const PiramideFooter = ({ isLeader }: PiramideFooterProps): JSX.Element => {
+const WaitingText = styled.p`
+  margin: 0;
+  color: ${lightWhite};
+  font-size: 13px;
+`;
+
+const LeaveButton = ({ onClick }: LeaveButtonProps): JSX.Element => {
+  return (
+    <Link href={"/"} passHref>
+      <Back onClick={onClick}>Leave</Back>
+    </Link>
+  );
+};
+
+const PiramideFooter = ({
+  isLeader,
+  onLeaveClick,
+}: PiramideFooterProps): JSX.Element => {
   return (
     <FooterHolder>
-      {isLeader && (
+      {isLeader ? (
         <>
-          <p>is Leader</p>
+          <LeaveButton onClick={onLeaveClick} />
           <p>test</p>
+        </>
+      ) : (
+        <>
+          <LeaveButton onClick={onLeaveClick} />
+          <WaitingText> Waiting for leader to start...</WaitingText>
         </>
       )}
     </FooterHolder>
