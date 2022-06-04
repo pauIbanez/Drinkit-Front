@@ -51,7 +51,6 @@ const UpperLink = styled(Link)`
 
 const RoomList = ({ rooms }: Props): JSX.Element => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state: State): State => state);
 
   useEffect(() => {
     dispatch(getLoadRoomsAction(rooms));

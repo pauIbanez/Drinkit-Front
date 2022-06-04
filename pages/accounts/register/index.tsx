@@ -15,8 +15,8 @@ import {
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
 
-  const onFinished = (email: string) => {
-    setEmail(email);
+  const onFinished = (newEmail: string) => {
+    setEmail(newEmail);
   };
 
   return (

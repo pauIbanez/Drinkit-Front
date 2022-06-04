@@ -37,19 +37,19 @@ const RegisterForm = ({ onFinished }: Props) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(blankForm);
 
-  const onError = (error: string) => {
+  const onError = (errorString: string) => {
     setLoading(false);
-    if (error === "email") {
+    if (errorString === "email") {
       setErrors([<p key={"email"}>This email is already registered</p>]);
       return;
     }
 
-    if (error === "username") {
+    if (errorString === "username") {
       setErrors([<p key={"username"}>This username is already in use</p>]);
       return;
     }
 
-    const errorStrings = error.split(",");
+    const errorStrings = errorString.split(",");
     const errorsToRender = errorStrings.map(
       (error: string): JSX.Element => <p key={error}>{error}</p>
     );

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import TextIconButton from "../../../components/Buttons/TextIconButton/TextIconButton";
+import PiramideFooter from "../../../components/PiramideFooter/PiramideFooter";
 import Layout from "../../../components/Layout/Layout";
 import WSContext from "../../../contexts/wsContext";
 import { getUpdateStateAction } from "../../../redux/actions/piramideLobby/piramideLobbyActionCreators";
@@ -143,6 +144,8 @@ const LobbyPage = (): JSX.Element => {
   const { roomId } = router.query;
   const { user, piramideLobby } = useSelector((state: State) => state);
   const { wsInstance, ready } = useContext(WSContext);
+  const [localLeader, setLocalLeader] = useState(false);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -162,6 +165,18 @@ const LobbyPage = (): JSX.Element => {
       };
     }
   }, [dispatch, ready, roomId, user.id, wsInstance]);
+
+  useEffect(() => {
+    if (!user || !piramideLobby.leader) {
+      return;
+    }
+
+    if (piramideLobby.leader.id === user.id) {
+      setLocalLeader(true);
+    } else {
+      setLocalLeader(false);
+    }
+  }, [piramideLobby.leader, user]);
 
   let usersToRender: JSX.Element[] = [];
   let modifiersToRender: JSX.Element[] = [];
@@ -212,6 +227,18 @@ const LobbyPage = (): JSX.Element => {
     usersToRender = [...connectedToRender, ...restToRender];
   }
 
+  const onLeaveClick = () => {
+    wsInstance.send(
+      JSON.stringify({
+        reason: "lobby",
+        game: "piramide",
+        type: "leave",
+        lobby: roomId,
+        userId: user.id,
+      })
+    );
+  };
+
   return (
     <Layout
       pageTitle="Piramide lobby"
@@ -256,6 +283,7 @@ const LobbyPage = (): JSX.Element => {
           </SettingsSection>
         </Settigns>
       </CenteredContainer>
+      <PiramideFooter isLeader={localLeader} onLeaveClick={onLeaveClick} />
     </Layout>
   );
 };

@@ -89,6 +89,7 @@ describe("Given PiramideLobbyPage", () => {
     test("Then it should call dispatch with the roomData", () => {
       const thisLobby: PiramideLobby = {
         id: "lobbyid",
+        sharedId: "AAAA",
         connectedPlayers: [
           {
             id: "leaderId",
@@ -147,6 +148,7 @@ describe("Given PiramideLobbyPage", () => {
       );
 
       const data: PiramideLobby = {
+        sharedId: "AAAA",
         jokers: false,
         modifiers: ["double"],
         twoDecks: false,
