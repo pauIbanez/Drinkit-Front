@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+const withPWA = require("next-pwa");
+
+const nextConfig = withPWA({
+  pwa: {
+    dest: "public",
+  },
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
@@ -7,6 +13,6 @@ const nextConfig = {
   images: {
     domains: ["localhost", "drinkit.onrender.com"],
   },
-};
+});
 
 module.exports = nextConfig;
