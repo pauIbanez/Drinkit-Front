@@ -14,6 +14,12 @@ sonar-key
 /.next/
 /out/
 
+
+#PWA
+
+/public/*.js
+/public/*.map
+
 # production
 /build
 
