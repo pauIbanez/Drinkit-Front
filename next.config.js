@@ -5,7 +5,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["localhost", "drinkit-back.onrender.com"],
+    domains: ["localhost", "drinkit.onrender.com"],
   },
 };
 
