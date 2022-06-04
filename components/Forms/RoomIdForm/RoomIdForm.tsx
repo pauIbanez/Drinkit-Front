@@ -1,4 +1,4 @@
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { BaseSyntheticEvent, useState } from "react";
 import styled from "styled-components";
 import { lightBlack, lightWhite, mainTeal } from "../../../styles/colors";
@@ -52,12 +52,12 @@ const RoomIdForm = () => {
   const [validRoomId, setValidRoomId] = useState(false);
 
   const onRoomIdChange = (event: BaseSyntheticEvent) => {
-    const roomId: string = event.target.value;
+    const newRoomId: string = event.target.value;
 
-    if (roomId.length <= 4) {
+    if (newRoomId.length <= 4) {
       setRoomId(event.target.value.toUpperCase());
 
-      if (roomId.length < 4) {
+      if (newRoomId.length < 4) {
         setValidRoomId(false);
       } else {
         setValidRoomId(true);

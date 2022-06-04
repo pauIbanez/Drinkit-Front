@@ -35,10 +35,10 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState(blankForm);
 
-  const onError = (error: string) => {
+  const onError = (errorString: string) => {
     setLoading(false);
 
-    const errorStrings = error.split(",");
+    const errorStrings = errorString.split(",");
     const errorsToRender = errorStrings.map(
       (error: string): JSX.Element => <p key={error}>{error}</p>
     );

@@ -8,9 +8,9 @@ describe("Given piramideLobbyReducer", () => {
     test("Then it should return an empty object", () => {
       const expectedLobby = {};
 
-      const lobby = piramideLobbyReducer();
+      const newLobby = piramideLobbyReducer();
 
-      expect(lobby).toEqual(expectedLobby);
+      expect(newLobby).toEqual(expectedLobby);
     });
   });
 

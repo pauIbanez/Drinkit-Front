@@ -1,6 +1,5 @@
 import Link from "next/link";
 import LoginForm from "../../../components/Forms/LoginForm/LoginForm";
-import RegisterForm from "../../../components/Forms/RegisterForm/RegisterForm";
 import Layout from "../../../components/Layout/Layout";
 import {
   CenteredContainer,
