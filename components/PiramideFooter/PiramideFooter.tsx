@@ -38,7 +38,7 @@ const WaitingText = styled.p`
   font-size: 13px;
 `;
 
-const LeaveButton = ({ onClick }: LeaveButtonProps): JSX.Element => {
+export const LeaveButton = ({ onClick }: LeaveButtonProps): JSX.Element => {
   return (
     <Link href={"/"} passHref>
       <Back onClick={onClick}>Leave</Back>

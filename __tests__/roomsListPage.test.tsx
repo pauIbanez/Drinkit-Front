@@ -1,10 +1,8 @@
 import { screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { renderInBocata } from "../jest.setup";
 import RoomList, { getServerSideProps } from "../pages/rooms";
 import { APIRooms } from "../SharedTestObjects";
 import { APIRoom } from "../types/Room";
-import * as redux from "react-redux";
 import { mockUrls } from "../mocks/mockUrls";
 
 const mockPush = jest.fn();
