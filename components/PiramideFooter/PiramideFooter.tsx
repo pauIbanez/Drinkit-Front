@@ -1,11 +1,13 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { lightWhite, sectionBlue } from "../../styles/colors";
+import { lightWhite, mainTeal, sectionBlue } from "../../styles/colors";
 import { Back } from "../../styles/global";
 import {
   globalFooterHeight,
   globalPageHorizontalPadding,
 } from "../../styles/variables";
+import IconButton from "../Buttons/IconButton/IconButton";
+import TextIconButton from "../Buttons/TextIconButton/TextIconButton";
 
 export interface PiramideFooterProps {
   isLeader: boolean;
@@ -38,6 +40,13 @@ const WaitingText = styled.p`
   font-size: 13px;
 `;
 
+const ButtonHolder = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+`;
+
 export const LeaveButton = ({ onClick }: LeaveButtonProps): JSX.Element => {
   return (
     <Link href={"/"} passHref>
@@ -55,7 +64,21 @@ const PiramideFooter = ({
       {isLeader ? (
         <>
           <LeaveButton onClick={onLeaveClick} />
-          <p>test</p>
+          <ButtonHolder>
+            <TextIconButton
+              color={mainTeal}
+              icon="/icons/clink.png"
+              size={{ height: 45, width: 127 }}
+              text="Start"
+            />
+
+            <IconButton
+              alt="lobby settings"
+              color={mainTeal}
+              icon="/icons/config.png"
+              size={{ height: 45, width: 45 }}
+            />
+          </ButtonHolder>
         </>
       ) : (
         <>
