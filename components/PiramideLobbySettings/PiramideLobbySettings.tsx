@@ -66,13 +66,14 @@ const SettingTitle = styled.h4`
 
 const SettingDescription = styled.p`
   margin: 0;
-
+  max-width: 250px;
   font-size: 10px;
   color: ${lightWhite};
+  padding-right: 10px;
 `;
 
 const ToggleHolder = styled.div`
-  width: 100px;
+  width: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,6 +120,39 @@ const PiramideLobbySettings = ({
                 onClick={toggle}
                 name="twoDecks"
                 toggled={settings.twoDecks}
+              />
+            </ToggleHolder>
+          </Setting>
+          <Setting>
+            <SettingInfo>
+              <SettingTitle>Jokers</SettingTitle>
+              <SettingDescription>
+                Play with jokers. Jokers cannot be in the player’s hands, and
+                everyone drinks when one shows up in the pyramid
+              </SettingDescription>
+            </SettingInfo>
+            <ToggleHolder>
+              <Toggle
+                onClick={toggle}
+                name="jokers"
+                toggled={settings.jokers}
+              />
+            </ToggleHolder>
+          </Setting>
+          <Setting>
+            <SettingInfo>
+              <SettingTitle>Leftovers</SettingTitle>
+              <SettingDescription>
+                The extra cards in the pyramid will not form a smaller one line,
+                but will be put to the side of the lower rows of the pyramid,
+                their value is double that of the row they are in.
+              </SettingDescription>
+            </SettingInfo>
+            <ToggleHolder>
+              <Toggle
+                onClick={toggle}
+                name="leftovers"
+                toggled={settings.leftovers}
               />
             </ToggleHolder>
           </Setting>
