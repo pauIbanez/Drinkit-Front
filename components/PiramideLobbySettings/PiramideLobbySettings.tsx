@@ -113,7 +113,10 @@ const PiramideLobbySettings = ({
   const [settings, setSettings] = useState(initialSettings);
 
   const toggle = (settingName: string) => {
-    const newSettings = { ...settings, [settingName]: !settings[settingName] };
+    const newSettings = {
+      ...settings,
+      [settingName]: !(settings as any)[settingName],
+    };
     setSettings(newSettings);
   };
 
