@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { backgroundBlue, lightWhite, mainTeal } from "../../styles/colors";
 import { globalRadius } from "../../styles/variables";
 import PiramideLobby from "../../types/PiramideLobby";
+import Toggle from "../Toggle/Toggle";
 
 interface PiramideLobbySettingsProps {
   lobbySettings: PiramideLobby;
@@ -78,57 +79,16 @@ const ToggleHolder = styled.div`
   height: 100%;
 `;
 
-const toggleHeight = 20;
-const toggleWidth = 50;
-
-const ToggleBackground = styled.div`
-  position: relative;
-  height: ${toggleHeight}px;
-  width: ${toggleWidth}px;
-
-  border-radius: ${toggleHeight / 2}px;
-  background-color: rgba(0, 0, 0, 0.3);
-`;
-
-interface ToggleProps {
-  toggled: boolean;
-}
-
-const ToggleHandle = styled.div`
-  background-color: white;
-  width: ${toggleHeight}px;
-  height: ${toggleHeight}px;
-  position: absolute;
-  border-radius: ${toggleHeight / 2}px;
-
-  z-index: 2;
-
-  ${(props: ToggleProps) =>
-    props.toggled && `transform: translateX(${toggleWidth - toggleHeight}px);`}
-
-  transition: all 0.3s ease-in-out;
-`;
-
-const ToggleFilledBackground = styled.div`
-  position: absolute;
-  inset: 0;
-  width: 10px;
-  ${(props: ToggleProps) =>
-    props.toggled && `background-color: ${mainTeal}; width: ${toggleWidth}px;`}
-
-  border-radius: ${toggleHeight / 2}px;
-
-  z-index: 1;
-
-  transition: all 0.3s ease-in-out;
-`;
-
 const PiramideLobbySettings = ({
   lobbySettings,
   wsInstance,
   onBackgroundClick,
 }: PiramideLobbySettingsProps) => {
   const [toggled, setToggled] = useState(false);
+
+  const toggle = () => {
+    setToggled(!toggled);
+  };
 
   return (
     <Closer onClick={onBackgroundClick}>
@@ -148,14 +108,7 @@ const PiramideLobbySettings = ({
               </SettingDescription>
             </SettingInfo>
             <ToggleHolder>
-              <ToggleBackground
-                onClick={() => {
-                  setToggled(!toggled);
-                }}
-              >
-                <ToggleFilledBackground toggled={toggled} />
-                <ToggleHandle toggled={toggled} />
-              </ToggleBackground>
+              <Toggle onClick={toggle} toggled={toggled} />
             </ToggleHolder>
           </Setting>
         </SettingHolder>
