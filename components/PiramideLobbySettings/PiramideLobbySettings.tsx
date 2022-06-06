@@ -1,16 +1,13 @@
-interface PiramideLobbySettingsProps {
-  gameSettings: {
-    twoDecks: boolean;
-    jokers: boolean;
-    leftovers: boolean;
-  };
+import PiramideLobby from "../../types/PiramideLobby";
 
-  modifiers: number[];
+interface PiramideLobbySettingsProps {
+  lobbySettings: PiramideLobby;
+  wsInstance: WebSocket;
 }
 
 const PiramideLobbySettings = ({
-  gameSettings,
-  modifiers,
+  lobbySettings,
+  wsInstance,
 }: PiramideLobbySettingsProps) => {
   return <p>asdasds</p>;
 };
