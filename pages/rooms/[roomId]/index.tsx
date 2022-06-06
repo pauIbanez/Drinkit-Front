@@ -303,6 +303,7 @@ const LobbyPage = (): JSX.Element => {
           lobbySettings={piramideLobby}
           wsInstance={wsInstance}
           onBackgroundClick={onBackgroundClick}
+          userId={user.id}
         />
       )}
     </Layout>

@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { backgroundBlue, lightWhite, mainTeal } from "../../styles/colors";
 import { globalRadius } from "../../styles/variables";
 import PiramideLobby from "../../types/PiramideLobby";
+import TextIconButton from "../Buttons/TextIconButton/TextIconButton";
 import Toggle from "../Toggle/Toggle";
 
 interface PiramideLobbySettingsProps {
   lobbySettings: PiramideLobby;
   wsInstance: WebSocket;
+  userId: string;
   onBackgroundClick(): void;
 }
 
@@ -33,6 +35,8 @@ const Popup = styled.div`
 
   overflow-y: scroll;
   padding: 30px;
+
+  position: relative;
 `;
 
 const SectionTitle = styled.h3`
@@ -80,15 +84,30 @@ const ToggleHolder = styled.div`
   height: 100%;
 `;
 
+const SaveButtonHolder = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  background-color: ${backgroundBlue};
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  padding: 30px;
+`;
+
 const PiramideLobbySettings = ({
   lobbySettings,
   wsInstance,
   onBackgroundClick,
+  userId,
 }: PiramideLobbySettingsProps) => {
   const initialSettings = {
-    twoDecks: false,
-    jokers: false,
-    leftovers: false,
+    twoDecks: lobbySettings.twoDecks,
+    jokers: lobbySettings.jokers,
+    leftovers: lobbySettings.leftovers,
   };
 
   const [settings, setSettings] = useState(initialSettings);
@@ -96,6 +115,10 @@ const PiramideLobbySettings = ({
   const toggle = (settingName: string) => {
     const newSettings = { ...settings, [settingName]: !settings[settingName] };
     setSettings(newSettings);
+  };
+
+  const saveSettings = () => {
+    console.log(settings);
   };
 
   return (
@@ -157,6 +180,15 @@ const PiramideLobbySettings = ({
             </ToggleHolder>
           </Setting>
         </SettingHolder>
+        <SaveButtonHolder>
+          <TextIconButton
+            color={mainTeal}
+            icon="/icons/clink.png"
+            size={{ height: 46, width: 127 }}
+            text="Save"
+            onClick={saveSettings}
+          />
+        </SaveButtonHolder>
       </Popup>
     </Closer>
   );
