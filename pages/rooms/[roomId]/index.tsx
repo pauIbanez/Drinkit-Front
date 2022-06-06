@@ -163,7 +163,7 @@ const LobbyPage = (): JSX.Element => {
       );
       wsInstance.onmessage = ({ data }: Message) => {
         const lobby = JSON.parse(data);
-        dispatch(getUpdateStateAction(lobby));
+        dispatch(getUpdateStateAction(lobby, roomId as string));
       };
     }
   }, [dispatch, ready, roomId, user.id, wsInstance]);

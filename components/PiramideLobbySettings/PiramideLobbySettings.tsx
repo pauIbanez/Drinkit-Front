@@ -118,7 +118,20 @@ const PiramideLobbySettings = ({
   };
 
   const saveSettings = () => {
-    console.log(settings);
+    console.log(lobbySettings.id);
+
+    wsInstance.send(
+      JSON.stringify({
+        reason: "lobby",
+        game: "piramide",
+        type: "settings",
+        lobby: lobbySettings.id,
+        userId: userId,
+        settings,
+      })
+    );
+
+    onBackgroundClick();
   };
 
   return (

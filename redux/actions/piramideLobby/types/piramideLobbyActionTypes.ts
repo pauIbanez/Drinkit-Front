@@ -3,4 +3,5 @@ import PiramideLobby from "../../../../types/PiramideLobby";
 
 export interface UpdateStateAction extends Action {
   lobby: PiramideLobby;
+  roomId: string;
 }
