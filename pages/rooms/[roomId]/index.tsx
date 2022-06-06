@@ -18,6 +18,7 @@ import { CenteredContainer } from "../../../styles/global";
 import { globalRadius } from "../../../styles/variables";
 import Player from "../../../types/Player";
 import State from "../../../types/State";
+import PiramideLobbySettings from "../../../components/PiramideLobbySettings/PiramideLobbySettings";
 
 interface Message {
   data: string;
@@ -145,6 +146,7 @@ const LobbyPage = (): JSX.Element => {
   const { user, piramideLobby } = useSelector((state: State) => state);
   const { wsInstance, ready } = useContext(WSContext);
   const [localLeader, setLocalLeader] = useState(false);
+  const [showingSettings, setShowingSettings] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -161,7 +163,7 @@ const LobbyPage = (): JSX.Element => {
       );
       wsInstance.onmessage = ({ data }: Message) => {
         const lobby = JSON.parse(data);
-        dispatch(getUpdateStateAction(lobby));
+        dispatch(getUpdateStateAction(lobby, roomId as string));
       };
     }
   }, [dispatch, ready, roomId, user.id, wsInstance]);
@@ -227,6 +229,14 @@ const LobbyPage = (): JSX.Element => {
     usersToRender = [...connectedToRender, ...restToRender];
   }
 
+  const onSettingsClick = () => {
+    setShowingSettings(true);
+  };
+
+  const onBackgroundClick = () => {
+    setShowingSettings(false);
+  };
+
   const onLeaveClick = () => {
     wsInstance.send(
       JSON.stringify({
@@ -283,7 +293,19 @@ const LobbyPage = (): JSX.Element => {
           </SettingsSection>
         </Settigns>
       </CenteredContainer>
-      <PiramideFooter isLeader={localLeader} onLeaveClick={onLeaveClick} />
+      <PiramideFooter
+        isLeader={localLeader}
+        onLeaveClick={onLeaveClick}
+        onSettingsClick={onSettingsClick}
+      />
+      {showingSettings && (
+        <PiramideLobbySettings
+          lobbySettings={piramideLobby}
+          wsInstance={wsInstance}
+          onBackgroundClick={onBackgroundClick}
+          userId={user.id}
+        />
+      )}
     </Layout>
   );
 };

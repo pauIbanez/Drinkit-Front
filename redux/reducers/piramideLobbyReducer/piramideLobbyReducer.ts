@@ -10,7 +10,10 @@ const piramideLobbyReducer = (
   let newLobby;
 
   if (action.type === piramideLobbyTypes.updateState) {
-    newLobby = { ...(action as UpdateStateAction).lobby };
+    newLobby = {
+      ...(action as UpdateStateAction).lobby,
+      id: (action as UpdateStateAction).roomId,
+    };
   } else {
     newLobby = { ...currentLobby };
   }

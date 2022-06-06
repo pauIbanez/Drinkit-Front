@@ -19,6 +19,7 @@ describe("Given piramideLobbyReducer", () => {
       const expectedLobby = lobby;
       const action: UpdateStateAction = {
         lobby,
+        roomId: lobby.id,
         type: piramideLobbyTypes.updateState,
       };
 

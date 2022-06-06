@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useState } from "react";
 import styled from "styled-components";
 import { lightWhite, mainTeal, sectionBlue } from "../../styles/colors";
 import { Back } from "../../styles/global";
@@ -12,6 +13,7 @@ import TextIconButton from "../Buttons/TextIconButton/TextIconButton";
 export interface PiramideFooterProps {
   isLeader: boolean;
   onLeaveClick(): void;
+  onSettingsClick(): void;
 }
 
 interface LeaveButtonProps {
@@ -58,6 +60,7 @@ export const LeaveButton = ({ onClick }: LeaveButtonProps): JSX.Element => {
 const PiramideFooter = ({
   isLeader,
   onLeaveClick,
+  onSettingsClick,
 }: PiramideFooterProps): JSX.Element => {
   return (
     <FooterHolder>
@@ -77,6 +80,7 @@ const PiramideFooter = ({
               color={mainTeal}
               icon="/icons/config.png"
               size={{ height: 45, width: 45 }}
+              onClick={onSettingsClick}
             />
           </ButtonHolder>
         </>
