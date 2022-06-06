@@ -3,7 +3,8 @@ import { mainTeal } from "../../styles/colors";
 
 interface ToggleProps {
   toggled: boolean;
-  onClick(): void;
+  onClick(name: string): void;
+  name: string;
 }
 
 interface ToggleStyleProps {
@@ -51,9 +52,13 @@ const ToggleFilledBackground = styled.div`
   transition: all 0.3s ease-in-out;
 `;
 
-const Toggle = ({ toggled, onClick }: ToggleProps) => {
+const Toggle = ({ toggled, onClick, name }: ToggleProps) => {
   return (
-    <ToggleBackground onClick={onClick}>
+    <ToggleBackground
+      onClick={() => {
+        onClick(name);
+      }}
+    >
       <ToggleFilledBackground toggled={toggled} />
       <ToggleHandle toggled={toggled} />
     </ToggleBackground>

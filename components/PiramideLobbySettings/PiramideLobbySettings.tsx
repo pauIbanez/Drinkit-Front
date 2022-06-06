@@ -84,10 +84,17 @@ const PiramideLobbySettings = ({
   wsInstance,
   onBackgroundClick,
 }: PiramideLobbySettingsProps) => {
-  const [toggled, setToggled] = useState(false);
+  const initialSettings = {
+    twoDecks: false,
+    jokers: false,
+    leftovers: false,
+  };
 
-  const toggle = () => {
-    setToggled(!toggled);
+  const [settings, setSettings] = useState(initialSettings);
+
+  const toggle = (settingName: string) => {
+    const newSettings = { ...settings, [settingName]: !settings[settingName] };
+    setSettings(newSettings);
   };
 
   return (
@@ -108,7 +115,11 @@ const PiramideLobbySettings = ({
               </SettingDescription>
             </SettingInfo>
             <ToggleHolder>
-              <Toggle onClick={toggle} toggled={toggled} />
+              <Toggle
+                onClick={toggle}
+                name="twoDecks"
+                toggled={settings.twoDecks}
+              />
             </ToggleHolder>
           </Setting>
         </SettingHolder>
