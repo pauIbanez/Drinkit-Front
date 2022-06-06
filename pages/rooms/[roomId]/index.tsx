@@ -233,6 +233,10 @@ const LobbyPage = (): JSX.Element => {
     setShowingSettings(true);
   };
 
+  const onBackgroundClick = () => {
+    setShowingSettings(false);
+  };
+
   const onLeaveClick = () => {
     wsInstance.send(
       JSON.stringify({
@@ -298,6 +302,7 @@ const LobbyPage = (): JSX.Element => {
         <PiramideLobbySettings
           lobbySettings={piramideLobby}
           wsInstance={wsInstance}
+          onBackgroundClick={onBackgroundClick}
         />
       )}
     </Layout>

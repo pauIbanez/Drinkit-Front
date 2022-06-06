@@ -1,3 +1,4 @@
+import { BaseSyntheticEvent } from "react";
 import styled from "styled-components";
 import { backgroundBlue } from "../../styles/colors";
 import { globalRadius } from "../../styles/variables";
@@ -34,8 +35,12 @@ const PiramideLobbySettings = ({
   onBackgroundClick,
 }: PiramideLobbySettingsProps) => {
   return (
-    <Closer>
-      <Popup></Popup>
+    <Closer onClick={onBackgroundClick}>
+      <Popup
+        onClick={(event: BaseSyntheticEvent) => {
+          event.stopPropagation();
+        }}
+      ></Popup>
     </Closer>
   );
 };
